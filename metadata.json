@@ -1,0 +1,6 @@
+{
+  "name": "Sri Vidya Chetana Degree College",
+  "description": "A modern, professional, responsive academic website prototype for Sri Vidya Chetana Degree College in Karnataka, featuring integrated standard B.Com, B.Sc, and B.A streams alongside expert competitive coaching for IAS, KAS, Banking, SSC, Railway, and CA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
