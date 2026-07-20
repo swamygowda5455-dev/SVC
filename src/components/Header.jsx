@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Phone, Mail, Menu, X, ShieldAlert, GraduationCap, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import logo from "@/assets/Sri Vidhya Education logo final (quillbot.com).jpg";
 
-export default function Header({ branding, activeSection, setActiveSection, isAdminOpen, setIsAdminOpen }) {
+export default function Header({ branding, activeSection, setActiveSection }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
@@ -26,38 +27,23 @@ export default function Header({ branding, activeSection, setActiveSection, isAd
   };
 
   return (
-    <header className="w-full sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
-      {/* Top Banner Contact & CMS Mode Toggle */}
-      <div className="bg-[#0F172A] text-white text-xs py-2.5 px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 border-b border-white/10 font-medium">
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-slate-300">
-          <a href={`tel:${branding.phone}`} className="flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-            <Phone size={12} className="text-blue-400" />
-            <span>{branding.phone}</span>
-          </a>
-          <span className="hidden sm:inline text-white/20">|</span>
-          <a href={`mailto:${branding.email}`} className="flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-            <Mail size={12} className="text-blue-400" />
-            <span>{branding.email}</span>
-          </a>
-        </div>
-        
-        <div className="flex items-center gap-4">
-          <span className="bg-white/10 text-slate-200 px-3 py-0.5 rounded-full text-[10px] font-mono tracking-wider flex items-center gap-1.5 border border-white/10">
-            <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
-            PROTOTYPE PREVIEW
-          </span>
-          <button
-            id="cms-toggle-btn"
-            onClick={() => setIsAdminOpen(!isAdminOpen)}
-            className={`flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] font-semibold transition-all duration-300 cursor-pointer ${
-              isAdminOpen 
-                ? "bg-amber-500 text-[#0f172a] font-bold ring-2 ring-amber-300 shadow-sm" 
-                : "bg-blue-700 hover:bg-blue-800 text-white shadow-sm shadow-blue-500/10"
-            }`}
-          >
-            <Settings size={12} className={isAdminOpen ? "animate-spin" : ""} />
-            <span>{isAdminOpen ? "Close Admin Panel" : "Live CMS Panel"}</span>
-          </button>
+    <header className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-100 z-50 transition-all duration-300">
+      
+      {/* Top Utility Bar */}
+      <div className="bg-[#0f172a] text-slate-300 text-[10px] sm:text-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex justify-between items-center">
+          
+          {/* Quick Contact Info */}
+          <div className="flex items-center gap-4">
+            <a href={`tel:${branding.phone}`} className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <Phone size={12} className="text-blue-500" />
+              <span>{branding.phone}</span>
+            </a>
+            <a href={`mailto:${branding.email}`} className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
+              <Mail size={12} className="text-blue-500" />
+              <span>{branding.email}</span>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -65,15 +51,17 @@ export default function Header({ branding, activeSection, setActiveSection, isAd
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
         {/* Brand Logo & Name */}
         <div className="flex items-center gap-3.5 cursor-pointer" onClick={() => handleNavClick("#home")}>
-          <div className="w-10 h-10 rounded-lg bg-[#1E40AF] flex items-center justify-center text-white shadow-sm shrink-0">
-            <GraduationCap size={22} />
-          </div>
+          <img
+            src={logo}
+            alt="Sri Vidya Chetana Logo"
+            className="w-16 h-16 object-contain rounded-xl bg-white p-0.5 border border-slate-200/60 shrink-0 shadow-md transition-transform hover:scale-105 duration-300"
+          />
           <div>
             <h1 className="text-xs min-[380px]:text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-tight text-[#1E3A8A] leading-tight font-display">
               {branding.collegeName.toUpperCase()}
             </h1>
             <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-slate-400 font-bold">
-              Excellence in Innovation
+              {branding.tagline}
             </p>
           </div>
         </div>

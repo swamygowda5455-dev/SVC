@@ -1,5 +1,6 @@
 import React from "react";
 import { GraduationCap, ArrowUp, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Youtube, Instagram } from "lucide-react";
+import logo from "@/assets/Sri Vidhya Education logo final (quillbot.com).jpg";
 
 export default function Footer({ branding, courses, departments }) {
 
@@ -24,9 +25,11 @@ export default function Footer({ branding, courses, departments }) {
           {/* Column 1 (4/12): Brand, Tagline, Socials */}
           <div className="sm:col-span-6 lg:col-span-4 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-700 flex items-center justify-center text-white shadow-sm border border-blue-800">
-                <GraduationCap size={22} />
-              </div>
+              <img
+                src={logo}
+                alt="Sri Vidya Chetana Logo"
+                className="w-20 h-20 object-contain rounded-2xl bg-white p-1 border border-slate-200 shadow-md shrink-0 transition-transform hover:scale-105 duration-300"
+              />
               <h4 className="text-slate-800 text-base font-extrabold tracking-tight">
                 {branding.collegeName.toUpperCase()}
               </h4>
@@ -89,7 +92,7 @@ export default function Footer({ branding, courses, departments }) {
             </ul>
           </div>
 
-          {/* Column 4 (3/12): Departments */}
+          {/* Column 4 (3/12): Our Contact Details */}
           <div className="sm:col-span-2 lg:col-span-3 space-y-4">
             <h5 className="text-slate-800 text-[10px] font-bold uppercase tracking-[0.15em]">Our Contact Details</h5>
             <ul className="space-y-3.5 text-xs text-slate-500">
@@ -110,22 +113,14 @@ export default function Footer({ branding, courses, departments }) {
 
         </div>
 
-        {/* Bottom copyright and disclaimer */}
-        <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="text-xs text-slate-400 text-center sm:text-left">
-            <p>&copy; {new Date().getFullYear()} {branding.collegeName} Prototype Portal. All Rights Reserved.</p>
-            <p className="mt-1 text-[10px] text-slate-400">Built as a premium interactive UI/UX frontend demonstration template.</p>
+        {/* Footer Base Info (Copyright) */}
+        <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-medium tracking-wide">
+          <p>© {new Date().getFullYear()} {branding.collegeName}. All Rights Reserved.</p>
+          <div className="flex gap-4">
+            <a href="#about" className="hover:underline">Affiliation & Rules</a>
+            <a href="#about" className="hover:underline">Privacy Policy</a>
+            <a href="#contact" className="hover:underline">Academic Help desk</a>
           </div>
-
-          {/* Scroll to Top */}
-          <button
-            id="footer-scroll-top-btn"
-            onClick={handleScrollToTop}
-            className="p-2.5 rounded-lg bg-white hover:bg-slate-100 text-slate-600 border border-slate-200 cursor-pointer transition-all duration-300 shadow-sm"
-            aria-label="Scroll to top of the page"
-          >
-            <ArrowUp size={16} />
-          </button>
         </div>
 
       </div>

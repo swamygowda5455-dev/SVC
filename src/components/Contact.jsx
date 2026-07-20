@@ -102,7 +102,7 @@ export default function Contact({ branding }) {
             <div className="h-60 rounded-2xl overflow-hidden border border-slate-200 shadow-sm relative">
               <iframe
                 title="SVC University Campus Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0132918844896!2d-122.40142348468202!3d37.7853118797576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858089408b04a9%3A0xb30f8139535eb05f!2sInnovation%20Hub!5e0!3m2!1sen!2sus!4v1626293409115!5m2!1sen!2sus"
+                src="https://maps.google.com/maps?q=Chintamani,%20Chikkaballapura,%20Karnataka,%20India&t=&z=14&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -229,7 +229,7 @@ export default function Contact({ branding }) {
                   <div className="max-w-md mx-auto">
                     <h3 className="text-xl font-bold font-display text-emerald-600">Message Dispatched!</h3>
                     <p className="text-slate-500 text-xs sm:text-sm mt-2 leading-relaxed">
-                      Thank you for contacting the admissions and help desk of {branding.collegeName}. Our counselors will reach back to your email within 24 business hours.
+                      Thank you for contacting the admissions and help desk of Sri Vidya Chetana Degree College. Our counselors will reach back to your email within 24 business hours.
                     </p>
                   </div>
 
