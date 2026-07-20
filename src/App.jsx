@@ -12,6 +12,7 @@ import Admissions from "./components/Admissions.jsx";
 import Testimonials from "./components/Testimonials.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
+import Chatbot from "./components/Chatbot.jsx";
 
 export default function App() {
   // Main reactive CMS state of the app
@@ -90,6 +91,9 @@ export default function App() {
         courses={cmsData.courses}
         departments={cmsData.departments}
       />
+
+      {/* Floating AI Help Assistant */}
+      <Chatbot />
 
     </div>
   );
