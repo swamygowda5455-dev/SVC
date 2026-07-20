@@ -49,55 +49,99 @@ export default function Chatbot() {
     handleSendMessage(question);
   };
 
+  // Normalizes a string by stripping punctuation, dots, spaces, etc.
+  const normalize = (str) => {
+    return str.toLowerCase().replace(/[^a-z0-9]/g, "");
+  };
+
+  // Stop words to ignore during token overlap scoring to prevent generic matches
+  const STOP_WORDS = new Set([
+    "does", "the", "college", "what", "is", "a", "of", "in", "to", "for", "and", 
+    "or", "on", "at", "about", "offer", "you", "me", "how", "tell", "any", "are", 
+    "there", "do", "have", "with", "their", "its", "they", "it", "who", "your"
+  ]);
+
   // RAG Search Matching Algorithm
   const retrieveAnswer = (query) => {
     const lowerQuery = query.toLowerCase().trim();
+    const cleanQuery = lowerQuery.replace(/[?.!,;:]/g, "");
+    const normalizedQuery = normalize(query);
+    
     let bestQA = null;
-    let maxScore = -1;
+    let maxScore = 0;
 
-    // Detect if this is likely a follow-up query
-    const followUpPronouns = ["phone", "email", "address", "number", "duration", "eligibility", "its", "their", "them", "who is", "what is the"];
+    // Detect if this is likely a follow-up query using pronouns
+    const followUpPronouns = ["duration", "eligibility", "fees", "intake", "syllabus", "opportunities", "careers", "hod", "who leads"];
     const isFollowUp = previousCategory && followUpPronouns.some(p => lowerQuery.includes(p));
+
+    // Tokenize query
+    const tokens = cleanQuery.split(/\s+/)
+      .map(t => t.trim())
+      .filter(t => t.length >= 2 && !STOP_WORDS.has(t));
 
     searchIndex.forEach(qa => {
       let score = 0;
 
-      // 1. Exact matches on keywords
-      qa.keywords.forEach(keyword => {
-        if (lowerQuery === keyword) {
-          score += 150;
-        } else if (lowerQuery.includes(keyword)) {
-          score += 40;
-        }
-      });
-
-      // 2. Exact match on question text
-      if (lowerQuery === qa.question.toLowerCase().trim()) {
-        score += 200;
-      } else if (qa.question.toLowerCase().includes(lowerQuery)) {
+      // 1. Exact matches on normalized question
+      const normalizedQAQuestion = normalize(qa.question);
+      if (normalizedQuery === normalizedQAQuestion) {
+        score += 250;
+      } else if (normalizedQAQuestion.includes(normalizedQuery) || normalizedQuery.includes(normalizedQAQuestion)) {
         score += 80;
       }
 
-      // 3. Token overlap
-      const tokens = lowerQuery.split(/\s+/).filter(t => t.length > 2);
-      tokens.forEach(token => {
-        // Boost for matching keywords
-        qa.keywords.forEach(k => {
-          if (k.includes(token)) score += 15;
-        });
-        // Boost for question text match
-        if (qa.question.toLowerCase().includes(token)) {
-          score += 8;
-        }
-        // Small boost for answer text match
-        if (qa.answer.toLowerCase().includes(token)) {
-          score += 2;
+      // 2. Keyword matching
+      qa.keywords.forEach(keyword => {
+        const normKeyword = normalize(keyword);
+        if (normalizedQuery === normKeyword) {
+          score += 150;
+        } else if (normalizedQuery.includes(normKeyword)) {
+          score += 50;
         }
       });
 
-      // 4. Follow-up context boost (Category focus)
-      if (isFollowUp && qa.category === previousCategory) {
-        score += 35;
+      // 3. Token-based matching (only if we have tokens left after stop words filtering)
+      if (tokens.length > 0) {
+        let tokenMatches = 0;
+        tokens.forEach(token => {
+          const normToken = normalize(token);
+          if (!normToken) return;
+
+          // Check keywords
+          let keywordMatch = false;
+          qa.keywords.forEach(k => {
+            if (normalize(k).includes(normToken)) {
+              score += 25;
+              keywordMatch = true;
+            }
+          });
+
+          // Check question text
+          if (normalize(qa.question).includes(normToken)) {
+            score += 15;
+            keywordMatch = true;
+          }
+
+          // Check answer text (lower weight)
+          if (normalize(qa.answer).includes(normToken)) {
+            score += 3;
+            keywordMatch = true;
+          }
+
+          if (keywordMatch) {
+            tokenMatches++;
+          }
+        });
+
+        // Boost if multiple non-stopwords match
+        if (tokenMatches > 1) {
+          score += tokenMatches * 15;
+        }
+      }
+
+      // 4. Follow-up context boost (only applied if we already have some match, to avoid false hijack)
+      if (isFollowUp && qa.category === previousCategory && score > 0) {
+        score += 40;
       }
 
       if (score > maxScore) {
@@ -106,7 +150,8 @@ export default function Chatbot() {
       }
     });
 
-    const scoreThreshold = CHATBOT_CONFIG.retrieval.scoreThreshold * 100;
+    // Threshold check (higher threshold to ensure quality matches)
+    const scoreThreshold = 45; 
     if (bestQA && maxScore >= scoreThreshold) {
       setPreviousCategory(bestQA.category);
       return {
