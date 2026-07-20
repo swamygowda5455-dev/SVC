@@ -120,9 +120,27 @@ export default function Admissions({ admissions, branding, courses = [] }) {
               <span>3-Step Simple Admission Process</span>
             </h3>
 
-            <div className="space-y-6">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.12
+                  }
+                }
+              }}
+              className="space-y-6"
+            >
               {admissions.steps.map((step, index) => (
-                <div
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, x: 30 },
+                    visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
+                  }}
+                  whileHover={{ scale: 1.02, y: -2 }}
                   id={`step-card-${index}`}
                   key={index}
                   className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 flex items-start gap-5 hover:bg-slate-50 transition-colors duration-300 shadow-sm"
@@ -141,9 +159,9 @@ export default function Admissions({ admissions, branding, courses = [] }) {
                       {step.desc}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
 
         </div>

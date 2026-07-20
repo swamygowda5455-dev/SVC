@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Phone, Mail, Menu, X, ShieldAlert, GraduationCap, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import logo from "@/assets/Sri Vidhya Education logo final (quillbot.com).jpg";
 
-export default function Header({ branding, activeSection, setActiveSection }) {
+export default function Header({ branding }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
 
   const navItems = [
     { label: "Home", href: "#home" },
@@ -18,16 +20,47 @@ export default function Header({ branding, activeSection, setActiveSection }) {
     { label: "Contact", href: "#contact" }
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+
+      // Track active section
+      const scrollPos = window.scrollY;
+      let current = "home";
+
+      for (const item of navItems) {
+        const el = document.querySelector(item.href);
+        if (el) {
+          const offsetTop = el.offsetTop - 120;
+          const offsetHeight = el.offsetHeight;
+          if (scrollPos >= offsetTop && scrollPos < offsetTop + offsetHeight) {
+            current = item.href.slice(1);
+          }
+        }
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleNavClick = (href) => {
     setMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 150);
   };
 
   return (
-    <header className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-100 z-50 transition-all duration-300">
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${
+      scrolled 
+        ? "bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-md" 
+        : "bg-white border-b border-slate-100"
+    }`}>
       
       {/* Top Utility Bar */}
       <div className="bg-[#0f172a] text-slate-300 text-[10px] sm:text-xs">
@@ -48,13 +81,15 @@ export default function Header({ branding, activeSection, setActiveSection }) {
       </div>
 
       {/* Main Navbar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center transition-all duration-300 ${
+        scrolled ? "h-16" : "h-20"
+      }`}>
         {/* Brand Logo & Name */}
         <div className="flex items-center gap-3.5 cursor-pointer" onClick={() => handleNavClick("#home")}>
           <img
             src={logo}
             alt="Sri Vidya Chetana Logo"
-            className="w-16 h-16 object-contain rounded-xl bg-white p-0.5 border border-slate-200/60 shrink-0 shadow-md transition-transform hover:scale-105 duration-300"
+            className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-xl bg-white p-0.5 border border-slate-200/60 shrink-0 shadow-sm transition-transform hover:scale-105 duration-300"
           />
           <div>
             <h1 className="text-xs min-[380px]:text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-tight text-[#1E3A8A] leading-tight font-display">
@@ -73,9 +108,18 @@ export default function Header({ branding, activeSection, setActiveSection }) {
               id={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
               key={item.label}
               onClick={() => handleNavClick(item.href)}
-              className="text-sm font-semibold hover:text-blue-600 transition-all duration-200 cursor-pointer"
+              className={`relative py-1 text-sm font-semibold transition-colors duration-300 cursor-pointer ${
+                activeSection === item.href.slice(1) ? "text-blue-700 font-bold" : "text-slate-600 hover:text-blue-600"
+              }`}
             >
-              {item.label}
+              <span className="relative z-10">{item.label}</span>
+              {activeSection === item.href.slice(1) && (
+                <motion.span
+                  layoutId="activeNavUnderline"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-700 rounded-full"
+                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                />
+              )}
             </button>
           ))}
           <button
@@ -124,7 +168,9 @@ export default function Header({ branding, activeSection, setActiveSection }) {
                   id={`mobile-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
                   key={item.label}
                   onClick={() => handleNavClick(item.href)}
-                  className="block w-full text-left font-medium text-sm text-slate-700 hover:text-blue-900 hover:bg-slate-100 py-2 px-3 rounded-lg transition-colors duration-200"
+                  className={`block w-full text-left font-semibold text-sm py-2 px-3 rounded-lg transition-colors duration-200 ${
+                    activeSection === item.href.slice(1) ? "bg-blue-50 text-blue-800" : "text-slate-700 hover:bg-slate-100 hover:text-blue-900"
+                  }`}
                 >
                   {item.label}
                 </button>

@@ -1,5 +1,6 @@
 import React from "react";
 import * as Icons from "lucide-react";
+import { motion } from "motion/react";
 
 export default function WhyChoose({ whyChoose }) {
 
@@ -19,7 +20,7 @@ export default function WhyChoose({ whyChoose }) {
   };
 
   return (
-    <section id="why-choose" className="py-20 bg-white scroll-mt-10">
+    <section id="why-choose" className="py-20 bg-white scroll-mt-10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Heading */}
@@ -37,15 +38,33 @@ export default function WhyChoose({ whyChoose }) {
         </div>
 
         {/* Dynamic Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           {whyChoose.map((item, index) => (
-            <div
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
+              }}
+              whileHover={{ y: -6, scale: 1.02 }}
               id={`why-card-${index}`}
               key={index}
               className="group bg-white hover:bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 flex flex-col items-start"
             >
               {/* Icon Container */}
-              <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 transition-colors duration-300">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
                 {resolveIcon(item.icon)}
               </div>
 
@@ -57,9 +76,9 @@ export default function WhyChoose({ whyChoose }) {
               <p className="text-slate-500 text-xs leading-relaxed transition-colors duration-300">
                 {item.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>

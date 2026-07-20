@@ -32,12 +32,30 @@ export default function Departments({ departments }) {
         </div>
 
         {/* Departments Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
           {departments.map((dept) => (
-            <div
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
+              }}
+              whileHover={{ y: -6, scale: 1.02 }}
               id={`dept-card-${dept.id}`}
               key={dept.id}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-md transition-all duration-300 flex flex-col h-full"
+              className="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-md transition-all duration-300 flex flex-col h-full group"
             >
               {/* Department Image Header */}
               <div className="relative h-48 w-full overflow-hidden shrink-0">
@@ -45,7 +63,7 @@ export default function Departments({ departments }) {
                   src={dept.image}
                   alt={dept.name}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
               </div>
@@ -81,9 +99,9 @@ export default function Departments({ departments }) {
                 </div>
 
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* HOD Details Lightbox Modal */}
         <AnimatePresence>

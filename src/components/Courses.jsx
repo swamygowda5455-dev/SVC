@@ -56,19 +56,26 @@ export default function Courses({ courses }) {
           </div>
 
           {/* Filtering Tabs */}
-          <div className="flex overflow-x-auto scrollbar-none items-center gap-2 bg-slate-50 p-1.5 rounded-2xl border border-slate-200/85 max-w-full shrink-0 -mx-4 px-4 sm:mx-0 sm:px-2 shadow-inner">
+          <div className="flex overflow-x-auto scrollbar-none items-center gap-2 bg-slate-50 p-1.5 rounded-2xl border border-slate-200/85 max-w-full shrink-0 -mx-4 px-4 sm:mx-0 sm:px-2 shadow-inner relative">
             {tabs.map((tab) => (
               <button
                 id={`tab-${tab.toLowerCase().replace(/\s+/g, "-")}`}
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 ${
+                className={`relative px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 z-10 ${
                   activeTab === tab
-                    ? "bg-[#1E3A8A] text-white shadow-md shadow-blue-900/10"
+                    ? "text-white"
                     : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/40"
                 }`}
               >
-                {tab === "All" ? "ALL COURSES" : tab.toUpperCase()}
+                <span className="relative z-10">{tab === "All" ? "ALL COURSES" : tab.toUpperCase()}</span>
+                {activeTab === tab && (
+                  <motion.span
+                    layoutId="activeCourseTab"
+                    className="absolute inset-0 bg-[#1E3A8A] rounded-xl shadow-md shadow-blue-900/10 z-0"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </button>
             ))}
           </div>
@@ -197,7 +204,7 @@ export default function Courses({ courses }) {
                 </div>
 
                 {/* Modal Subnavigation Tabs */}
-                <div className="bg-slate-50 px-6 sm:px-8 border-b border-slate-100 flex gap-4 shrink-0 overflow-x-auto scrollbar-none">
+                <div className="bg-slate-50 px-6 sm:px-8 border-b border-slate-100 flex gap-4 shrink-0 overflow-x-auto scrollbar-none relative">
                   {[
                     { id: "overview", label: "Overview & Benefits" },
                     { id: "trishul", label: "TRISHUL Learning Model" },
@@ -207,19 +214,35 @@ export default function Courses({ courses }) {
                       id={`modal-tab-${tab.id}`}
                       key={tab.id}
                       onClick={() => setModalTab(tab.id)}
-                      className={`py-4 text-xs sm:text-sm font-bold border-b-2 cursor-pointer transition-all whitespace-nowrap ${
+                      className={`relative py-4 text-xs sm:text-sm font-bold cursor-pointer transition-all whitespace-nowrap ${
                         modalTab === tab.id
-                          ? "border-blue-600 text-blue-600 font-extrabold"
-                          : "border-transparent text-slate-500 hover:text-slate-800"
+                          ? "text-blue-600 font-extrabold"
+                          : "text-slate-500 hover:text-slate-800"
                       }`}
                     >
-                      {tab.label}
+                      <span className="relative z-10">{tab.label}</span>
+                      {modalTab === tab.id && (
+                        <motion.span
+                          layoutId="activeModalTab"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full"
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        />
+                      )}
                     </button>
                   ))}
                 </div>
 
                 {/* Modal Body Info */}
                 <div className="p-6 sm:p-8 space-y-6 overflow-y-auto flex-grow bg-slate-50/50">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={modalTab}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -15 }}
+                      transition={{ duration: 0.25 }}
+                      className="space-y-6"
+                    >
                   
                   {/* TAB 1: OVERVIEW & BENEFITS */}
                   {modalTab === "overview" && (
@@ -387,6 +410,8 @@ export default function Courses({ courses }) {
                       </p>
                     </div>
                   )}
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
 
                 {/* Modal Action Buttons Footer */}

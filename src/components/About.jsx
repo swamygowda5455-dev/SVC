@@ -219,7 +219,13 @@ export default function About({ about, branding }) {
         {/* 2. Vision & Mission Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-20 sm:mb-28">
           {/* Vision Card */}
-          <div className="bg-gradient-to-br from-white to-blue-50/30 p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-100/80 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="bg-gradient-to-br from-white to-blue-50/30 p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-100/80 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+          >
             <div>
               <div className="w-14 h-14 bg-blue-50 border border-blue-100/80 rounded-2xl flex items-center justify-center text-blue-600 mb-6 shadow-sm">
                 <Eye size={26} />
@@ -230,10 +236,16 @@ export default function About({ about, branding }) {
               </p>
             </div>
             <div className="w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mt-8" />
-          </div>
+          </motion.div>
 
           {/* Mission Card */}
-          <div className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-100/80 hover:shadow-md transition-all duration-300">
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-100/80 hover:shadow-md transition-all duration-300"
+          >
             <div className="w-14 h-14 bg-indigo-50 border border-indigo-100/80 rounded-2xl flex items-center justify-center text-indigo-600 mb-6 shadow-sm">
               <Target size={26} />
             </div>
@@ -254,7 +266,7 @@ export default function About({ about, branding }) {
                 <li className="text-slate-600 text-sm sm:text-base leading-relaxed">{about.mission}</li>
               )}
             </ul>
-          </div>
+          </motion.div>
         </div>
 
         {/* 3. Core Values Grid */}
@@ -269,9 +281,27 @@ export default function About({ about, branding }) {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.08
+                  }
+                }
+              }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+            >
               {about.coreValues.map((value, idx) => (
-                <div
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
+                  }}
+                  whileHover={{ y: -6, scale: 1.03 }}
                   key={idx}
                   className={`bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 group cursor-default ${getValueColorClass(value.title)}`}
                 >
@@ -284,9 +314,9 @@ export default function About({ about, branding }) {
                   <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
                     {value.desc}
                   </p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         )}
 

@@ -68,14 +68,26 @@ export default function Hero({ hero, branding }) {
             </motion.div>
 
             {/* Slider Title (Dynamic) */}
-            <h2 className="text-2xl min-[380px]:text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+            <motion.h2
+              key={`title-${currentSlide}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-2xl min-[380px]:text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight font-display"
+            >
               <span className="block">{hero.banners[currentSlide].title}</span>
-            </h2>
+            </motion.h2>
 
             {/* Slider Subtitle (Dynamic) */}
-            <p className="text-base sm:text-lg text-blue-100 font-medium leading-relaxed mb-8 max-w-2xl">
+            <motion.p
+              key={`subtitle-${currentSlide}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+              className="text-base sm:text-lg text-blue-100 font-medium leading-relaxed mb-8 max-w-2xl"
+            >
               {hero.banners[currentSlide].subtitle}
-            </p>
+            </motion.p>
 
             {/* Action CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
