@@ -332,11 +332,11 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 font-sans">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 font-sans">
       {/* Floating Action Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 rounded-full shadow-2xl flex items-center justify-center cursor-pointer text-amber-300 relative focus:outline-none focus:ring-4 focus:ring-amber-300/50 border-2 border-amber-400/40"
+        className="w-14 h-14 rounded-full shadow-2xl flex items-center justify-center cursor-pointer text-amber-300 relative focus:outline-none focus:ring-4 focus:ring-amber-300/50 border-2 border-amber-400/40 min-w-[52px] min-h-[52px]"
         style={{ backgroundColor: CHATBOT_CONFIG.theme.primaryColor }}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
@@ -369,7 +369,7 @@ export default function Chatbot() {
         </AnimatePresence>
       </motion.button>
 
-      {/* Chat Window */}
+      {/* Responsive Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -377,7 +377,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.92 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="absolute bottom-18 right-0 w-[420px] max-w-[calc(100vw-2rem)] h-[580px] rounded-2xl shadow-2xl border border-slate-200/80 overflow-hidden flex flex-col backdrop-blur-xl bg-white/95"
+            className="fixed bottom-20 right-3 sm:right-0 sm:absolute sm:bottom-18 sm:right-0 w-[calc(100vw-1.5rem)] sm:w-[420px] max-w-[420px] h-[80vh] sm:h-[580px] rounded-2xl shadow-2xl border border-slate-200/80 overflow-hidden flex flex-col backdrop-blur-xl bg-white/95 z-50"
             style={{ fontFamily: CHATBOT_CONFIG.theme.fontFamily }}
           >
             {/* Header */}

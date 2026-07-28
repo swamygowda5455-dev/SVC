@@ -89,7 +89,7 @@ export default function Hero({ hero, branding }) {
               <button
                 id="hero-apply-btn"
                 onClick={() => navigate("/admissions")}
-                className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold text-sm px-7 py-3.5 rounded-xl shadow-xl shadow-amber-500/20 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer w-full sm:w-auto"
+                className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold text-sm px-7 py-3.5 min-h-[44px] rounded-xl shadow-xl shadow-amber-500/20 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer w-full sm:w-auto"
               >
                 <span>Apply for Admissions</span>
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform text-slate-950" />
@@ -98,7 +98,7 @@ export default function Hero({ hero, branding }) {
               <button
                 id="hero-courses-btn"
                 onClick={() => navigate("/courses")}
-                className="border border-white/30 hover:border-amber-400/60 backdrop-blur-sm text-white hover:text-amber-300 px-6 py-3.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto"
+                className="border border-white/30 hover:border-amber-400/60 backdrop-blur-sm text-white hover:text-amber-300 px-6 py-3.5 min-h-[44px] rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto"
               >
                 Explore Programs
               </button>
@@ -110,7 +110,7 @@ export default function Hero({ hero, branding }) {
         <button
           id="hero-prev-btn"
           onClick={handlePrev}
-          className="absolute left-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/50 border border-amber-400/20 hover:bg-slate-950 text-amber-400 hover:border-amber-400 transition-all z-20 cursor-pointer hidden sm:flex"
+          className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 p-3 min-w-[44px] min-h-[44px] rounded-full bg-slate-900/60 border border-amber-400/30 hover:bg-slate-950 text-amber-400 hover:border-amber-400 transition-all z-20 cursor-pointer hidden sm:flex items-center justify-center"
           aria-label="Previous Slide"
         >
           <ChevronLeft size={22} />
@@ -118,24 +118,26 @@ export default function Hero({ hero, branding }) {
         <button
           id="hero-next-btn"
           onClick={handleNext}
-          className="absolute right-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/50 border border-amber-400/20 hover:bg-slate-950 text-amber-400 hover:border-amber-400 transition-all z-20 cursor-pointer hidden sm:flex"
+          className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 p-3 min-w-[44px] min-h-[44px] rounded-full bg-slate-900/60 border border-amber-400/30 hover:bg-slate-950 text-amber-400 hover:border-amber-400 transition-all z-20 cursor-pointer hidden sm:flex items-center justify-center"
           aria-label="Next Slide"
         >
           <ChevronRight size={22} />
         </button>
 
         {/* Dot Indicators */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-20">
+        <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
           {hero.banners.map((_, index) => (
             <button
               id={`hero-dot-${index}`}
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
-                currentSlide === index ? "bg-amber-400 scale-125 w-6" : "bg-white/40 hover:bg-white/60"
-              }`}
+              className={`min-w-[32px] min-h-[32px] p-2 flex items-center justify-center transition-all duration-300 cursor-pointer`}
               aria-label={`Go to slide ${index + 1}`}
-            />
+            >
+              <span className={`h-3 rounded-full transition-all duration-300 ${
+                currentSlide === index ? "bg-amber-400 scale-110 w-7" : "bg-white/40 hover:bg-white/60 w-3"
+              }`} />
+            </button>
           ))}
         </div>
       </div>

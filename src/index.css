@@ -10,12 +10,34 @@
 /* Custom styles to enhance presentation */
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   font-family: var(--font-sans);
   background-color: #f8fafc;
   color: #1e293b;
+  overflow-x: hidden;
+}
+
+body.overflow-hidden {
+  overflow: hidden;
+}
+
+/* Minimum touch target size for mobile accessibility (44px) */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive Table Wrapper */
+.responsive-table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Custom scrollbar for an elegant feel */
@@ -43,4 +65,15 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Respect user's reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 

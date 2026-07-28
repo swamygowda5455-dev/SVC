@@ -188,28 +188,28 @@ export default function CourseDetails({ courses, branding, admissions }) {
 
             {/* Fee Structure Table */}
             {course.feeStructure && (
-              <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+              <div className="bg-white p-5 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
                 <h3 className="text-xl font-bold font-display text-[#1E3A8A] flex items-center gap-2 border-b border-slate-100 pb-3">
                   <DollarSign className="text-amber-500" size={22} />
                   <span>Fee Structure & Investment</span>
                 </h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs sm:text-sm text-slate-600">
+                <div className="w-full overflow-x-auto rounded-2xl border border-slate-200">
+                  <table className="w-full text-left text-xs sm:text-sm text-slate-600 min-w-[500px]">
                     <thead className="bg-slate-100 text-[#1E3A8A] font-extrabold text-[10px] sm:text-xs uppercase tracking-wider">
                       <tr>
-                        <th className="p-3 rounded-l-xl">Academic Year</th>
-                        <th className="p-3">University Tuition Fee</th>
-                        <th className="p-3">Integrated Coaching Fee</th>
-                        <th className="p-3 rounded-r-xl">Total Payable</th>
+                        <th className="p-3.5 whitespace-nowrap">Academic Year</th>
+                        <th className="p-3.5 whitespace-nowrap">University Tuition Fee</th>
+                        <th className="p-3.5 whitespace-nowrap">Integrated Coaching Fee</th>
+                        <th className="p-3.5 whitespace-nowrap">Total Payable</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100 font-medium">
                       {course.feeStructure.map((fee, idx) => (
                         <tr key={idx} className="hover:bg-amber-50/20 transition-colors">
-                          <td className="p-3 font-bold text-slate-800">{fee.year}</td>
-                          <td className="p-3 text-slate-600">{fee.tuitionFee}</td>
-                          <td className="p-3 text-slate-600">{fee.coachingFee}</td>
-                          <td className="p-3 font-extrabold text-[#1E3A8A]">{fee.totalFee}</td>
+                          <td className="p-3.5 font-bold text-slate-800 whitespace-nowrap">{fee.year}</td>
+                          <td className="p-3.5 text-slate-600 whitespace-nowrap">{fee.tuitionFee}</td>
+                          <td className="p-3.5 text-slate-600 whitespace-nowrap">{fee.coachingFee}</td>
+                          <td className="p-3.5 font-extrabold text-[#1E3A8A] whitespace-nowrap">{fee.totalFee}</td>
                         </tr>
                       ))}
                     </tbody>
