@@ -1,17 +1,28 @@
 import React, { useState } from "react";
-import { CheckCircle, ClipboardList, Sparkles, BookOpen, Clock, FileText, ArrowRight, X, AlertCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { CheckCircle, ClipboardList, Sparkles, BookOpen, Clock, FileText, ArrowRight, X, AlertCircle, Share2, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-export default function Admissions({ admissions, branding, courses = [] }) {
+export default function Admissions({ admissions, branding, courses = [], defaultCourse = null }) {
+  const navigate = useNavigate();
   const [showApplyModal, setShowApplyModal] = useState(false);
+  const [copiedSlug, setCopiedSlug] = useState(null);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     phone: "",
-    stream: courses[0]?.name || "B.Com (Bachelor of Commerce)",
+    stream: defaultCourse || courses[0]?.name || "Bachelor of Commerce (B.Com.)",
     grades: "",
     statement: ""
   });
+
+  const handleShareCourse = (e, slug) => {
+    e.stopPropagation();
+    const url = `${window.location.origin}/courses/${slug}`;
+    navigator.clipboard.writeText(url);
+    setCopiedSlug(slug);
+    setTimeout(() => setCopiedSlug(null), 2500);
+  };
   const [submitting, setSubmitting] = useState(false);
   const [receipt, setReceipt] = useState(null);
 
@@ -61,7 +72,7 @@ export default function Admissions({ admissions, branding, courses = [] }) {
 
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="text-blue-600 text-[10px] font-bold tracking-[0.2em] uppercase bg-blue-50 border border-blue-100/60 px-4 py-1.5 rounded-full">
+          <span className="text-[#1E3A8A] text-[10px] font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
             ENROLLMENT PORTAL
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
@@ -70,23 +81,85 @@ export default function Admissions({ admissions, branding, courses = [] }) {
           <p className="text-slate-500 text-xs sm:text-sm mt-4">
             {admissions.tagline}
           </p>
-          <div className="w-12 h-0.5 bg-blue-600 mx-auto mt-4 rounded-full" />
+          <div className="w-12 h-0.5 bg-[#1E3A8A] mx-auto mt-4 rounded-full" />
         </div>
 
-        {/* 2-Column Admissions Content */}
+        {/* Comprehensive Course-Centric Cards Grid */}
+        <div className="mb-16 space-y-6">
+          <div className="flex justify-between items-end border-b border-slate-200 pb-4">
+            <div>
+              <h3 className="text-xl font-extrabold text-[#1E3A8A] font-display">Available Academic Programs</h3>
+              <p className="text-xs text-slate-500 mt-1">Click on any program to view full fee structures, syllabus, career scope, and required documents.</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {courses.map((course) => (
+              <div
+                key={course.id}
+                className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div className="relative h-44 w-full overflow-hidden">
+                  <img src={course.image} alt={course.name} className="w-full h-full object-cover" />
+                  <span className="absolute top-3 left-3 bg-[#1E3A8A] text-amber-300 text-[9px] font-extrabold px-2.5 py-1 rounded-lg border border-amber-400/30">
+                    {course.category}
+                  </span>
+                </div>
+                <div className="p-5 space-y-3 flex-grow flex flex-col justify-between">
+                  <div>
+                    <h4 className="text-base font-bold text-slate-800 font-display line-clamp-1">{course.name}</h4>
+                    <p className="text-slate-500 text-xs mt-1 line-clamp-2 leading-relaxed">{course.description}</p>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
+                    <span className="text-slate-500">{course.duration}</span>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={(e) => handleShareCourse(e, course.slug || course.id)}
+                        className="text-slate-500 hover:text-[#1E3A8A] bg-slate-100 hover:bg-amber-50 border border-slate-200 hover:border-amber-300 p-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-[11px]"
+                        title="Share course link"
+                      >
+                        {copiedSlug === (course.slug || course.id) ? (
+                          <>
+                            <Check size={13} className="text-emerald-600" />
+                            <span className="text-emerald-600 font-bold">Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Share2 size={13} className="text-amber-500" />
+                            <span>Share</span>
+                          </>
+                        )}
+                      </button>
+                      <button
+                        onClick={() => navigate(`/courses/${course.slug || course.id}`)}
+                        className="text-[#1E3A8A] hover:text-amber-600 font-extrabold flex items-center gap-1 cursor-pointer"
+                      >
+                        <span>Explore</span>
+                        <ArrowRight size={14} className="text-amber-500" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 2-Column Admissions Content & Application Form */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
           {/* Left Column (5/12): Core Stats & Eligibility */}
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-white p-5 sm:p-8 rounded-2xl border border-slate-200 space-y-6 shadow-sm">
               <div className="flex items-center gap-2">
-                <Sparkles size={20} className="text-blue-600 font-bold shrink-0" />
+                <Sparkles size={20} className="text-amber-500 font-bold shrink-0" />
                 <h3 className="text-lg font-bold text-slate-800 font-display">Admissions Open</h3>
               </div>
 
               <div className="space-y-2">
                 <p className="text-xs text-slate-400 uppercase font-bold tracking-widest">Enrollment Cycle</p>
-                <p className="text-base sm:text-lg font-bold text-blue-700">{admissions.status}</p>
+                <p className="text-base sm:text-lg font-extrabold text-[#1E3A8A]">{admissions.status}</p>
               </div>
 
               <div className="space-y-2">
@@ -97,7 +170,7 @@ export default function Admissions({ admissions, branding, courses = [] }) {
               </div>
 
               <div className="pt-4 border-t border-slate-200 flex items-center gap-3">
-                <Clock size={16} className="text-blue-500 shrink-0" />
+                <Clock size={16} className="text-amber-500 shrink-0" />
                 <span className="text-xs text-slate-500">Regular Admissions close in 14 days</span>
               </div>
             </div>
@@ -106,10 +179,10 @@ export default function Admissions({ admissions, branding, courses = [] }) {
             <button
               id="admissions-apply-now-btn"
               onClick={() => setShowApplyModal(true)}
-              className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm py-4 rounded-xl shadow-md hover:shadow-blue-500/10 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
+              className="w-full bg-[#1E3A8A] hover:bg-blue-900 text-amber-300 font-extrabold text-sm py-4 rounded-xl shadow-lg shadow-blue-900/10 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer border border-amber-400/30"
             >
               <span>{admissions.btnText.toUpperCase()} FOR ACADEMIC YEAR</span>
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform text-amber-400" />
             </button>
           </div>
 

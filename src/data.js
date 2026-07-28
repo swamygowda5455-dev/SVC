@@ -83,6 +83,7 @@ export const INITIAL_CMS_DATA = {
   courses: [
     {
       id: "course-1",
+      slug: "ba",
       category: "Degree Programs",
       name: "Bachelor of Arts (B.A.)",
       duration: "3 Years (6 Semesters)",
@@ -91,14 +92,34 @@ export const INITIAL_CMS_DATA = {
       image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80",
       atAGlance: {
         programme: "Bachelor of Arts (B.A.)",
-        intake: "100",
+        intake: "100 Seats",
         duration: "3 Years (6 Semesters)",
         affiliation: "Bengaluru North University",
         collegeCode: "P19GHR0326",
         aisheCode: "To be updated once allotted",
         modeOfStudy: "Full-Time",
-        mediumOfInstruction: "English / Kannada (as applicable)"
+        mediumOfInstruction: "English / Kannada"
       },
+      feeStructure: [
+        { year: "Year 1 (Semester I & II)", tuitionFee: "₹ 22,000", coachingFee: "₹ 12,000", totalFee: "₹ 34,000" },
+        { year: "Year 2 (Semester III & IV)", tuitionFee: "₹ 22,000", coachingFee: "₹ 12,000", totalFee: "₹ 34,000" },
+        { year: "Year 3 (Semester V & VI)", tuitionFee: "₹ 24,000", coachingFee: "₹ 12,000", totalFee: "₹ 36,000" }
+      ],
+      requiredDocuments: [
+        "Original 10th / SSLC Marks Card + 3 Attested Photocopies",
+        "Original 12th / 2nd PUC Marks Card + 3 Attested Photocopies",
+        "Transfer Certificate (TC) from previous institution",
+        "Conduct / Character Certificate",
+        "Migration Certificate (for Non-Karnataka / CBSE / ICSE students)",
+        "Caste & Income Certificate (if claiming fee concessions/scholarship)",
+        "Aadhaar Card Copy",
+        "6 Recent Passport Size Photographs"
+      ],
+      faqs: [
+        { question: "What competitive coaching is integrated with B.A.?", answer: "The B.A. program integrates daily IAS/IPS/IFS (UPSC) and KAS (KPSC) foundation coaching alongside regular university lectures." },
+        { question: "Can I choose Kannada medium for B.A. examinations?", answer: "Yes, Bengaluru North University allows students to attempt examinations in English or Kannada medium." },
+        { question: "What is the class timing for integrated batches?", answer: "Integrated morning batches run from 08:30 AM to 02:00 PM including standard degree classes and competitive tutoring sessions." }
+      ],
       aboutText: "The Bachelor of Arts (B.A.) programme provides students with a strong foundation in the humanities and social sciences. It develops analytical thinking, communication skills, social awareness, and leadership qualities, preparing students for diverse career opportunities and competitive examinations.",
       whyChoose: [
         "Comprehensive Coverage of the Bengaluru North University Curriculum",
@@ -136,6 +157,7 @@ export const INITIAL_CMS_DATA = {
     },
     {
       id: "course-2",
+      slug: "bcom",
       category: "Degree Programs",
       name: "Bachelor of Commerce (B.Com.)",
       duration: "3 Years (6 Semesters)",
@@ -144,14 +166,33 @@ export const INITIAL_CMS_DATA = {
       image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80",
       atAGlance: {
         programme: "Bachelor of Commerce (B.Com.)",
-        intake: "100",
+        intake: "100 Seats",
         duration: "3 Years (6 Semesters)",
         affiliation: "Bengaluru North University",
         collegeCode: "P19GHR0326",
         aisheCode: "To be updated once allotted",
         modeOfStudy: "Full-Time",
-        mediumOfInstruction: "English & Kannada (as per University norms)"
+        mediumOfInstruction: "English & Kannada"
       },
+      feeStructure: [
+        { year: "Year 1 (Semester I & II)", tuitionFee: "₹ 24,000", coachingFee: "₹ 14,000", totalFee: "₹ 38,000" },
+        { year: "Year 2 (Semester III & IV)", tuitionFee: "₹ 24,000", coachingFee: "₹ 14,000", totalFee: "₹ 38,000" },
+        { year: "Year 3 (Semester V & VI)", tuitionFee: "₹ 26,000", coachingFee: "₹ 14,000", totalFee: "₹ 40,000" }
+      ],
+      requiredDocuments: [
+        "Original 10th / SSLC Marks Card + 3 Attested Photocopies",
+        "Original 12th / 2nd PUC Marks Card + 3 Attested Photocopies",
+        "Transfer Certificate (TC)",
+        "Conduct Certificate",
+        "Migration Certificate (if applicable)",
+        "Caste / Income Certificate",
+        "Aadhaar Card Copy",
+        "6 Recent Passport Size Photographs"
+      ],
+      faqs: [
+        { question: "Is CA Foundation coaching included with B.Com.?", answer: "Yes! B.Com students receive integrated coaching for CA Foundation and Banking exams alongside core university subjects." },
+        { question: "Does the college assist with articleships?", answer: "Our placement desk assists CA aspirants with articleship placements in accredited accounting firms." }
+      ],
       aboutText: "The Bachelor of Commerce (B.Com.) programme provides students with a comprehensive understanding of accounting, finance, taxation, business law, economics, management, and entrepreneurship. The programme equips students with analytical, financial, managerial, and decision-making skills required for careers in commerce, banking, corporate organizations, entrepreneurship, and professional courses.",
       whyChoose: [
         "Comprehensive Coverage of the Bengaluru North University Curriculum",
@@ -188,6 +229,7 @@ export const INITIAL_CMS_DATA = {
     },
     {
       id: "course-3",
+      slug: "bsc",
       category: "Degree Programs",
       name: "Bachelor of Science (B.Sc.) - (Physics, Mathematics & Computer Science)",
       duration: "3 Years (6 Semesters)",
@@ -197,14 +239,32 @@ export const INITIAL_CMS_DATA = {
       atAGlance: {
         programme: "Bachelor of Science (B.Sc.)",
         subjectCombination: "Physics, Mathematics & Computer Science (PMCs)",
-        intake: "60",
+        intake: "60 Seats",
         duration: "3 Years (6 Semesters)",
         affiliation: "Bengaluru North University",
         collegeCode: "P19GHR0326",
         aisheCode: "To be updated once allotted",
         modeOfStudy: "Full-Time",
-        mediumOfInstruction: "English & Kannada (as per University norms)"
+        mediumOfInstruction: "English & Kannada"
       },
+      feeStructure: [
+        { year: "Year 1 (Semester I & II)", tuitionFee: "₹ 26,000", coachingFee: "₹ 14,000", totalFee: "₹ 40,000" },
+        { year: "Year 2 (Semester III & IV)", tuitionFee: "₹ 26,000", coachingFee: "₹ 14,000", totalFee: "₹ 40,000" },
+        { year: "Year 3 (Semester V & VI)", tuitionFee: "₹ 28,000", coachingFee: "₹ 14,000", totalFee: "₹ 42,000" }
+      ],
+      requiredDocuments: [
+        "Original 10th / SSLC Marks Card + 3 Attested Copies",
+        "Original 12th / PUC Science Marks Card + 3 Attested Copies",
+        "Transfer Certificate",
+        "Conduct Certificate",
+        "Migration Certificate (if applicable)",
+        "Caste / Income Certificate",
+        "Aadhaar Card Copy",
+        "6 Recent Photographs"
+      ],
+      faqs: [
+        { question: "What practical labs are available for B.Sc. PMCs?", answer: "State-of-the-art Physics and Computer Science CBT labs are available with modern hardware and software." }
+      ],
       aboutText: "The Bachelor of Science (B.Sc.) programme in Physics, Mathematics & Computer Science (PMCs) provides students with a strong foundation in scientific principles, mathematical reasoning, computing, and technology. The programme combines theoretical knowledge with practical laboratory experience, programming skills, and analytical thinking.",
       whyChoose: [
         "Comprehensive Coverage of the Bengaluru North University Curriculum",
@@ -242,6 +302,7 @@ export const INITIAL_CMS_DATA = {
     },
     {
       id: "course-4",
+      slug: "bba",
       category: "Degree Programs",
       name: "Bachelor of Business Administration (BBA)",
       duration: "3 Years (6 Semesters)",
@@ -250,14 +311,32 @@ export const INITIAL_CMS_DATA = {
       image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80",
       atAGlance: {
         programme: "Bachelor of Business Administration (BBA)",
-        intake: "60",
+        intake: "60 Seats",
         duration: "3 Years (6 Semesters)",
         affiliation: "Bengaluru North University",
         collegeCode: "P19GHR0326",
         aisheCode: "To be updated once allotted",
         modeOfStudy: "Full-Time",
-        mediumOfInstruction: "English & Kannada (as per University norms)"
+        mediumOfInstruction: "English & Kannada"
       },
+      feeStructure: [
+        { year: "Year 1 (Semester I & II)", tuitionFee: "₹ 28,000", coachingFee: "₹ 14,000", totalFee: "₹ 42,000" },
+        { year: "Year 2 (Semester III & IV)", tuitionFee: "₹ 28,000", coachingFee: "₹ 14,000", totalFee: "₹ 42,000" },
+        { year: "Year 3 (Semester V & VI)", tuitionFee: "₹ 30,000", coachingFee: "₹ 14,000", totalFee: "₹ 44,000" }
+      ],
+      requiredDocuments: [
+        "Original 10th Marks Card + 3 Copies",
+        "Original 12th / PUC Marks Card + 3 Copies",
+        "Transfer Certificate",
+        "Conduct Certificate",
+        "Migration Certificate (if applicable)",
+        "Caste / Income Certificate",
+        "Aadhaar Card Copy",
+        "6 Photographs"
+      ],
+      faqs: [
+        { question: "Are case studies and internships mandatory?", answer: "Yes, BBA students undergo real-world corporate internships and business case study simulations." }
+      ],
       aboutText: "The Bachelor of Business Administration (BBA) programme equips students with a strong foundation in business management, marketing, finance, human resource management, entrepreneurship, and organizational leadership. The programme combines academic knowledge with practical business exposure.",
       whyChoose: [
         "Comprehensive Coverage of the Bengaluru North University Curriculum.",
@@ -295,6 +374,7 @@ export const INITIAL_CMS_DATA = {
     },
     {
       id: "course-5",
+      slug: "bca",
       category: "Degree Programs",
       name: "Bachelor of Computer Applications (BCA)",
       duration: "3 Years (6 Semesters)",
@@ -304,14 +384,32 @@ export const INITIAL_CMS_DATA = {
       atAGlance: {
         programme: "Bachelor of Computer Applications (BCA)",
         specializations: "General / Artificial Intelligence (AI)",
-        intake: "60",
+        intake: "60 Seats",
         duration: "3 Years (6 Semesters)",
         affiliation: "Bengaluru North University",
         collegeCode: "P19GHR0326",
         aisheCode: "To be updated once allotted",
         modeOfStudy: "Full-Time",
-        mediumOfInstruction: "English & Kannada (as per University norms)"
+        mediumOfInstruction: "English & Kannada"
       },
+      feeStructure: [
+        { year: "Year 1 (Semester I & II)", tuitionFee: "₹ 30,000", coachingFee: "₹ 15,000", totalFee: "₹ 45,000" },
+        { year: "Year 2 (Semester III & IV)", tuitionFee: "₹ 30,000", coachingFee: "₹ 15,000", totalFee: "₹ 45,000" },
+        { year: "Year 3 (Semester V & VI)", tuitionFee: "₹ 32,000", coachingFee: "₹ 15,000", totalFee: "₹ 47,000" }
+      ],
+      requiredDocuments: [
+        "Original 10th Marks Card + 3 Copies",
+        "Original 12th / PUC Marks Card + 3 Copies",
+        "Transfer Certificate",
+        "Conduct Certificate",
+        "Migration Certificate (if applicable)",
+        "Caste / Income Certificate",
+        "Aadhaar Card Copy",
+        "6 Photographs"
+      ],
+      faqs: [
+        { question: "Do I need to have prior coding experience?", answer: "No prior coding background is required. Coding fundamentals start from scratch in Semester 1." }
+      ],
       aboutText: "The Bachelor of Computer Applications (BCA) programme equips students with a strong foundation in computer science, programming, software development, databases, networking, cloud computing, cybersecurity, and emerging technologies. Through a blend of academic learning, practical application, and industry exposure, students develop technical expertise.",
       whyChoose: [
         "Comprehensive Coverage of the Bengaluru North University Curriculum.",
@@ -349,6 +447,7 @@ export const INITIAL_CMS_DATA = {
     },
     {
       id: "course-6",
+      slug: "abyasa-ncert",
       category: "Competitive Academy",
       name: "Abyasa (1 Year) - NCERT Foundation Batch",
       duration: "1 Year",
@@ -357,13 +456,24 @@ export const INITIAL_CMS_DATA = {
       image: "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80",
       atAGlance: {
         programme: "Abyasa NCERT Foundation Batch",
-        intake: "50",
+        intake: "50 Seats",
         duration: "1 Year",
         affiliation: "Sri Vidya Chetana Coaching Academy",
         collegeCode: "P19GHR0326",
         modeOfStudy: "Part-time (Integrated with College timings)",
         mediumOfInstruction: "English & Kannada"
       },
+      feeStructure: [
+        { year: "Complete 1-Year Program", tuitionFee: "₹ 15,000", coachingFee: "Included", totalFee: "₹ 15,000" }
+      ],
+      requiredDocuments: [
+        "College Student ID Copy",
+        "Aadhaar Card Copy",
+        "2 Passport Size Photographs"
+      ],
+      faqs: [
+        { question: "Is this batch open to non-SVC students?", answer: "Yes, Abyasa foundation batches are accessible to outside aspirants subject to seat availability." }
+      ],
       aboutText: "Abyasa is a one-year foundational package aimed at building strong foundational concepts through NCERT syllabus mapping. A perfect stepping stone for civil services and other government/banking examinations.",
       whyChoose: [
         "Structured NCERT coverage (Class 6th to 12th)",
@@ -388,6 +498,7 @@ export const INITIAL_CMS_DATA = {
     },
     {
       id: "course-7",
+      slug: "gurukul-sankalpa",
       category: "Competitive Academy",
       name: "Gurukul Sankalpa (3 Year) - Degree + Civil Services Foundation Programme",
       duration: "3 Years",
@@ -396,13 +507,28 @@ export const INITIAL_CMS_DATA = {
       image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80",
       atAGlance: {
         programme: "Gurukul Sankalpa Integrated Program",
-        intake: "60",
+        intake: "60 Seats",
         duration: "3 Years",
         affiliation: "Bengaluru North University & SVCCA",
         collegeCode: "P19GHR0326",
         modeOfStudy: "Full-Time Integrated",
         mediumOfInstruction: "English"
       },
+      feeStructure: [
+        { year: "Year 1", tuitionFee: "₹ 25,000", coachingFee: "₹ 20,000", totalFee: "₹ 45,000" },
+        { year: "Year 2", tuitionFee: "₹ 25,000", coachingFee: "₹ 20,000", totalFee: "₹ 45,000" },
+        { year: "Year 3", tuitionFee: "₹ 25,000", coachingFee: "₹ 20,000", totalFee: "₹ 45,000" }
+      ],
+      requiredDocuments: [
+        "10th & 12th Original Marks Cards + 3 Copies",
+        "Transfer Certificate",
+        "Conduct Certificate",
+        "Aadhaar Card Copy",
+        "6 Passport Photographs"
+      ],
+      faqs: [
+        { question: "Who conducts the mock interview sessions?", answer: "Mock interview boards are composed of serving and retired IAS, IPS, and KAS officers." }
+      ],
       aboutText: "Gurukul Sankalpa is a unique flagship 3-year program combining regular university graduation degrees with highly structured coaching modules. Handled by veteran civil servants and academic experts to prepare students directly for civil services (UPSC/KPSC) and commerce exams.",
       whyChoose: [
         "Three-year systematic roadmap starting from foundations to advanced UPSC syllabus",
@@ -472,15 +598,105 @@ export const INITIAL_CMS_DATA = {
     { icon: "Tv", title: "Interactive Smart Classrooms", desc: "Equipped with live video feed capability, guest speaker screens, and digital boards for deep concept visualization." }
   ],
 
-  // 7. Latest News & Announcements (Divided into News, Announcements, Events, Notices)
+  // 7. Latest News & Announcements (Divided into Job Updates and College Announcements)
   newsAndAnnouncements: {
+    jobUpdates: [
+      {
+        id: "job-1",
+        slNo: 1,
+        startDate: "July 20, 2026",
+        endDate: "August 15, 2026",
+        details: "KPSC Commercial Tax Inspector & First Division Assistant (FDA) Recruitment 2026 Notification - 450 Vacancies",
+        link: "https://kpsc.kar.nic.in"
+      },
+      {
+        id: "job-2",
+        slNo: 2,
+        startDate: "July 15, 2026",
+        endDate: "August 10, 2026",
+        details: "SBI Probationary Officer (PO) & Management Trainee Recruitment Drive - 2,000 Seats across Karnataka Circle",
+        link: "https://sbi.co.in/careers"
+      },
+      {
+        id: "job-3",
+        slNo: 3,
+        startDate: "July 10, 2026",
+        endDate: "August 05, 2026",
+        details: "UPSC Combined Defence Services (CDS-II) & Exam Notification 2026 for Degree Graduates",
+        link: "https://upsc.gov.in"
+      },
+      {
+        id: "job-4",
+        slNo: 4,
+        startDate: "July 01, 2026",
+        endDate: "July 31, 2026",
+        details: "Railway Recruitment Board (RRB) Non-Technical Popular Categories (NTPC) Graduate Cadres Notification",
+        link: "https://rrbbangalore.gov.in"
+      },
+      {
+        id: "job-5",
+        slNo: 5,
+        startDate: "June 25, 2026",
+        endDate: "July 25, 2026",
+        details: "Karnataka State Police (KSP) Sub-Inspector (PSI) Direct Recruitment Application Batch 2026",
+        link: "https://ksp.karnataka.gov.in"
+      },
+      {
+        id: "job-6",
+        slNo: 6,
+        startDate: "June 20, 2026",
+        endDate: "July 20, 2026",
+        details: "Campus Recruitment Drive by Deloitte & Ernst & Young (EY) for Final Year B.Com / BBA Articleship & Audit Officers",
+        link: null
+      }
+    ],
+    announcements: [
+      {
+        id: "ann-1",
+        slNo: 1,
+        date: "July 25, 2026",
+        details: "Bengaluru North University (BNU) Odd Semester BA/B.Com/B.Sc Degree Final Examination Timetable & Hall Tickets Issued",
+        link: "https://bnu.ac.in/examinations"
+      },
+      {
+        id: "ann-2",
+        slNo: 2,
+        date: "July 20, 2026",
+        details: "Applications open for civil services integrated B.A & B.Com morning foundation batches (Academic Year 2026-27)",
+        link: "/admissions"
+      },
+      {
+        id: "ann-3",
+        slNo: 3,
+        date: "July 15, 2026",
+        details: "Pre-Coaching Entrance & Diagnostic Merit Scholarship Test scheduled in College Centenary Hall-A",
+        link: null
+      },
+      {
+        id: "ann-4",
+        slNo: 4,
+        date: "July 10, 2026",
+        details: "Special Mentorship Masterclass on UPSC Civil Services GS Paper IV Ethics by Retired IAS Officer Dr. R. V. Swamy",
+        link: null
+      },
+      {
+        id: "ann-5",
+        slNo: 5,
+        date: "July 05, 2026",
+        details: "Notice regarding Library Book Renewal and Competitive Exam CBT Practice Lounge Timings extension till 08:00 PM",
+        link: null
+      },
+      {
+        id: "ann-6",
+        slNo: 6,
+        date: "June 28, 2026",
+        details: "Annual Arts, Commerce & Cultural Fest 'TARANGA 2026' Committee Registration & Volunteer Selection Notice",
+        link: null
+      }
+    ],
     news: [
       { id: "news-1", date: "July 12, 2026", title: "Sri Vidya Chetana hosts District-Level Commerce and CA Career Seminar", desc: "Over 500 students participated in career mapping sessions led by leading corporate auditors and administrative consultants." },
       { id: "news-2", date: "June 28, 2026", title: "Eight scholars clear Banking and Railway examinations in the latest cycle", desc: "Our specialized evening tutoring classes celebrated high recruitment success in regional banking and railway boards." }
-    ],
-    announcements: [
-      { id: "ann-1", date: "July 14, 2026", title: "Applications open for civil services integrated B.A & B.Com morning batches", urgent: true },
-      { id: "ann-2", date: "July 08, 2026", title: "Pre-Coaching entrance diagnostic test scheduled for July 25th in College Hall-A" }
     ],
     events: [
       { id: "evt-1", date: "July 28, 2026", time: "10:30 AM", title: "UPSC & KPSC State Toppers Mentorship & Interactive Q&A Session", venue: "Centenary Auditorium" },

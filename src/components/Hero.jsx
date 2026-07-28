@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight, GraduationCap, ArrowRight, Award, Users, MapPin, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 export default function Hero({ hero, branding }) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -18,13 +20,6 @@ export default function Hero({ hero, branding }) {
 
   const handleNext = () => {
     setCurrentSlide((prev) => (prev + 1) % hero.banners.length);
-  };
-
-  const handleScrollTo = (id) => {
-    const element = document.querySelector(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
   };
 
   return (
@@ -61,10 +56,10 @@ export default function Hero({ hero, branding }) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full text-white text-xs font-bold w-fit mb-6"
+              className="inline-flex items-center gap-2 bg-amber-400/20 border border-amber-400/40 backdrop-blur-md px-4 py-1.5 rounded-full text-amber-300 text-xs font-extrabold w-fit mb-6 shadow-sm"
             >
-              <GraduationCap size={15} />
-              <span className="tracking-wide uppercase text-[10px] sm:text-xs">{branding.tagline}</span>
+              <GraduationCap size={16} className="text-amber-400" />
+              <span className="tracking-widest uppercase text-[10px] sm:text-xs">{branding.tagline}</span>
             </motion.div>
 
             {/* Slider Title (Dynamic) */}
@@ -84,7 +79,7 @@ export default function Hero({ hero, branding }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-              className="text-base sm:text-lg text-blue-100 font-medium leading-relaxed mb-8 max-w-2xl"
+              className="text-base sm:text-lg text-slate-200 font-medium leading-relaxed mb-8 max-w-2xl"
             >
               {hero.banners[currentSlide].subtitle}
             </motion.p>
@@ -93,17 +88,17 @@ export default function Hero({ hero, branding }) {
             <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
               <button
                 id="hero-apply-btn"
-                onClick={() => handleScrollTo("#admissions")}
-                className="bg-white text-[#1E3A8A] font-bold text-sm px-6 py-3.5 rounded-xl shadow-xl hover:bg-slate-50 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer w-full sm:w-auto"
+                onClick={() => navigate("/admissions")}
+                className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold text-sm px-7 py-3.5 rounded-xl shadow-xl shadow-amber-500/20 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer w-full sm:w-auto"
               >
                 <span>Apply for Admissions</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform text-slate-950" />
               </button>
               
               <button
                 id="hero-courses-btn"
-                onClick={() => handleScrollTo("#courses")}
-                className="border border-white/30 backdrop-blur-sm text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto"
+                onClick={() => navigate("/courses")}
+                className="border border-white/30 hover:border-amber-400/60 backdrop-blur-sm text-white hover:text-amber-300 px-6 py-3.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto"
               >
                 Explore Programs
               </button>
@@ -115,7 +110,7 @@ export default function Hero({ hero, branding }) {
         <button
           id="hero-prev-btn"
           onClick={handlePrev}
-          className="absolute left-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/40 border border-white/10 hover:bg-slate-950 text-white hover:border-white/30 transition-all z-20 cursor-pointer hidden sm:flex"
+          className="absolute left-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/50 border border-amber-400/20 hover:bg-slate-950 text-amber-400 hover:border-amber-400 transition-all z-20 cursor-pointer hidden sm:flex"
           aria-label="Previous Slide"
         >
           <ChevronLeft size={22} />
@@ -123,7 +118,7 @@ export default function Hero({ hero, branding }) {
         <button
           id="hero-next-btn"
           onClick={handleNext}
-          className="absolute right-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/40 border border-white/10 hover:bg-slate-950 text-white hover:border-white/30 transition-all z-20 cursor-pointer hidden sm:flex"
+          className="absolute right-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/50 border border-amber-400/20 hover:bg-slate-950 text-amber-400 hover:border-amber-400 transition-all z-20 cursor-pointer hidden sm:flex"
           aria-label="Next Slide"
         >
           <ChevronRight size={22} />
@@ -137,7 +132,7 @@ export default function Hero({ hero, branding }) {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
-                currentSlide === index ? "bg-white scale-125 w-6" : "bg-white/40 hover:bg-white/60"
+                currentSlide === index ? "bg-amber-400 scale-125 w-6" : "bg-white/40 hover:bg-white/60"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -145,46 +140,46 @@ export default function Hero({ hero, branding }) {
         </div>
       </div>
 
-      {/* Trust & Accreditations Highlights Bar (Bento-styled Clean Minimal) */}
-      <div className="bg-white border-y border-slate-200 py-6 px-4 sm:px-8 relative z-20">
+      {/* Trust & Accreditations Highlights Bar */}
+      <div className="bg-white border-y border-slate-200 py-6 px-4 sm:px-8 relative z-20 shadow-sm">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <div className="flex items-center gap-3 sm:gap-4 border-b border-slate-100 pb-4 last:border-0 sm:border-b-0 sm:pb-0 sm:pr-4 lg:border-r lg:last:border-0 lg:pr-4">
-            <div className="p-3 bg-blue-50 rounded-lg text-blue-600 shrink-0">
+            <div className="p-3 bg-amber-50 rounded-xl text-amber-600 border border-amber-200/60 shrink-0">
               <Award size={24} />
             </div>
             <div>
-              <h4 className="text-lg sm:text-xl font-bold tracking-tight text-slate-800">NAAC A++</h4>
-              <p className="text-[11px] text-slate-400 font-medium">Highest Accredited Rank</p>
+              <h4 className="text-lg sm:text-xl font-bold tracking-tight text-[#1E3A8A]">NAAC A++</h4>
+              <p className="text-[11px] text-slate-500 font-medium">Highest Accredited Rank</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4 border-b border-slate-100 pb-4 last:border-0 sm:border-b-0 sm:pb-0 sm:pr-4 lg:border-r lg:last:border-0 lg:pr-4">
-            <div className="p-3 bg-indigo-50 rounded-lg text-indigo-600 shrink-0">
+            <div className="p-3 bg-blue-50 rounded-xl text-[#1E3A8A] border border-blue-100 shrink-0">
               <Users size={24} />
             </div>
             <div>
-              <h4 className="text-lg sm:text-xl font-bold tracking-tight text-slate-800">15,000+</h4>
-              <p className="text-[11px] text-slate-400 font-medium">Active Campus Scholars</p>
+              <h4 className="text-lg sm:text-xl font-bold tracking-tight text-[#1E3A8A]">15,000+</h4>
+              <p className="text-[11px] text-slate-500 font-medium">Active Campus Scholars</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4 border-b border-slate-100 pb-4 last:border-0 sm:border-b-0 sm:pb-0 sm:pr-4 lg:border-r lg:last:border-0 lg:pr-4">
-            <div className="p-3 bg-emerald-50 rounded-lg text-emerald-600 shrink-0">
+            <div className="p-3 bg-amber-50 rounded-xl text-amber-600 border border-amber-200/60 shrink-0">
               <MapPin size={24} />
             </div>
             <div>
-              <h4 className="text-lg sm:text-xl font-bold tracking-tight text-slate-800">120 Acres</h4>
-              <p className="text-[11px] text-slate-400 font-medium">Eco-Friendly Mega Campus</p>
+              <h4 className="text-lg sm:text-xl font-bold tracking-tight text-[#1E3A8A]">120 Acres</h4>
+              <p className="text-[11px] text-slate-500 font-medium">Eco-Friendly Mega Campus</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4 last:border-0">
-            <div className="p-3 bg-rose-50 rounded-lg text-rose-600 shrink-0">
+            <div className="p-3 bg-blue-50 rounded-xl text-[#1E3A8A] border border-blue-100 shrink-0">
               <ShieldCheck size={24} />
             </div>
             <div>
-              <h4 className="text-lg sm:text-xl font-bold tracking-tight text-slate-800">96%</h4>
-              <p className="text-[11px] text-slate-400 font-medium">In-Campus Placements</p>
+              <h4 className="text-lg sm:text-xl font-bold tracking-tight text-[#1E3A8A]">96%</h4>
+              <p className="text-[11px] text-slate-500 font-medium">In-Campus Placements</p>
             </div>
           </div>
         </div>

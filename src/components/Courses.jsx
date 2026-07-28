@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { 
   BookOpen, 
   Calendar, 
@@ -19,6 +20,7 @@ export default function Courses({ courses }) {
   const [activeTab, setActiveTab] = useState("All");
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [modalTab, setModalTab] = useState("overview"); // 'overview', 'trishul', 'careers'
+  const navigate = useNavigate();
 
   const tabs = ["All", "Degree Programs", "Competitive Academy"];
 
@@ -28,11 +30,9 @@ export default function Courses({ courses }) {
 
   const handleApplyScroll = () => {
     setSelectedCourse(null);
-    const element = document.querySelector("#admissions");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    navigate("/admissions");
   };
+
 
   const openCourseModal = (course) => {
     setSelectedCourse(course);
@@ -46,25 +46,25 @@ export default function Courses({ courses }) {
         {/* Section Title */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
           <div>
-            <span className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase bg-blue-50 border border-blue-100/80 px-4 py-1.5 rounded-full shadow-sm">
+            <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
               ACADEMIC OFFERINGS
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E3A8A] mt-5 tracking-tight font-display">
               Our Integrated Programs
             </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mt-5 rounded-full" />
+            <div className="w-16 h-1 bg-gradient-to-r from-[#1E3A8A] via-amber-400 to-amber-500 mt-5 rounded-full" />
           </div>
 
           {/* Filtering Tabs */}
-          <div className="flex overflow-x-auto scrollbar-none items-center gap-2 bg-slate-50 p-1.5 rounded-2xl border border-slate-200/85 max-w-full shrink-0 -mx-4 px-4 sm:mx-0 sm:px-2 shadow-inner relative">
+          <div className="flex overflow-x-auto scrollbar-none items-center gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200/85 max-w-full shrink-0 -mx-4 px-4 sm:mx-0 sm:px-2 shadow-inner relative">
             {tabs.map((tab) => (
               <button
                 id={`tab-${tab.toLowerCase().replace(/\s+/g, "-")}`}
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 z-10 ${
+                className={`relative px-5 py-2.5 rounded-xl text-xs font-extrabold transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 z-10 ${
                   activeTab === tab
-                    ? "text-white"
+                    ? "text-[#1E3A8A]"
                     : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/40"
                 }`}
               >
@@ -72,7 +72,7 @@ export default function Courses({ courses }) {
                 {activeTab === tab && (
                   <motion.span
                     layoutId="activeCourseTab"
-                    className="absolute inset-0 bg-[#1E3A8A] rounded-xl shadow-md shadow-blue-900/10 z-0"
+                    className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-500 rounded-xl shadow-md z-0"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -104,14 +104,14 @@ export default function Courses({ courses }) {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   {/* Category Pill Tag */}
-                  <span className="absolute top-4 left-4 bg-blue-700/90 text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-xl backdrop-blur-sm shadow-sm">
+                  <span className="absolute top-4 left-4 bg-[#1E3A8A] text-amber-300 text-[10px] font-extrabold tracking-wider uppercase px-3 py-1.5 rounded-xl backdrop-blur-sm shadow-sm border border-amber-400/30">
                     {course.category}
                   </span>
                 </div>
 
                 {/* Card Content Body */}
                 <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-lg font-bold text-slate-800 group-hover:text-blue-700 transition-colors duration-200 mb-3 leading-snug font-display min-h-[56px] flex items-center">
+                  <h3 className="text-lg font-bold text-slate-800 group-hover:text-[#1E3A8A] transition-colors duration-200 mb-3 leading-snug font-display min-h-[56px] flex items-center">
                     {course.name}
                   </h3>
 
@@ -122,11 +122,11 @@ export default function Courses({ courses }) {
                   {/* Course Details Pills */}
                   <div className="space-y-3 pt-5 border-t border-slate-100 text-slate-600 text-xs sm:text-sm font-medium">
                     <div className="flex items-center gap-2">
-                      <Calendar size={14} className="text-blue-600 shrink-0" />
+                      <Calendar size={14} className="text-amber-500 shrink-0" />
                       <span>{course.duration}</span>
                     </div>
                     <div className="flex items-start gap-2">
-                      <Award size={14} className="text-blue-600 mt-0.5 shrink-0" />
+                      <Award size={14} className="text-[#1E3A8A] mt-0.5 shrink-0" />
                       <span className="leading-tight text-slate-500">{course.eligibility}</span>
                     </div>
                   </div>
@@ -135,18 +135,18 @@ export default function Courses({ courses }) {
                   <div className="mt-8 pt-4 border-t border-slate-50 flex gap-2">
                     <button
                       id={`learn-more-${course.id}`}
-                      onClick={() => openCourseModal(course)}
-                      className="flex-1 bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold text-xs py-3 px-4 rounded-xl border border-slate-200/60 transition-all cursor-pointer font-display"
+                      onClick={() => navigate(`/courses/${course.slug || course.id}`)}
+                      className="flex-1 bg-slate-50 hover:bg-amber-50/50 text-slate-700 hover:text-[#1E3A8A] font-extrabold text-xs py-3 px-4 rounded-xl border border-slate-200/60 hover:border-amber-300 transition-all cursor-pointer font-display text-center"
                     >
-                      Course Details
+                      View Details
                     </button>
                     <button
                       id={`apply-course-${course.id}`}
-                      onClick={handleApplyScroll}
-                      className="flex-1 bg-[#1E3A8A] hover:bg-blue-800 text-white font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer font-display"
+                      onClick={() => navigate(`/courses/${course.slug || course.id}#apply-form-section`)}
+                      className="flex-1 bg-[#1E3A8A] hover:bg-blue-900 text-amber-300 font-extrabold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-md shadow-blue-900/10 cursor-pointer font-display border border-amber-400/20"
                     >
                       <span>Apply</span>
-                      <ArrowRight size={14} />
+                      <ArrowRight size={14} className="text-amber-400" />
                     </button>
                   </div>
                 </div>

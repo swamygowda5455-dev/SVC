@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { INITIAL_CMS_DATA } from "./data.js";
 import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
@@ -14,87 +15,78 @@ import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 import Chatbot from "./components/Chatbot.jsx";
 
+// Lazy load CourseDetails for optimized routing performance
+const CourseDetails = lazy(() => import("./components/CourseDetails.jsx"));
+
+// ScrollToTop component to reset window scroll position on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+// HomePage Component
+function HomePage({ cmsData }) {
+  return (
+    <>
+      <Hero hero={cmsData.hero} branding={cmsData.branding} />
+      <WhyChoose whyChoose={cmsData.whyChoose} />
+      <Courses courses={cmsData.courses} />
+      <Testimonials testimonials={cmsData.testimonials} />
+    </>
+  );
+}
+
 export default function App() {
   // Main reactive CMS state of the app
   const [cmsData] = useState(INITIAL_CMS_DATA);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 relative selection:bg-blue-600 selection:text-white">
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="min-h-screen flex flex-col bg-slate-50 relative selection:bg-blue-600 selection:text-white">
 
-      {/* Website Header */}
-      <Header
-        branding={cmsData.branding}
-      />
+        {/* Website Header */}
+        <Header branding={cmsData.branding} />
 
-      {/* Main Website Sections */}
-      <main className="flex-grow">
+        {/* Main Website Sections via Router */}
+        <main className="flex-grow">
+          <Suspense fallback={
+            <div className="min-h-[50vh] flex items-center justify-center">
+              <div className="w-8 h-8 border-4 border-[#1E3A8A] border-t-amber-400 rounded-full animate-spin" />
+            </div>
+          }>
+            <Routes>
+              <Route path="/" element={<HomePage cmsData={cmsData} />} />
+              <Route path="/about" element={<About about={cmsData.about} branding={cmsData.branding} />} />
+              <Route path="/courses" element={<Courses courses={cmsData.courses} />} />
+              <Route path="/courses/:slug" element={<CourseDetails courses={cmsData.courses} branding={cmsData.branding} admissions={cmsData.admissions} />} />
+              <Route path="/departments" element={<Departments departments={cmsData.departments} />} />
+              <Route path="/why-us" element={<WhyChoose whyChoose={cmsData.whyChoose} />} />
+              <Route path="/news-events" element={<NewsEvents newsAndAnnouncements={cmsData.newsAndAnnouncements} />} />
+              <Route path="/gallery" element={<Gallery gallery={cmsData.gallery} />} />
+              <Route path="/admissions" element={<Admissions admissions={cmsData.admissions} branding={cmsData.branding} courses={cmsData.courses} />} />
+              <Route path="/contact" element={<Contact branding={cmsData.branding} />} />
+            </Routes>
+          </Suspense>
+        </main>
 
-        {/* Hero Banner */}
-        <Hero
-          hero={cmsData.hero}
+        {/* Footer Sitemap */}
+        <Footer
           branding={cmsData.branding}
-        />
-
-        {/* About College */}
-        <About
-          about={cmsData.about}
-          branding={cmsData.branding}
-        />
-
-        {/* Featured Programs */}
-        <Courses
           courses={cmsData.courses}
-        />
-
-        {/* Department Directory Panel */}
-        <Departments
           departments={cmsData.departments}
         />
 
-        {/* Why Choose Our College */}
-        <WhyChoose
-          whyChoose={cmsData.whyChoose}
-        />
+        {/* Floating AI Help Assistant */}
+        <Chatbot />
 
-        {/* Notifications and Press Hub */}
-        <NewsEvents
-          newsAndAnnouncements={cmsData.newsAndAnnouncements}
-        />
-
-        {/* Campus Gallery */}
-        <Gallery
-          gallery={cmsData.gallery}
-        />
-
-        {/* Admissions */}
-        <Admissions
-          admissions={cmsData.admissions}
-          branding={cmsData.branding}
-          courses={cmsData.courses}
-        />
-
-        {/* Testimonials */}
-        <Testimonials
-          testimonials={cmsData.testimonials}
-        />
-
-        {/* Contact details */}
-        <Contact
-          branding={cmsData.branding}
-        />
-
-      </main>
-
-      {/* Footer Sitemap */}
-      <Footer
-        branding={cmsData.branding}
-        courses={cmsData.courses}
-        departments={cmsData.departments}
-      />
-
-      {/* Floating AI Help Assistant */}
-      <Chatbot />
-
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
+

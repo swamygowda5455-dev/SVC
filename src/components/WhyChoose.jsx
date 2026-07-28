@@ -25,7 +25,7 @@ export default function WhyChoose({ whyChoose }) {
 
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-blue-600 text-[10px] font-bold tracking-[0.2em] uppercase bg-blue-50 border border-blue-100/60 px-4 py-1.5 rounded-full">
+          <span className="text-[#1E3A8A] text-[10px] font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
             THE SVC EDGE
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
@@ -34,7 +34,7 @@ export default function WhyChoose({ whyChoose }) {
           <p className="text-slate-500 text-xs sm:text-sm mt-4">
             We provide a world-class infrastructure combined with elite academic pedagogy designed to make you industry-ready.
           </p>
-          <div className="w-12 h-0.5 bg-blue-600 mx-auto mt-4 rounded-full" />
+          <div className="w-12 h-0.5 bg-gradient-to-r from-[#1E3A8A] to-amber-400 mx-auto mt-4 rounded-full" />
         </div>
 
         {/* Dynamic Grid */}
@@ -61,15 +61,15 @@ export default function WhyChoose({ whyChoose }) {
               whileHover={{ y: -6, scale: 1.02 }}
               id={`why-card-${index}`}
               key={index}
-              className="group bg-white hover:bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 flex flex-col items-start"
+              className="group bg-white hover:bg-amber-50/20 p-6 sm:p-8 rounded-2xl border border-slate-200 hover:border-amber-400/80 hover:shadow-lg transition-all duration-300 flex flex-col items-start"
             >
               {/* Icon Container */}
-              <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+              <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-[#1E3A8A] group-hover:text-amber-400 group-hover:border-[#1E3A8A]">
                 {resolveIcon(item.icon)}
               </div>
 
               {/* Title & Description */}
-              <h3 className="text-lg font-bold font-display text-slate-800 transition-colors duration-300 mb-2">
+              <h3 className="text-lg font-bold font-display text-slate-800 group-hover:text-[#1E3A8A] transition-colors duration-300 mb-2">
                 {item.title}
               </h3>
 

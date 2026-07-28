@@ -29,26 +29,26 @@ export default function Gallery({ gallery }) {
         {/* Section Heading */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4">
           <div>
-            <span className="text-blue-600 text-[10px] font-bold tracking-[0.2em] uppercase bg-blue-50 border border-blue-100/60 px-4 py-1.5 rounded-full">
+            <span className="text-[#1E3A8A] text-[10px] font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
               EXPLORE OUR CAMPUS
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
               OUR CAMPUS GALLERY
             </h2>
-            <div className="w-12 h-0.5 bg-blue-600 mt-4 rounded-full" />
+            <div className="w-12 h-0.5 bg-[#1E3A8A] mt-4 rounded-full" />
           </div>
 
           {/* Filtering Tabs */}
-          <div className="flex overflow-x-auto scrollbar-none items-center gap-1.5 bg-slate-50 p-1.5 rounded-xl border border-slate-200 max-w-full shrink-0 -mx-4 px-4 sm:mx-0 sm:px-1.5">
+          <div className="flex overflow-x-auto scrollbar-none items-center gap-1.5 bg-slate-100 p-1.5 rounded-xl border border-slate-200 max-w-full shrink-0 -mx-4 px-4 sm:mx-0 sm:px-1.5">
             {filters.map((filter) => (
               <button
                 id={`gallery-filter-${filter.toLowerCase().replace(/\s+/g, '-')}`}
                 key={filter}
                 onClick={() => setSelectedFilter(filter)}
-                className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 ${
+                className={`px-3.5 py-2 rounded-lg text-xs font-extrabold transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 ${
                   selectedFilter === filter
-                    ? "bg-blue-700 text-white shadow-sm"
-                    : "text-slate-500 hover:text-slate-800 hover:bg-slate-100"
+                    ? "bg-[#1E3A8A] text-amber-300 shadow-sm border border-amber-400/30"
+                    : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
                 }`}
               >
                 {filter.toUpperCase()}

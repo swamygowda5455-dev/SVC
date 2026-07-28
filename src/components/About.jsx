@@ -84,13 +84,13 @@ export default function About({ about, branding }) {
         
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <span className="text-blue-600 text-xs font-bold tracking-[0.2em] uppercase bg-blue-50 border border-blue-100/80 px-4 py-1.5 rounded-full shadow-sm">
+          <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
             Discover Our Legacy
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E3A8A] mt-5 tracking-tight font-display">
             About Sri Vidya Chetana
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mt-5 rounded-full" />
+          <div className="w-16 h-1 bg-gradient-to-r from-[#1E3A8A] via-amber-400 to-amber-500 mx-auto mt-5 rounded-full" />
         </div>
 
         {/* 1. Profile & Principal's Message */}
@@ -99,9 +99,9 @@ export default function About({ about, branding }) {
           {/* Left Column: History / About details */}
           <div className="lg:col-span-7 space-y-6">
             <div className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-100/80 relative">
-              <div className="absolute top-0 left-0 w-2 h-full bg-blue-600 rounded-l-3xl" />
+              <div className="absolute top-0 left-0 w-2 h-full bg-[#1E3A8A] rounded-l-3xl" />
               <h3 className="text-xl sm:text-2xl font-bold text-[#1E3A8A] mb-6 flex items-center gap-3">
-                <GraduationCap className="text-blue-600 w-7 h-7" />
+                <GraduationCap className="text-amber-500 w-7 h-7" />
                 <span>Nurturing Leaders of Tomorrow</span>
               </h3>
               
@@ -137,23 +137,23 @@ export default function About({ about, branding }) {
               <button
                 id="about-read-more-btn"
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="mt-8 flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors duration-200 cursor-pointer focus:outline-none uppercase tracking-wider"
+                className="mt-8 flex items-center gap-2 text-sm font-extrabold text-[#1E3A8A] hover:text-amber-600 transition-colors duration-200 cursor-pointer focus:outline-none uppercase tracking-wider"
               >
                 <span>{isExpanded ? "Show Less" : "Read Full Profile"}</span>
-                {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                {isExpanded ? <ChevronUp size={16} className="text-amber-500" /> : <ChevronDown size={16} className="text-amber-500" />}
               </button>
             </div>
             
             {/* Integrated Coaching Quick Fact Banner */}
-            <div className="bg-gradient-to-r from-[#1E3A8A] to-indigo-900 text-white p-6 sm:p-8 rounded-3xl shadow-md border border-blue-800 relative overflow-hidden">
+            <div className="bg-gradient-to-r from-[#1E3A8A] to-slate-900 text-white p-6 sm:p-8 rounded-3xl shadow-md border border-amber-400/30 relative overflow-hidden">
               <div className="absolute right-0 bottom-0 opacity-10 transform translate-x-8 translate-y-8">
                 <BookOpen size={200} />
               </div>
-              <h4 className="text-lg font-bold mb-2 flex items-center gap-2">
+              <h4 className="text-lg font-bold mb-2 flex items-center gap-2 text-amber-300">
                 <Sparkles size={18} className="text-amber-400" />
                 <span>Integrated Coaching Advantage</span>
               </h4>
-              <p className="text-blue-100 text-xs sm:text-sm leading-relaxed max-w-xl">
+              <p className="text-slate-200 text-xs sm:text-sm leading-relaxed max-w-xl">
                 Our curriculum aligns regular university degree programs (B.A., B.Com., B.Sc., BBA, BCA) with professional training for UPSC, KPSC, Banking, SSC, Railways, and CA. Earn your degree while securing your future.
               </p>
             </div>
@@ -162,7 +162,7 @@ export default function About({ about, branding }) {
           {/* Right Column: Principal's Message */}
           <div className="lg:col-span-5">
             <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-100/80 relative">
-              <div className="absolute top-0 right-10 w-16 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-b-full" />
+              <div className="absolute top-0 right-10 w-16 h-1 bg-gradient-to-r from-amber-400 to-[#1E3A8A] rounded-b-full" />
               
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-8">
                 {/* Principal Photo */}
@@ -171,9 +171,9 @@ export default function About({ about, branding }) {
                     src={about.principal.photo}
                     alt={about.principal.name}
                     referrerPolicy="no-referrer"
-                    className="relative w-24 h-24 sm:w-28 sm:h-28 object-cover rounded-2xl border-2 border-slate-100 shadow-sm"
+                    className="relative w-24 h-24 sm:w-28 sm:h-28 object-cover rounded-2xl border-2 border-amber-400/40 shadow-sm"
                   />
-                  <span className="absolute -bottom-2 -right-2 bg-blue-600 text-white p-2 rounded-xl shadow-md">
+                  <span className="absolute -bottom-2 -right-2 bg-[#1E3A8A] text-amber-400 p-2 rounded-xl shadow-md border border-amber-400/30">
                     <Award size={16} />
                   </span>
                 </div>
@@ -183,7 +183,7 @@ export default function About({ about, branding }) {
                   <h4 className="text-lg sm:text-xl font-bold text-slate-800 font-display">
                     {about.principal.name}
                   </h4>
-                  <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mt-1">
+                  <p className="text-xs font-extrabold text-[#1E3A8A] uppercase tracking-widest mt-1">
                     {about.principal.designation}
                   </p>
                   <p className="text-xs text-slate-400 mt-1 font-medium">
@@ -194,7 +194,7 @@ export default function About({ about, branding }) {
 
               {/* Message Quote */}
               <div className="relative">
-                <span className="absolute -top-8 -left-2 text-7xl text-slate-100 font-serif select-none pointer-events-none">
+                <span className="absolute -top-8 -left-2 text-7xl text-amber-100 font-serif select-none pointer-events-none">
                   “
                 </span>
                 <div className="relative space-y-3 z-10">
@@ -209,7 +209,7 @@ export default function About({ about, branding }) {
               {/* Signature Accent */}
               <div className="mt-8 pt-5 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400 font-semibold">
                 <span>OFFICE OF THE PRINCIPAL</span>
-                <span className="font-serif italic font-bold text-slate-600">S. M. Chandrashekar</span>
+                <span className="font-serif italic font-bold text-[#1E3A8A]">S. M. Chandrashekar</span>
               </div>
             </div>
           </div>
@@ -224,10 +224,10 @@ export default function About({ about, branding }) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-gradient-to-br from-white to-blue-50/30 p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-100/80 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+            className="bg-gradient-to-br from-white to-amber-50/20 p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-100/80 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
           >
             <div>
-              <div className="w-14 h-14 bg-blue-50 border border-blue-100/80 rounded-2xl flex items-center justify-center text-blue-600 mb-6 shadow-sm">
+              <div className="w-14 h-14 bg-amber-50 border border-amber-200 rounded-2xl flex items-center justify-center text-amber-600 mb-6 shadow-xs">
                 <Eye size={26} />
               </div>
               <h3 className="text-2xl font-bold font-display text-[#1E3A8A] mb-4">Our Vision</h3>
@@ -235,7 +235,7 @@ export default function About({ about, branding }) {
                 "{about.vision}"
               </p>
             </div>
-            <div className="w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mt-8" />
+            <div className="w-full h-1 bg-gradient-to-r from-[#1E3A8A] to-amber-400 rounded-full mt-8" />
           </motion.div>
 
           {/* Mission Card */}
@@ -246,7 +246,7 @@ export default function About({ about, branding }) {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-100/80 hover:shadow-md transition-all duration-300"
           >
-            <div className="w-14 h-14 bg-indigo-50 border border-indigo-100/80 rounded-2xl flex items-center justify-center text-indigo-600 mb-6 shadow-sm">
+            <div className="w-14 h-14 bg-blue-50 border border-blue-100 rounded-2xl flex items-center justify-center text-[#1E3A8A] mb-6 shadow-xs">
               <Target size={26} />
             </div>
             <h3 className="text-2xl font-bold font-display text-[#1E3A8A] mb-6">Our Mission</h3>
@@ -254,7 +254,7 @@ export default function About({ about, branding }) {
               {Array.isArray(about.mission) ? (
                 about.mission.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 group">
-                    <span className="mt-1 shrink-0 text-indigo-600 group-hover:scale-110 transition-transform duration-200">
+                    <span className="mt-1 shrink-0 text-amber-500 group-hover:scale-110 transition-transform duration-200">
                       <CheckCircle2 size={16} />
                     </span>
                     <span className="text-slate-600 text-sm sm:text-base leading-relaxed">

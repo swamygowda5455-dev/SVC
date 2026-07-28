@@ -336,7 +336,7 @@ export default function Chatbot() {
       {/* Floating Action Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 rounded-full shadow-2xl flex items-center justify-center cursor-pointer text-white relative focus:outline-none focus:ring-4 focus:ring-blue-300"
+        className="w-14 h-14 rounded-full shadow-2xl flex items-center justify-center cursor-pointer text-amber-300 relative focus:outline-none focus:ring-4 focus:ring-amber-300/50 border-2 border-amber-400/40"
         style={{ backgroundColor: CHATBOT_CONFIG.theme.primaryColor }}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
@@ -351,7 +351,7 @@ export default function Chatbot() {
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <X className="w-6 h-6" />
+              <X className="w-6 h-6 text-amber-400" />
             </motion.div>
           ) : (
             <motion.div
@@ -362,8 +362,8 @@ export default function Chatbot() {
               transition={{ duration: 0.2 }}
               className="relative"
             >
-              <MessageSquare className="w-6 h-6" />
-              <span className="absolute -top-1 -right-1 flex h-3.w-3 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-white animate-pulse" />
+              <MessageSquare className="w-6 h-6 text-amber-400" />
+              <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5 bg-amber-400 rounded-full border-2 border-[#1E3A8A] animate-pulse" />
             </motion.div>
           )}
         </AnimatePresence>

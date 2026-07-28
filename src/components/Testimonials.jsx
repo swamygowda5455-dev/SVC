@@ -31,7 +31,7 @@ export default function Testimonials({ testimonials }) {
         
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="text-blue-600 text-[10px] font-bold tracking-[0.2em] uppercase bg-blue-50 border border-blue-100/60 px-4 py-1.5 rounded-full">
+          <span className="text-[#1E3A8A] text-[10px] font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
             ALUMNI SUCCESS LOGS
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
@@ -40,7 +40,7 @@ export default function Testimonials({ testimonials }) {
           <p className="text-slate-500 text-xs sm:text-sm mt-4">
             Hear from our graduates and current students about their academic journeys and career transitions.
           </p>
-          <div className="w-12 h-0.5 bg-blue-600 mx-auto mt-4 rounded-full" />
+          <div className="w-12 h-0.5 bg-[#1E3A8A] mx-auto mt-4 rounded-full" />
         </div>
 
         {/* Testimonials Slider Board */}
@@ -61,28 +61,28 @@ export default function Testimonials({ testimonials }) {
                   src={testimonials[activeIndex].avatar}
                   alt={testimonials[activeIndex].name}
                   referrerPolicy="no-referrer"
-                  className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-white shadow-sm mx-auto"
+                  className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-amber-400/80 shadow-sm mx-auto"
                 />
                 
-                <div className="mt-4 bg-white text-blue-900 border border-slate-200 px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider shadow-sm">
-                  <Landmark size={12} className="text-blue-600" />
+                <div className="mt-4 bg-white text-[#1E3A8A] border border-amber-300 px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider shadow-xs">
+                  <Landmark size={12} className="text-amber-500" />
                   <span>{testimonials[activeIndex].company.split(" ")[testimonials[activeIndex].company.split(" ").length - 1]} Placement</span>
                 </div>
               </div>
 
               {/* Quotes Content */}
               <div className="flex-grow space-y-4 text-center md:text-left">
-                <Quote size={32} className="text-blue-100 mx-auto md:mx-0" />
+                <Quote size={32} className="text-amber-400/60 mx-auto md:mx-0" />
                 
                 <p className="text-slate-600 text-xs sm:text-sm leading-relaxed italic">
                   "{testimonials[activeIndex].text}"
                 </p>
 
                 <div className="pt-4 border-t border-slate-200">
-                  <h4 className="text-base font-bold font-display text-slate-800">
+                  <h4 className="text-base font-bold font-display text-[#1E3A8A]">
                     {testimonials[activeIndex].name}
                   </h4>
-                  <p className="text-xs font-bold text-blue-600 mt-0.5">
+                  <p className="text-xs font-extrabold text-amber-600 mt-0.5">
                     {testimonials[activeIndex].role}
                   </p>
                   <p className="text-[11px] text-slate-400 mt-1">
@@ -98,7 +98,7 @@ export default function Testimonials({ testimonials }) {
             <button
               id="test-prev-btn"
               onClick={handlePrev}
-              className="p-2 sm:p-3 rounded-full bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-sm cursor-pointer"
+              className="p-2 sm:p-3 rounded-full bg-white hover:bg-amber-50 text-[#1E3A8A] border border-slate-200 transition-colors shadow-sm cursor-pointer"
               aria-label="Previous Testimonial"
             >
               <ChevronLeft size={18} />
@@ -112,7 +112,7 @@ export default function Testimonials({ testimonials }) {
                   key={index}
                   onClick={() => setActiveIndex(index)}
                   className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeIndex === index ? "bg-blue-600 scale-125 w-5" : "bg-slate-300 hover:bg-slate-400"
+                    activeIndex === index ? "bg-amber-400 scale-125 w-5" : "bg-slate-300 hover:bg-slate-400"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -122,7 +122,7 @@ export default function Testimonials({ testimonials }) {
             <button
               id="test-next-btn"
               onClick={handleNext}
-              className="p-2 sm:p-3 rounded-full bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-sm cursor-pointer"
+              className="p-2 sm:p-3 rounded-full bg-white hover:bg-amber-50 text-[#1E3A8A] border border-slate-200 transition-colors shadow-sm cursor-pointer"
               aria-label="Next Testimonial"
             >
               <ChevronRight size={18} />

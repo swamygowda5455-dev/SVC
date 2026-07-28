@@ -1,19 +1,9 @@
 import React from "react";
-import { GraduationCap, ArrowUp, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Youtube, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 import logo from "@/assets/Sri Vidhya Education logo final (quillbot.com).jpg";
 
 export default function Footer({ branding, courses, departments }) {
-
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleScrollTo = (id) => {
-    const element = document.querySelector(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   return (
     <footer className="bg-slate-50 text-slate-500 text-xs border-t border-slate-200 pt-16 pb-8">
@@ -61,19 +51,19 @@ export default function Footer({ branding, courses, departments }) {
             <h5 className="text-slate-800 text-[10px] font-bold uppercase tracking-[0.15em]">Quick Links</h5>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <button onClick={() => handleScrollTo("#home")} className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">Home Portal</button>
+                <Link to="/" className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">Home Portal</Link>
               </li>
               <li>
-                <button onClick={() => handleScrollTo("#about")} className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">About Legacy</button>
+                <Link to="/about" className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">About Legacy</Link>
               </li>
               <li>
-                <button onClick={() => handleScrollTo("#why-choose")} className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">The SVC Edge</button>
+                <Link to="/why-us" className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">The SVC Edge</Link>
               </li>
               <li>
-                <button onClick={() => handleScrollTo("#gallery")} className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">Campus Gallery</button>
+                <Link to="/gallery" className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">Campus Gallery</Link>
               </li>
               <li>
-                <button onClick={() => handleScrollTo("#admissions")} className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">Enrollments</button>
+                <Link to="/admissions" className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">Enrollments</Link>
               </li>
             </ul>
           </div>
@@ -84,9 +74,9 @@ export default function Footer({ branding, courses, departments }) {
             <ul className="space-y-2.5 text-xs">
               {courses.slice(0, 4).map((c) => (
                 <li key={c.id}>
-                  <button onClick={() => handleScrollTo("#courses")} className="text-slate-500 hover:text-blue-600 cursor-pointer text-left transition-colors truncate max-w-[240px]">
+                  <Link to="/courses" className="text-slate-500 hover:text-blue-600 cursor-pointer text-left transition-colors truncate max-w-[240px] block">
                     {c.name}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -117,9 +107,9 @@ export default function Footer({ branding, courses, departments }) {
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-medium tracking-wide">
           <p>© {new Date().getFullYear()} {branding.collegeName}. All Rights Reserved.</p>
           <div className="flex gap-4">
-            <a href="#about" className="hover:underline">Affiliation & Rules</a>
-            <a href="#about" className="hover:underline">Privacy Policy</a>
-            <a href="#contact" className="hover:underline">Academic Help desk</a>
+            <Link to="/about" className="hover:underline">Affiliation & Rules</Link>
+            <Link to="/about" className="hover:underline">Privacy Policy</Link>
+            <Link to="/contact" className="hover:underline">Academic Help desk</Link>
           </div>
         </div>
 
@@ -127,3 +117,4 @@ export default function Footer({ branding, courses, departments }) {
     </footer>
   );
 }
+

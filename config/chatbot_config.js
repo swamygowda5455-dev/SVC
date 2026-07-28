@@ -14,12 +14,12 @@ export const CHATBOT_CONFIG = {
 
   // Theme configuration (CSS-friendly colors)
   theme: {
-    primaryColor: "#1e3a8a", // Dark blue matching Sri Vidya Chetana branding
-    secondaryColor: "#3b82f6", // Accent blue
+    primaryColor: "#1e3a8a", // Dark Royal Navy Blue matching Sri Vidya Chetana branding
+    secondaryColor: "#FBBF24", // Royal Gold accent
     backgroundColor: "#ffffff",
     textColor: "#1f2937",
     botMessageBg: "#f3f4f6",
-    userMessageBg: "#eff6ff",
+    userMessageBg: "#1e3a8a",
     fontFamily: "'Inter', sans-serif"
   },
 

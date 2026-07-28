@@ -22,13 +22,13 @@ export default function Departments({ departments }) {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="text-blue-600 text-[10px] font-bold tracking-[0.2em] uppercase bg-blue-50 border border-blue-100/60 px-4 py-1.5 rounded-full">
+          <span className="text-[#1E3A8A] text-[10px] font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
             FACULTIES & DIVISIONS
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
             ACADEMIC DEPARTMENTS
           </h2>
-          <div className="w-12 h-0.5 bg-blue-600 mx-auto mt-4 rounded-full" />
+          <div className="w-12 h-0.5 bg-[#1E3A8A] mx-auto mt-4 rounded-full" />
         </div>
 
         {/* Departments Cards Grid */}
@@ -55,7 +55,7 @@ export default function Departments({ departments }) {
               whileHover={{ y: -6, scale: 1.02 }}
               id={`dept-card-${dept.id}`}
               key={dept.id}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-md transition-all duration-300 flex flex-col h-full group"
+              className="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-amber-300 hover:shadow-md transition-all duration-300 flex flex-col h-full group"
             >
               {/* Department Image Header */}
               <div className="relative h-48 w-full overflow-hidden shrink-0">
@@ -65,12 +65,12 @@ export default function Departments({ departments }) {
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1E3A8A]/80 to-transparent" />
               </div>
 
               {/* Department Card Content */}
               <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-lg font-bold text-slate-800 font-display mb-2 min-h-[48px] leading-snug">
+                <h3 className="text-lg font-bold text-slate-800 font-display mb-2 min-h-[48px] leading-snug group-hover:text-[#1E3A8A]">
                   {dept.name}
                 </h3>
 
@@ -81,20 +81,20 @@ export default function Departments({ departments }) {
                 {/* HOD Details block with click-to-view interactions */}
                 <div
                   onClick={() => setSelectedHod(dept)}
-                  className="mt-auto p-4 bg-blue-50/50 rounded-xl border border-blue-100/40 hover:bg-blue-50 cursor-pointer transition-colors duration-200"
+                  className="mt-auto p-4 bg-amber-50/40 rounded-xl border border-amber-200/60 hover:bg-amber-50 cursor-pointer transition-colors duration-200"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-blue-100 text-[#1E3A8A] flex items-center justify-center font-bold">
+                    <div className="w-10 h-10 rounded-full bg-[#1E3A8A] text-amber-400 flex items-center justify-center font-bold border border-amber-400/30">
                       <User size={18} />
                     </div>
                     <div>
-                      <p className="text-[10px] text-blue-600 font-bold tracking-wider uppercase leading-none">HOD / Chair</p>
-                      <h4 className="text-sm font-bold text-slate-800 font-display mt-1.5 leading-none">{dept.hod}</h4>
+                      <p className="text-[10px] text-amber-600 font-extrabold tracking-wider uppercase leading-none">HOD / Chair</p>
+                      <h4 className="text-sm font-bold text-[#1E3A8A] font-display mt-1.5 leading-none">{dept.hod}</h4>
                     </div>
                   </div>
-                  <div className="mt-3 pt-2.5 border-t border-blue-100/50 flex justify-between items-center text-[10px] text-blue-600 font-bold">
+                  <div className="mt-3 pt-2.5 border-t border-amber-200/50 flex justify-between items-center text-[10px] text-[#1E3A8A] font-extrabold">
                     <span>VIEW PROFILE & CONTACT</span>
-                    <ChevronRight size={12} className="text-blue-500" />
+                    <ChevronRight size={12} className="text-amber-500" />
                   </div>
                 </div>
 

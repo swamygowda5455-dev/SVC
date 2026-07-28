@@ -39,7 +39,7 @@ export default function Contact({ branding }) {
 
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="text-blue-600 text-[10px] font-bold tracking-[0.2em] uppercase bg-blue-50 border border-blue-100/60 px-4 py-1.5 rounded-full">
+          <span className="text-[#1E3A8A] text-[10px] font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
             CONNECT WITH US
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
@@ -48,7 +48,7 @@ export default function Contact({ branding }) {
           <p className="text-slate-500 text-xs sm:text-sm mt-4">
             Have questions about credits, campus tours, or enrollment procedures? Reach out directly.
           </p>
-          <div className="w-12 h-0.5 bg-blue-600 mx-auto mt-4 rounded-full" />
+          <div className="w-12 h-0.5 bg-[#1E3A8A] mx-auto mt-4 rounded-full" />
         </div>
 
         {/* Contact Layout Grid */}
@@ -57,27 +57,27 @@ export default function Contact({ branding }) {
           {/* Column Left (5/12): Contact Info & Google Map */}
           <div className="lg:col-span-5 space-y-8">
             <div className="bg-white p-5 sm:p-8 rounded-2xl border border-slate-200 space-y-6 shadow-sm">
-              <h3 className="text-lg font-bold font-display text-slate-800">Campus Headquarters</h3>
+              <h3 className="text-lg font-bold font-display text-[#1E3A8A]">Campus Headquarters</h3>
 
               <div className="space-y-4">
                 {/* Physical Location */}
                 <div className="flex items-start gap-4">
-                  <span className="p-2.5 bg-blue-50 text-blue-600 rounded-lg border border-blue-100 shrink-0 mt-1">
+                  <span className="p-2.5 bg-amber-50 text-amber-600 rounded-lg border border-amber-200/80 shrink-0 mt-1">
                     <MapPin size={18} />
                   </span>
                   <div>
-                    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Address</h4>
+                    <h4 className="text-[10px] font-extrabold text-[#1E3A8A] uppercase tracking-wider">Address</h4>
                     <p className="text-slate-600 text-xs sm:text-sm font-semibold leading-relaxed mt-1">{branding.address}</p>
                   </div>
                 </div>
 
                 {/* Telephone */}
                 <div className="flex items-start gap-4">
-                  <span className="p-2.5 bg-blue-50 text-blue-600 rounded-lg border border-blue-100 shrink-0 mt-1">
+                  <span className="p-2.5 bg-amber-50 text-amber-600 rounded-lg border border-amber-200/80 shrink-0 mt-1">
                     <Phone size={18} />
                   </span>
                   <div>
-                    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Admissions Telephone</h4>
+                    <h4 className="text-[10px] font-extrabold text-[#1E3A8A] uppercase tracking-wider">Admissions Telephone</h4>
                     <p className="text-slate-600 text-xs sm:text-sm font-semibold mt-1">{branding.phone}</p>
                     <p className="text-[10px] text-slate-400 mt-0.5">Mon - Sat (09:00 AM - 05:00 PM)</p>
                   </div>
@@ -85,12 +85,12 @@ export default function Contact({ branding }) {
 
                 {/* Email Address */}
                 <div className="flex items-start gap-4">
-                  <span className="p-2.5 bg-blue-50 text-blue-600 rounded-lg border border-blue-100 shrink-0 mt-1">
+                  <span className="p-2.5 bg-amber-50 text-amber-600 rounded-lg border border-amber-200/80 shrink-0 mt-1">
                     <Mail size={18} />
                   </span>
                   <div>
-                    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Email Correspondence</h4>
-                    <a href={`mailto:${branding.email}`} className="text-blue-700 hover:underline text-xs sm:text-sm font-semibold mt-1 block">
+                    <h4 className="text-[10px] font-extrabold text-[#1E3A8A] uppercase tracking-wider">Email Correspondence</h4>
+                    <a href={`mailto:${branding.email}`} className="text-[#1E3A8A] hover:text-amber-600 text-xs sm:text-sm font-semibold mt-1 block transition-colors">
                       {branding.email}
                     </a>
                   </div>
@@ -125,8 +125,8 @@ export default function Contact({ branding }) {
                   exit={{ opacity: 0 }}
                   className="space-y-6"
                 >
-                  <h3 className="text-lg font-bold font-display text-slate-800 pb-3 border-b border-slate-200 flex items-center gap-2">
-                    <Send size={18} className="text-blue-600" />
+                  <h3 className="text-lg font-bold font-display text-[#1E3A8A] pb-3 border-b border-slate-200 flex items-center gap-2">
+                    <Send size={18} className="text-amber-500" />
                     <span>Quick Admissions & Help Request</span>
                   </h3>
 
@@ -143,7 +143,7 @@ export default function Contact({ branding }) {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="e.g. Liam Sterling"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500 placeholder-slate-400"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-[#1E3A8A] placeholder-slate-400"
                         required
                       />
                     </div>
@@ -158,7 +158,7 @@ export default function Contact({ branding }) {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="e.g. liam@gmail.com"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500 placeholder-slate-400"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-[#1E3A8A] placeholder-slate-400"
                         required
                       />
                     </div>
@@ -174,7 +174,7 @@ export default function Contact({ branding }) {
                       name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-[#1E3A8A]"
                     >
                       <option value="General Admissions Inquiry">General Admissions Inquiry</option>
                       <option value="Hostel Allotment & Boarding">Hostel Allotment & Boarding</option>
@@ -195,7 +195,7 @@ export default function Contact({ branding }) {
                       onChange={handleInputChange}
                       placeholder="Write your academic query details here..."
                       rows={5}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500 placeholder-slate-400 resize-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-[#1E3A8A] placeholder-slate-400 resize-none"
                       required
                     />
                   </div>
@@ -206,10 +206,10 @@ export default function Contact({ branding }) {
                       id="contact-submit"
                       type="submit"
                       disabled={isSubmitting}
-                      className="bg-blue-700 hover:bg-blue-800 disabled:bg-slate-300 text-white font-bold text-xs px-6 py-3 rounded-lg transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-sm hover:shadow"
+                      className="bg-[#1E3A8A] hover:bg-blue-900 text-amber-300 font-extrabold text-xs px-7 py-3 rounded-xl transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-md shadow-blue-900/10 border border-amber-400/30"
                     >
                       <span>{isSubmitting ? "Sending Query..." : "Dispatch Message"}</span>
-                      <Send size={16} />
+                      <Send size={16} className="text-amber-400" />
                     </button>
                   </div>
 
