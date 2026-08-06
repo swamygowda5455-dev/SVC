@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { 
   Home, 
@@ -14,31 +14,34 @@ import {
   Menu, 
   X, 
   ChevronDown, 
-  PanelLeftClose, 
-  PanelLeftOpen, 
   Sparkles, 
   Phone, 
   Mail, 
-  ArrowRight 
+  MapPin,
+  ArrowRight,
+  ExternalLink
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import logo from "@/assets/Sri Vidhya Education logo final (quillbot.com).jpg";
 
 export default function Header({ branding }) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedSubmenu, setExpandedSubmenu] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const dropdownTimeoutRef = useRef(null);
   const location = useLocation();
 
   const navItems = [
-    { label: "Home", icon: Home, path: "/" },
-    { label: "About Us", icon: Info, path: "/about" },
+    { label: "Home", shortLabel: "Home", icon: Home, path: "/" },
+    { label: "About Us", shortLabel: "About", icon: Info, path: "/about" },
     { 
       label: "Courses", 
+      shortLabel: "Courses",
       icon: BookOpen, 
       path: "/courses",
       dropdown: [
-        { label: "All Programs", path: "/courses" },
+        { label: "All Programs Overview", path: "/courses" },
         { label: "Bachelor of Arts (B.A.)", path: "/courses/ba" },
         { label: "Bachelor of Commerce (B.Com.)", path: "/courses/bcom" },
         { label: "Bachelor of Science (B.Sc.)", path: "/courses/bsc" },
@@ -50,6 +53,7 @@ export default function Header({ branding }) {
     },
     { 
       label: "Competitive Exams", 
+      shortLabel: "Exams",
       icon: Target, 
       path: "/competitive-exams",
       dropdown: [
@@ -62,30 +66,32 @@ export default function Header({ branding }) {
         { label: "Gurukul Sankalpa 3-Yr Batch", path: "/courses/gurukul-sankalpa" }
       ]
     },
-    { label: "Admission", icon: GraduationCap, path: "/admissions" },
+    { label: "Admissions", shortLabel: "Admissions", icon: GraduationCap, path: "/admissions" },
     { 
-      label: "Recent News (Announcements)", 
-      shortLabel: "Recent News",
+      label: "Recent News", 
+      shortLabel: "News",
       icon: Megaphone, 
       path: "/recent-news" 
     },
     { 
-      label: "Job Updates (Latest Jobs & Recruitment Notifications)", 
-      shortLabel: "Job Updates",
+      label: "Job Updates", 
+      shortLabel: "Jobs",
       icon: Briefcase, 
       path: "/job-updates" 
     },
-    { label: "Downloads", icon: Download, path: "/downloads" },
-    { label: "Gallery", icon: Image, path: "/gallery" },
-    { label: "Contact Us", icon: PhoneCall, path: "/contact" }
+    { label: "Downloads", shortLabel: "Downloads", icon: Download, path: "/downloads" },
+    { label: "Gallery", shortLabel: "Gallery", icon: Image, path: "/gallery" },
+    { label: "Contact Us", shortLabel: "Contact", icon: PhoneCall, path: "/contact" }
   ];
 
-  // Close submenus and mobile drawer on route change
+  // Close menus on route change
   useEffect(() => {
     setMobileMenuOpen(false);
     setExpandedSubmenu(null);
+    setActiveDropdown(null);
   }, [location.pathname]);
 
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.classList.add("overflow-hidden");
@@ -97,30 +103,29 @@ export default function Header({ branding }) {
     };
   }, [mobileMenuOpen]);
 
-  // Adjust root layout padding on desktop based on sidebar collapsed state
+  // Track scroll position for dynamic header styling
   useEffect(() => {
-    const mainEl = document.querySelector("main");
-    if (mainEl) {
-      if (window.innerWidth >= 1024) {
-        mainEl.style.transition = "padding-left 0.3s ease";
-        mainEl.style.paddingLeft = isCollapsed ? "5rem" : "16rem";
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
       } else {
-        mainEl.style.paddingLeft = "0px";
-      }
-    }
-    const handleResize = () => {
-      const el = document.querySelector("main");
-      if (el) {
-        if (window.innerWidth >= 1024) {
-          el.style.paddingLeft = isCollapsed ? "5rem" : "16rem";
-        } else {
-          el.style.paddingLeft = "0px";
-        }
+        setIsScrolled(false);
       }
     };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [isCollapsed]);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleMouseEnter = (label) => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setActiveDropdown(label);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150);
+  };
 
   const isNavActive = (item) => {
     if (item.path === "/") return location.pathname === "/";
@@ -129,263 +134,297 @@ export default function Header({ branding }) {
   };
 
   return (
-    <>
+    <header className="sticky top-0 z-50 w-full transition-all duration-300">
       {/* ========================================================================= */}
-      {/* 1. DESKTOP / TABLET COLLAPSIBLE SIDEBAR (lg:flex)                        */}
+      {/* 1. TOP UTILITY BAR (Contact & Announcements - Desktop/Tablet)             */}
       {/* ========================================================================= */}
-      <aside
-        className={`hidden lg:flex flex-col fixed top-0 left-0 h-screen z-50 bg-[#1E3A8A] text-white border-r border-amber-400/20 shadow-2xl transition-all duration-300 ${
-          isCollapsed ? "w-20" : "w-64"
+      <div className="bg-[#0B192C] text-slate-300 border-b border-amber-500/20 text-xs py-2 px-4 sm:px-6 lg:px-8 hidden md:block">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          {/* Left Side: Direct Contact Details */}
+          <div className="flex items-center gap-6 font-medium">
+            <a 
+              href={`tel:${branding?.phone || "+919448123456"}`}
+              className="flex items-center gap-2 hover:text-amber-400 transition-colors"
+            >
+              <Phone size={13} className="text-amber-400" />
+              <span>{branding?.phone || "+91 94481 23456"}</span>
+            </a>
+            <a 
+              href={`mailto:${branding?.email || "admissions@srividyachetana.edu.in"}`}
+              className="flex items-center gap-2 hover:text-amber-400 transition-colors"
+            >
+              <Mail size={13} className="text-amber-400" />
+              <span className="truncate max-w-[220px]">{branding?.email || "admissions@srividyachetana.edu.in"}</span>
+            </a>
+            <div className="flex items-center gap-1.5 text-slate-400 hidden lg:flex">
+              <MapPin size={13} className="text-amber-400" />
+              <span>{branding?.address || "Chintamani, Chikkaballapura, KA"}</span>
+            </div>
+          </div>
+
+          {/* Right Side: University Badge & Admissions Highlight */}
+          <div className="flex items-center gap-4">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/30 text-[11px] font-bold">
+              <Sparkles size={12} className="animate-pulse text-amber-400" />
+              Admissions Open 2026-27
+            </span>
+            <span className="text-[11px] text-slate-400 hidden sm:inline-block">
+              Affiliated to <strong className="text-slate-200">Bengaluru North University</strong>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 2. MAIN TOP NAVIGATION NAVBAR                                              */}
+      {/* ========================================================================= */}
+      <nav 
+        className={`w-full bg-[#1E3A8A] text-white border-b border-amber-400/20 transition-all duration-300 ${
+          isScrolled ? "shadow-2xl bg-[#1E3A8A]/95 backdrop-blur-md py-2.5" : "shadow-lg py-3"
         }`}
       >
-        {/* Sidebar Header & Brand Logo */}
-        <div className="p-4 border-b border-amber-400/20 flex items-center justify-between min-h-[72px]">
-          <Link to="/" className="flex items-center gap-3 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          
+          {/* Brand Logo & College Title */}
+          <Link to="/" className="flex items-center gap-3 shrink-0 group">
             <img
               src={logo}
-              alt="Logo"
-              className="w-10 h-10 object-contain rounded-xl bg-white p-0.5 border border-amber-400/40 shrink-0"
-            />
-            {!isCollapsed && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="overflow-hidden"
-              >
-                <h1 className="text-xs font-extrabold tracking-tight text-white leading-tight font-display uppercase truncate max-w-[150px]">
-                  {branding.collegeName}
-                </h1>
-                <p className="text-[8px] uppercase tracking-widest text-amber-300 font-extrabold truncate">
-                  Degree College
-                </p>
-              </motion.div>
-            )}
-          </Link>
-
-          {/* Minimize / Expand Toggle Button */}
-          <button
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            className="p-2 rounded-xl text-amber-300 hover:bg-white/10 transition-colors cursor-pointer shrink-0"
-            title={isCollapsed ? "Expand Sidebar" : "Minimize Sidebar"}
-          >
-            {isCollapsed ? <PanelLeftOpen size={20} /> : <PanelLeftClose size={20} />}
-          </button>
-        </div>
-
-        {/* Navigation Items List */}
-        <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1.5 scrollbar-thin">
-          {navItems.map((item) => {
-            const IconComp = item.icon;
-            const active = isNavActive(item);
-            const hasDropdown = Boolean(item.dropdown);
-            const isSubOpen = expandedSubmenu === item.label;
-
-            return (
-              <div key={item.label} className="relative group">
-                <div className="flex items-center">
-                  <Link
-                    to={item.path}
-                    className={`flex items-center gap-3 w-full p-3 rounded-2xl text-xs font-bold transition-all duration-200 cursor-pointer ${
-                      active
-                        ? "bg-amber-400 text-slate-950 shadow-lg shadow-amber-400/20 font-extrabold"
-                        : "text-slate-200 hover:bg-white/10 hover:text-amber-300"
-                    }`}
-                  >
-                    <IconComp size={20} className={active ? "text-slate-950" : "text-amber-400 shrink-0"} />
-
-                    {!isCollapsed && (
-                      <span className="truncate flex-1">
-                        {item.shortLabel || item.label}
-                      </span>
-                    )}
-                  </Link>
-
-                  {/* Dropdown Chevron toggle in Sidebar */}
-                  {hasDropdown && !isCollapsed && (
-                    <button
-                      onClick={() => setExpandedSubmenu(isSubOpen ? null : item.label)}
-                      className="p-2 text-slate-300 hover:text-amber-300 cursor-pointer"
-                    >
-                      <ChevronDown size={16} className={`transition-transform ${isSubOpen ? "rotate-180 text-amber-400" : ""}`} />
-                    </button>
-                  )}
-                </div>
-
-                {/* Collapsed Tooltip on Hover */}
-                {isCollapsed && (
-                  <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3 hidden group-hover:block bg-slate-950 text-white text-xs font-bold px-3 py-1.5 rounded-xl whitespace-nowrap shadow-xl z-50 border border-amber-400/30 pointer-events-none">
-                    {item.label}
-                  </div>
-                )}
-
-                {/* Submenu Accordion (when expanded) */}
-                {hasDropdown && isSubOpen && !isCollapsed && (
-                  <div className="pl-9 pr-2 py-1 space-y-1 border-l-2 border-amber-400/30 ml-4 mt-1">
-                    {item.dropdown.map((sub) => (
-                      <Link
-                        key={sub.label}
-                        to={sub.path}
-                        className="block py-2 px-2.5 rounded-xl text-[11px] font-semibold text-slate-300 hover:text-amber-300 hover:bg-white/5 transition-colors"
-                      >
-                        {sub.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Sidebar Footer / Apply CTA Button */}
-        <div className="p-3 border-t border-amber-400/20 bg-blue-950/60">
-          <Link
-            to="/admissions"
-            className={`w-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold p-3 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 text-xs ${
-              isCollapsed ? "px-2" : "px-4"
-            }`}
-          >
-            <GraduationCap size={18} className="shrink-0" />
-            {!isCollapsed && <span>Apply Now</span>}
-          </Link>
-        </div>
-      </aside>
-
-      {/* ========================================================================= */}
-      {/* 2. MOBILE TOP NAVBAR (< lg)                                               */}
-      {/* ========================================================================= */}
-      <header className="lg:hidden sticky top-0 z-40 bg-[#1E3A8A] text-white border-b border-amber-400/20 shadow-md">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2.5">
-            <img
-              src={logo}
-              alt="Logo"
-              className="w-10 h-10 object-contain rounded-xl bg-white p-0.5 border border-amber-400/40 shrink-0"
+              alt={branding?.collegeName || "Sri Vidya Chetana Degree College"}
+              className="w-11 h-11 sm:w-12 sm:h-12 object-contain rounded-xl bg-white p-1 border-2 border-amber-400/40 shadow-md transition-transform duration-300 group-hover:scale-105"
             />
             <div>
-              <h1 className="text-xs font-bold text-white tracking-tight uppercase leading-tight font-display">
-                {branding.collegeName}
+              <h1 className="text-sm sm:text-base lg:text-lg font-extrabold text-white tracking-tight leading-tight font-display uppercase group-hover:text-amber-300 transition-colors">
+                {branding?.collegeName || "Sri Vidya Chetana"}
               </h1>
-              <p className="text-[8px] uppercase tracking-widest text-amber-300 font-extrabold">
-                {branding.tagline}
-              </p>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] sm:text-xs uppercase tracking-widest text-amber-300 font-extrabold">
+                  Degree College
+                </span>
+                <span className="hidden sm:inline-block text-[10px] text-slate-300 font-medium border-l border-white/20 pl-2">
+                  Integrated Competitive IAS / KAS / CA
+                </span>
+              </div>
             </div>
           </Link>
 
-          <div className="flex items-center gap-2">
+          {/* Desktop Top Menu Items */}
+          <div className="hidden xl:flex items-center space-x-1 lg:space-x-1.5">
+            {navItems.map((item) => {
+              const active = isNavActive(item);
+              const hasDropdown = Boolean(item.dropdown);
+              const isOpen = activeDropdown === item.label;
+
+              return (
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={() => hasDropdown && handleMouseEnter(item.label)}
+                  onMouseLeave={() => hasDropdown && handleMouseLeave()}
+                >
+                  <Link
+                    to={item.path}
+                    className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs xl:text-sm font-bold transition-all duration-200 cursor-pointer ${
+                      active
+                        ? "bg-amber-400 text-slate-950 shadow-md shadow-amber-400/20 font-extrabold"
+                        : "text-slate-100 hover:bg-white/10 hover:text-amber-300"
+                    }`}
+                  >
+                    <span>{item.shortLabel || item.label}</span>
+                    {hasDropdown && (
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform duration-200 ${isOpen ? "rotate-180 text-amber-400" : "opacity-70"}`}
+                      />
+                    )}
+                  </Link>
+
+                  {/* Floating Desktop Submenu Dropdown */}
+                  {hasDropdown && (
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                          transition={{ duration: 0.18, ease: "easeOut" }}
+                          className="absolute top-full left-0 mt-1 w-64 bg-[#0B192C] border border-amber-400/30 rounded-2xl shadow-2xl py-2.5 z-50 backdrop-blur-xl"
+                        >
+                          <div className="px-3 py-1.5 border-b border-white/10 mb-1">
+                            <p className="text-[10px] uppercase font-extrabold tracking-wider text-amber-400">
+                              {item.label} Options
+                            </p>
+                          </div>
+                          {item.dropdown.map((sub) => (
+                            <Link
+                              key={sub.label}
+                              to={sub.path}
+                              onClick={() => setActiveDropdown(null)}
+                              className="flex items-center justify-between px-3.5 py-2 text-xs font-semibold text-slate-200 hover:text-amber-300 hover:bg-white/10 rounded-xl mx-1 transition-colors"
+                            >
+                              <span>{sub.label}</span>
+                              <ArrowRight size={12} className="opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-amber-400" />
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Desktop CTA Apply Button & Mobile Drawer Toggle */}
+          <div className="flex items-center gap-3">
             <Link
               to="/admissions"
-              className="bg-amber-400 text-slate-950 font-extrabold text-xs px-3 py-2 rounded-xl shadow-sm"
+              className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl shadow-lg hover:shadow-amber-400/30 transition-all transform hover:-translate-y-0.5 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider shrink-0"
             >
-              Apply
+              <GraduationCap size={18} className="shrink-0" />
+              <span>Apply Now</span>
             </Link>
+
+            {/* Mobile / Tablet Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-200 hover:text-amber-300 rounded-xl"
-              aria-label="Toggle Mobile Menu"
+              className="xl:hidden p-2.5 text-slate-200 hover:text-amber-300 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors cursor-pointer"
+              aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
-        </div>
-      </header>
 
-      {/* Mobile Slide-Over Drawer */}
+        </div>
+      </nav>
+
+      {/* ========================================================================= */}
+      {/* 3. RESPONSIVE MOBILE / TABLET MENU DRAWER (< xl)                           */}
+      {/* ========================================================================= */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
+            {/* Backdrop overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs lg:hidden z-50"
+              className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs xl:hidden z-40"
             />
+
+            {/* Top Slide-Down Navigation Panel */}
             <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
+              initial={{ opacity: 0, y: "-100%" }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: "-100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed inset-y-0 left-0 w-72 bg-[#1E3A8A] text-white shadow-2xl z-50 overflow-y-auto flex flex-col justify-between"
+              className="fixed top-0 left-0 right-0 max-h-[90vh] bg-[#0B192C] text-white shadow-2xl border-b border-amber-400/30 z-50 overflow-y-auto xl:hidden flex flex-col"
             >
-              <div className="p-5 space-y-6">
-                <div className="flex items-center justify-between border-b border-amber-400/20 pb-4">
-                  <div className="flex items-center gap-3">
-                    <img src={logo} alt="Logo" className="w-10 h-10 rounded-xl bg-white p-0.5" />
-                    <div>
-                      <h2 className="text-xs font-bold uppercase">{branding.collegeName}</h2>
-                      <p className="text-[9px] text-amber-300 font-extrabold uppercase">Degree College</p>
-                    </div>
+              {/* Drawer Top Bar */}
+              <div className="p-4 border-b border-amber-400/20 flex items-center justify-between sticky top-0 bg-[#0B192C] z-10">
+                <div className="flex items-center gap-3">
+                  <img src={logo} alt="Logo" className="w-10 h-10 rounded-xl bg-white p-1 border border-amber-400/40" />
+                  <div>
+                    <h2 className="text-xs font-extrabold uppercase text-white leading-tight">
+                      {branding?.collegeName || "Sri Vidya Chetana"}
+                    </h2>
+                    <p className="text-[9px] text-amber-300 font-extrabold uppercase tracking-widest">
+                      Degree College
+                    </p>
                   </div>
-                  <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-slate-300">
-                    <X size={22} />
-                  </button>
                 </div>
-
-                {/* Mobile Nav Links */}
-                <div className="space-y-1.5">
-                  {navItems.map((item) => {
-                    const IconComp = item.icon;
-                    const active = isNavActive(item);
-                    const hasDropdown = Boolean(item.dropdown);
-                    const isSubOpen = expandedSubmenu === item.label;
-
-                    return (
-                      <div key={item.label} className="space-y-1">
-                        <div className="flex items-center justify-between">
-                          <Link
-                            to={item.path}
-                            className={`flex items-center gap-3 flex-1 p-3 rounded-2xl text-xs font-bold transition-all ${
-                              active ? "bg-amber-400 text-slate-950 font-extrabold" : "text-slate-200 hover:bg-white/10"
-                            }`}
-                          >
-                            <IconComp size={18} className={active ? "text-slate-950" : "text-amber-400"} />
-                            <span>{item.label}</span>
-                          </Link>
-
-                          {hasDropdown && (
-                            <button
-                              onClick={() => setExpandedSubmenu(isSubOpen ? null : item.label)}
-                              className="p-3 text-slate-300 hover:text-amber-300"
-                            >
-                              <ChevronDown size={18} className={`transition-transform ${isSubOpen ? "rotate-180 text-amber-400" : ""}`} />
-                            </button>
-                          )}
-                        </div>
-
-                        {hasDropdown && isSubOpen && (
-                          <div className="pl-9 pr-2 py-1 space-y-1 border-l-2 border-amber-400/30 ml-4">
-                            {item.dropdown.map((sub) => (
-                              <Link
-                                key={sub.label}
-                                to={sub.path}
-                                className="block py-2 px-3 rounded-xl text-xs font-semibold text-slate-300 hover:text-amber-300"
-                              >
-                                {sub.label}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 rounded-xl text-slate-300 hover:text-white bg-white/5"
+                  aria-label="Close Menu"
+                >
+                  <X size={22} />
+                </button>
               </div>
 
-              <div className="p-5 border-t border-amber-400/20 bg-blue-950/60">
+              {/* Drawer Navigation Links */}
+              <div className="p-4 space-y-2 flex-1">
+                {navItems.map((item) => {
+                  const IconComp = item.icon;
+                  const active = isNavActive(item);
+                  const hasDropdown = Boolean(item.dropdown);
+                  const isSubOpen = expandedSubmenu === item.label;
+
+                  return (
+                    <div key={item.label} className="rounded-xl overflow-hidden bg-white/5 border border-white/5">
+                      <div className="flex items-center justify-between">
+                        <Link
+                          to={item.path}
+                          className={`flex items-center gap-3 flex-1 p-3 text-xs font-bold transition-all ${
+                            active
+                              ? "bg-amber-400 text-slate-950 font-extrabold"
+                              : "text-slate-200 hover:bg-white/10"
+                          }`}
+                        >
+                          <IconComp size={18} className={active ? "text-slate-950" : "text-amber-400"} />
+                          <span>{item.label}</span>
+                        </Link>
+
+                        {hasDropdown && (
+                          <button
+                            onClick={() => setExpandedSubmenu(isSubOpen ? null : item.label)}
+                            className="p-3 text-slate-300 hover:text-amber-300"
+                            aria-label={`Toggle ${item.label} Submenu`}
+                          >
+                            <ChevronDown
+                              size={18}
+                              className={`transition-transform duration-200 ${isSubOpen ? "rotate-180 text-amber-400" : ""}`}
+                            />
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Accordion Submenu Links */}
+                      {hasDropdown && isSubOpen && (
+                        <div className="pl-9 pr-3 py-2 space-y-1 bg-black/20 border-t border-white/5">
+                          {item.dropdown.map((sub) => (
+                            <Link
+                              key={sub.label}
+                              to={sub.path}
+                              className="block py-2 px-3 rounded-lg text-xs font-semibold text-slate-300 hover:text-amber-300 hover:bg-white/5 transition-colors"
+                            >
+                              {sub.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Drawer Bottom Quick Action & Info */}
+              <div className="p-4 border-t border-amber-400/20 bg-[#070F1B] space-y-3">
                 <Link
                   to="/admissions"
-                  className="w-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-extrabold p-3.5 rounded-2xl flex items-center justify-center gap-2 text-xs shadow-lg"
+                  className="w-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-extrabold p-3 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-wider shadow-lg"
                 >
                   <GraduationCap size={18} />
                   <span>Apply for Admissions</span>
                 </Link>
+
+                <div className="flex items-center justify-around pt-2 text-[11px] text-slate-400">
+                  <a href={`tel:${branding?.phone || "+919448123456"}`} className="flex items-center gap-1.5 hover:text-amber-300">
+                    <Phone size={13} className="text-amber-400" />
+                    <span>Call Us</span>
+                  </a>
+                  <span className="text-slate-600">|</span>
+                  <a href={`mailto:${branding?.email || "admissions@srividyachetana.edu.in"}`} className="flex items-center gap-1.5 hover:text-amber-300">
+                    <Mail size={13} className="text-amber-400" />
+                    <span>Email Us</span>
+                  </a>
+                </div>
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
-    </>
+    </header>
   );
 }
+
