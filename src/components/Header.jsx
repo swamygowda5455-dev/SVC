@@ -134,7 +134,7 @@ export default function Header({ branding }) {
   };
 
   return (
-    <header className="w-full z-50 transition-all duration-300">
+    <header className="sticky top-0 z-50 w-full transition-all duration-300">
       {/* ========================================================================= */}
       {/* 1. TOP UTILITY BAR (Contact & Announcements)                              */}
       {/* ========================================================================= */}
@@ -176,24 +176,24 @@ export default function Header({ branding }) {
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. MAIN BRAND HEADER BAR                                                  */}
+      {/* 2. MAIN BRAND HEADER BAR (Sticky on Mobile)                               */}
       {/* ========================================================================= */}
-      <div className="bg-[#1E3A8A] text-white border-b border-amber-400/20 py-3.5 px-4 sm:px-6 lg:px-8 shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div className="bg-[#1E3A8A] text-white border-b border-amber-400/20 py-2.5 sm:py-3.5 px-3 sm:px-6 lg:px-8 shadow-md">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
           
           {/* Logo & College Title */}
-          <Link to="/" className="flex items-center gap-3.5 group shrink-0">
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3.5 group shrink-0 max-w-[70%] sm:max-w-none">
             <img
               src={logo}
               alt={branding?.collegeName || "Sri Vidya Chetana Degree College"}
-              className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-xl bg-white p-1 border-2 border-amber-400/40 shadow-lg transition-transform duration-300 group-hover:scale-105"
+              className="w-10 h-10 sm:w-14 sm:h-14 object-contain rounded-xl bg-white p-0.5 sm:p-1 border-2 border-amber-400/40 shadow-lg transition-transform duration-300 group-hover:scale-105 shrink-0"
             />
-            <div>
-              <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-tight font-display uppercase group-hover:text-amber-300 transition-colors">
+            <div className="overflow-hidden">
+              <h1 className="text-xs sm:text-lg md:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-tight font-display uppercase group-hover:text-amber-300 transition-colors truncate">
                 {branding?.collegeName || "Sri Vidya Chetana"}
               </h1>
-              <div className="flex flex-wrap items-center gap-2 mt-0.5">
-                <span className="text-xs uppercase tracking-widest text-amber-300 font-extrabold">
+              <div className="flex flex-wrap items-center gap-1 sm:gap-2 mt-0.5">
+                <span className="text-[9px] sm:text-xs uppercase tracking-widest text-amber-300 font-extrabold truncate">
                   Degree College
                 </span>
                 <span className="hidden md:inline-block text-xs text-slate-300 font-medium border-l border-white/20 pl-2">
@@ -203,23 +203,26 @@ export default function Header({ branding }) {
             </div>
           </Link>
 
-          {/* Right Header Controls: Apply Button & Mobile Toggle */}
-          <div className="flex items-center gap-3">
+          {/* Right Header Controls: Apply Button & Prominent Mobile Menu Button */}
+          <div className="flex items-center gap-2 shrink-0">
             <Link
               to="/admissions"
-              className="hidden sm:flex bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold px-5 py-2.5 rounded-xl shadow-lg hover:shadow-amber-400/30 transition-all transform hover:-translate-y-0.5 items-center gap-2 text-xs sm:text-sm uppercase tracking-wider shrink-0"
+              className="hidden sm:flex bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold px-4 sm:px-5 py-2.5 rounded-xl shadow-lg hover:shadow-amber-400/30 transition-all transform hover:-translate-y-0.5 items-center gap-2 text-xs sm:text-sm uppercase tracking-wider shrink-0"
             >
               <GraduationCap size={18} />
-              <span>Apply for Admissions</span>
+              <span>Apply</span>
             </Link>
 
-            {/* Mobile / Tablet Menu Toggle */}
+            {/* High-Visibility Mobile / Tablet Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2.5 text-slate-200 hover:text-amber-300 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 transition-colors cursor-pointer"
+              className="lg:hidden px-3 py-2 text-slate-950 font-extrabold rounded-xl bg-amber-400 hover:bg-amber-300 border border-amber-300 transition-all cursor-pointer flex items-center gap-1.5 shadow-md active:scale-95"
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              <span className="text-xs uppercase font-extrabold tracking-wider">
+                {mobileMenuOpen ? "Close" : "Menu"}
+              </span>
             </button>
           </div>
 
