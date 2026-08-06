@@ -24,7 +24,6 @@ import Admissions from "./Admissions.jsx";
 export default function CourseDetails({ courses, branding, admissions }) {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const [showApplyModal, setShowApplyModal] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
 
   const course = courses.find(c => c.slug === slug || c.id === slug);
@@ -34,7 +33,6 @@ export default function CourseDetails({ courses, branding, admissions }) {
     if (course) {
       document.title = `${course.name} - Sri Vidya Chetana Degree College`;
       
-      // Update meta description
       let metaDesc = document.querySelector('meta[name="description"]');
       if (!metaDesc) {
         metaDesc = document.createElement('meta');
@@ -42,22 +40,6 @@ export default function CourseDetails({ courses, branding, admissions }) {
         document.head.appendChild(metaDesc);
       }
       metaDesc.content = course.description;
-
-      // Update OG Meta Tags
-      const ogTitle = document.querySelector('meta[property="og:title"]') || document.createElement('meta');
-      ogTitle.setAttribute('property', 'og:title');
-      ogTitle.content = `${course.name} | Sri Vidya Chetana Degree College`;
-      document.head.appendChild(ogTitle);
-
-      const ogDesc = document.querySelector('meta[property="og:description"]') || document.createElement('meta');
-      ogDesc.setAttribute('property', 'og:description');
-      ogDesc.content = course.description;
-      document.head.appendChild(ogDesc);
-
-      const ogImage = document.querySelector('meta[property="og:image"]') || document.createElement('meta');
-      ogImage.setAttribute('property', 'og:image');
-      ogImage.content = course.image;
-      document.head.appendChild(ogImage);
     }
 
     return () => {
@@ -140,16 +122,16 @@ export default function CourseDetails({ courses, branding, admissions }) {
                 <span className="font-bold text-white mt-1 block">{course.duration}</span>
               </div>
               <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/10">
-                <span className="text-amber-300 text-[10px] font-extrabold uppercase tracking-wider block">Seat Intake</span>
-                <span className="font-bold text-white mt-1 block">{course.atAGlance?.intake || "60 Seats"}</span>
+                <span className="text-amber-300 text-[10px] font-extrabold uppercase tracking-wider block">Intake</span>
+                <span className="font-bold text-white mt-1 block">{course.atAGlance?.intake || "100 Seats"}</span>
               </div>
               <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/10">
                 <span className="text-amber-300 text-[10px] font-extrabold uppercase tracking-wider block">Affiliation</span>
-                <span className="font-bold text-white mt-1 block">{course.atAGlance?.affiliation || "BNU"}</span>
+                <span className="font-bold text-white mt-1 block">BNU</span>
               </div>
               <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/10">
                 <span className="text-amber-300 text-[10px] font-extrabold uppercase tracking-wider block">Coaching</span>
-                <span className="font-bold text-white mt-1 block">Integrated TRISHUL</span>
+                <span className="font-bold text-white mt-1 block">TRISHUL Model</span>
               </div>
             </div>
 
@@ -175,138 +157,107 @@ export default function CourseDetails({ courses, branding, admissions }) {
           {/* Main Body (8/12) */}
           <div className="lg:col-span-8 space-y-10">
 
-            {/* Overview & About */}
+            {/* 1. COURSE AT A GLANCE */}
+            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+              <h3 className="text-xl font-bold font-display text-[#1E3A8A] flex items-center gap-2 border-b border-slate-100 pb-3">
+                <GraduationCap className="text-amber-500" size={22} />
+                <span>Course at a Glance</span>
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-700 font-medium">
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Programme</span>
+                  <span className="font-bold text-[#1E3A8A]">{course.atAGlance?.programme || course.name}</span>
+                </div>
+                {course.atAGlance?.subjectCombination && (
+                  <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                    <span className="text-slate-400 block text-[10px] font-bold uppercase">Subject Combination</span>
+                    <span className="font-bold text-slate-800">{course.atAGlance.subjectCombination}</span>
+                  </div>
+                )}
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Intake</span>
+                  <span className="font-bold text-slate-800">{course.atAGlance?.intake || "100"}</span>
+                </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Duration</span>
+                  <span className="font-bold text-slate-800">{course.duration}</span>
+                </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Affiliated To</span>
+                  <span className="font-bold text-[#1E3A8A]">Bengaluru North University</span>
+                </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">College Code</span>
+                  <span className="font-bold text-slate-800">P19GHR0326</span>
+                </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">AISHE Code</span>
+                  <span className="font-bold text-slate-800">{course.atAGlance?.aisheCode || "(To be updated once allotted)"}</span>
+                </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Mode of Study</span>
+                  <span className="font-bold text-slate-800">Full-Time</span>
+                </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200 sm:col-span-2">
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Medium of Instruction</span>
+                  <span className="font-bold text-slate-800">{course.atAGlance?.mediumOfInstruction || "English / Kannada (as per University norms)"}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. ABOUT THE COURSE */}
             <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
               <h3 className="text-xl font-bold font-display text-[#1E3A8A] flex items-center gap-2 border-b border-slate-100 pb-3">
                 <BookOpenCheck className="text-amber-500" size={22} />
-                <span>Course Overview</span>
+                <span>About the Course</span>
               </h3>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+              <p className="text-slate-700 text-sm leading-relaxed">
                 {course.aboutText || course.description}
               </p>
             </div>
 
-            {/* Fee Structure Table */}
-            {course.feeStructure && (
-              <div className="bg-white p-5 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
-                <h3 className="text-xl font-bold font-display text-[#1E3A8A] flex items-center gap-2 border-b border-slate-100 pb-3">
-                  <DollarSign className="text-amber-500" size={22} />
-                  <span>Fee Structure & Investment</span>
-                </h3>
-                <div className="w-full overflow-x-auto rounded-2xl border border-slate-200">
-                  <table className="w-full text-left text-xs sm:text-sm text-slate-600 min-w-[500px]">
-                    <thead className="bg-slate-100 text-[#1E3A8A] font-extrabold text-[10px] sm:text-xs uppercase tracking-wider">
-                      <tr>
-                        <th className="p-3.5 whitespace-nowrap">Academic Year</th>
-                        <th className="p-3.5 whitespace-nowrap">University Tuition Fee</th>
-                        <th className="p-3.5 whitespace-nowrap">Integrated Coaching Fee</th>
-                        <th className="p-3.5 whitespace-nowrap">Total Payable</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100 font-medium">
-                      {course.feeStructure.map((fee, idx) => (
-                        <tr key={idx} className="hover:bg-amber-50/20 transition-colors">
-                          <td className="p-3.5 font-bold text-slate-800 whitespace-nowrap">{fee.year}</td>
-                          <td className="p-3.5 text-slate-600 whitespace-nowrap">{fee.tuitionFee}</td>
-                          <td className="p-3.5 text-slate-600 whitespace-nowrap">{fee.coachingFee}</td>
-                          <td className="p-3.5 font-extrabold text-[#1E3A8A] whitespace-nowrap">{fee.totalFee}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <p className="text-[10px] text-slate-400 italic">
-                  * Note: Fee concessions and merit scholarships available based on 10+2 / PUC score marks.
-                </p>
-              </div>
-            )}
-
-            {/* TRISHUL Learning Model */}
-            {course.trishulModel && (
-              <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
-                <div>
-                  <h3 className="text-xl font-bold font-display text-[#1E3A8A] flex items-center gap-2">
-                    <Sparkles className="text-amber-500" size={22} />
-                    <span>TRISHUL 3-in-1 Integrated Learning Model</span>
-                  </h3>
-                  <p className="text-slate-500 text-xs mt-1">
-                    Combines regular university degree syllabus with competitive exam preparation and employability skills.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {/* Academic */}
-                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
-                    <h4 className="font-extrabold text-xs uppercase tracking-wider text-[#1E3A8A] border-b border-slate-200 pb-2">
-                      1. Academic Excellence
-                    </h4>
-                    <ul className="space-y-1.5 text-xs text-slate-600">
-                      {course.trishulModel.academic.slice(0, 6).map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-1.5">
-                          <Check size={12} className="text-amber-500 mt-0.5 shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Competitive */}
-                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
-                    <h4 className="font-extrabold text-xs uppercase tracking-wider text-[#1E3A8A] border-b border-slate-200 pb-2">
-                      2. Competitive Prep
-                    </h4>
-                    <ul className="space-y-1.5 text-xs text-slate-600">
-                      {course.trishulModel.competitive.slice(0, 6).map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-1.5">
-                          <Check size={12} className="text-amber-500 mt-0.5 shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Skills */}
-                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
-                    <h4 className="font-extrabold text-xs uppercase tracking-wider text-[#1E3A8A] border-b border-slate-200 pb-2">
-                      3. Employability Skills
-                    </h4>
-                    <ul className="space-y-1.5 text-xs text-slate-600">
-                      {course.trishulModel.skills.slice(0, 6).map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-1.5">
-                          <Check size={12} className="text-amber-500 mt-0.5 shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Required Documents */}
-            {course.requiredDocuments && (
+            {/* 3. WHY CHOOSE...? */}
+            {course.whyChoose && (
               <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
                 <h3 className="text-xl font-bold font-display text-[#1E3A8A] flex items-center gap-2 border-b border-slate-100 pb-3">
-                  <FileText className="text-amber-500" size={22} />
-                  <span>Required Documents for Admissions</span>
+                  <Award className="text-amber-500" size={22} />
+                  <span>Why Choose {course.name} at Sri Vidya Chetana Degree College?</span>
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {course.requiredDocuments.map((doc, idx) => (
-                    <div key={idx} className="flex items-center gap-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200/80 text-xs text-slate-700 font-medium">
-                      <CheckCircle size={16} className="text-amber-500 shrink-0" />
-                      <span>{doc}</span>
-                    </div>
+                <ul className="space-y-3">
+                  {course.whyChoose.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-700 font-medium">
+                      <CheckCircle size={18} className="text-emerald-600 shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             )}
 
-            {/* Career Opportunities */}
+            {/* 4. KEY BENEFITS */}
+            {course.keyBenefits && (
+              <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+                <h3 className="text-xl font-bold font-display text-[#1E3A8A] flex items-center gap-2 border-b border-slate-100 pb-3">
+                  <Sparkles className="text-amber-500" size={22} />
+                  <span>Key Benefits of the Programme</span>
+                </h3>
+                <ul className="space-y-3">
+                  {course.keyBenefits.map((benefit, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-700 font-medium">
+                      <Check size={18} className="text-amber-500 shrink-0 mt-0.5" />
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* 5. CAREER OPPORTUNITIES */}
             {course.careerOpportunities && (
               <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
                 <h3 className="text-xl font-bold font-display text-[#1E3A8A] flex items-center gap-2 border-b border-slate-100 pb-3">
                   <Briefcase className="text-amber-500" size={22} />
-                  <span>Career Opportunities & Scope</span>
+                  <span>Career Opportunities</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {Object.entries(course.careerOpportunities).map(([cat, roles]) => (
@@ -325,21 +276,72 @@ export default function CourseDetails({ courses, branding, admissions }) {
               </div>
             )}
 
-            {/* Course FAQs */}
-            {course.faqs && (
-              <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
-                <h3 className="text-xl font-bold font-display text-[#1E3A8A] flex items-center gap-2 border-b border-slate-100 pb-3">
-                  <HelpCircle className="text-amber-500" size={22} />
-                  <span>Frequently Asked Questions</span>
-                </h3>
-                <div className="space-y-3">
-                  {course.faqs.map((faq, idx) => (
-                    <div key={idx} className="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-1">
-                      <h4 className="text-xs sm:text-sm font-bold text-slate-800">{faq.question}</h4>
-                      <p className="text-xs text-slate-600 leading-relaxed">{faq.answer}</p>
-                    </div>
-                  ))}
+            {/* 6. TRISHUL LEARNING MODEL */}
+            {course.trishulModel && (
+              <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+                <div>
+                  <h3 className="text-xl font-bold font-display text-[#1E3A8A] flex items-center gap-2">
+                    <Sparkles className="text-amber-500" size={22} />
+                    <span>TRISHUL Learning Model – Degree + Competitive Examination Preparation + Industry Skills</span>
+                  </h3>
+                  <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+                    At Sri Vidya Chetana Degree College, every student benefits from our TRISHUL Learning Model, which integrates Academic Excellence, Competitive Examination Preparation, and Industry &amp; Employability Skills.
+                  </p>
                 </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {/* Academic */}
+                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <h4 className="font-extrabold text-xs uppercase tracking-wider text-[#1E3A8A] border-b border-slate-200 pb-2">
+                      Academic Excellence
+                    </h4>
+                    <ul className="space-y-1.5 text-xs text-slate-600">
+                      {course.trishulModel.academic.map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-1.5">
+                          <Check size={12} className="text-amber-500 mt-0.5 shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Competitive */}
+                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <h4 className="font-extrabold text-xs uppercase tracking-wider text-[#1E3A8A] border-b border-slate-200 pb-2">
+                      Competitive Examination Prep
+                    </h4>
+                    <ul className="space-y-1.5 text-xs text-slate-600">
+                      {course.trishulModel.competitive.map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-1.5">
+                          <Check size={12} className="text-amber-500 mt-0.5 shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Skills */}
+                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <h4 className="font-extrabold text-xs uppercase tracking-wider text-[#1E3A8A] border-b border-slate-200 pb-2">
+                      Industry &amp; Employability Skills
+                    </h4>
+                    <ul className="space-y-1.5 text-xs text-slate-600">
+                      {course.trishulModel.skills.map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-1.5">
+                          <Check size={12} className="text-amber-500 mt-0.5 shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* 7. CLOSING STATEMENT */}
+            {course.closingStatement && (
+              <div className="bg-gradient-to-r from-[#1E3A8A] to-blue-900 text-amber-300 p-6 sm:p-8 rounded-3xl shadow-lg border border-amber-400/30 font-bold text-sm sm:text-base leading-relaxed text-center">
+                {course.closingStatement}
               </div>
             )}
 
@@ -370,7 +372,7 @@ export default function CourseDetails({ courses, branding, admissions }) {
                 </div>
                 <div className="flex justify-between border-b border-slate-100 pb-2">
                   <span className="text-slate-400">Intake:</span>
-                  <span className="font-bold text-slate-800">{course.atAGlance?.intake || "60 Seats"}</span>
+                  <span className="font-bold text-slate-800">{course.atAGlance?.intake || "100 Seats"}</span>
                 </div>
                 <div className="flex justify-between border-b border-slate-100 pb-2">
                   <span className="text-slate-400">Affiliation:</span>
@@ -400,20 +402,10 @@ export default function CourseDetails({ courses, branding, admissions }) {
                   <Link
                     key={rel.id}
                     to={`/courses/${rel.slug || rel.id}`}
-                    className="flex gap-3 p-2.5 rounded-xl hover:bg-amber-50/40 border border-slate-100 hover:border-amber-300 transition-all group"
+                    className="block p-3 rounded-2xl bg-slate-50 hover:bg-amber-50/50 border border-slate-200/80 transition-colors group"
                   >
-                    <img
-                      src={rel.image}
-                      alt={rel.name}
-                      referrerPolicy="no-referrer"
-                      className="w-14 h-14 object-cover rounded-lg shrink-0"
-                    />
-                    <div>
-                      <h4 className="text-xs font-bold text-slate-800 group-hover:text-[#1E3A8A] line-clamp-1">
-                        {rel.name}
-                      </h4>
-                      <p className="text-[10px] text-slate-400 mt-1">{rel.duration}</p>
-                    </div>
+                    <h4 className="text-xs font-bold text-slate-800 group-hover:text-[#1E3A8A]">{rel.name}</h4>
+                    <p className="text-[10px] text-slate-500 mt-0.5">{rel.duration}</p>
                   </Link>
                 ))}
               </div>
@@ -422,7 +414,6 @@ export default function CourseDetails({ courses, branding, admissions }) {
           </div>
 
         </div>
-
       </div>
     </div>
   );

@@ -10,14 +10,19 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-export default function NewsEvents({ newsAndAnnouncements }) {
-  const [activeTab, setActiveTab] = useState("jobs"); // "jobs" | "announcements"
+export default function NewsEvents({ newsAndAnnouncements, initialTab = "jobs" }) {
+  const [activeTab, setActiveTab] = useState(initialTab);
   const [jobSearch, setJobSearch] = useState("");
   const [annSearch, setAnnSearch] = useState("");
   
   const [jobPage, setJobPage] = useState(1);
   const [annPage, setAnnPage] = useState(1);
   const pageSize = 5;
+
+  // React to prop change if initialTab updates
+  React.useEffect(() => {
+    setActiveTab(initialTab);
+  }, [initialTab]);
 
   const jobUpdates = newsAndAnnouncements?.jobUpdates || [];
   const announcements = newsAndAnnouncements?.announcements || [];

@@ -5,9 +5,12 @@ import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
 import About from "./components/About.jsx";
 import Courses from "./components/Courses.jsx";
+import CompetitiveExams from "./components/CompetitiveExams.jsx";
 import Departments from "./components/Departments.jsx";
 import WhyChoose from "./components/WhyChoose.jsx";
-import NewsEvents from "./components/NewsEvents.jsx";
+import RecentNews from "./components/RecentNews.jsx";
+import JobUpdates from "./components/JobUpdates.jsx";
+import Downloads from "./components/Downloads.jsx";
 import Gallery from "./components/Gallery.jsx";
 import Admissions from "./components/Admissions.jsx";
 import Testimonials from "./components/Testimonials.jsx";
@@ -31,14 +34,7 @@ function ScrollToTop() {
 
 // HomePage Component
 function HomePage({ cmsData }) {
-  return (
-    <>
-      <Hero hero={cmsData.hero} branding={cmsData.branding} />
-      <WhyChoose whyChoose={cmsData.whyChoose} />
-      <Courses courses={cmsData.courses} />
-      <Testimonials testimonials={cmsData.testimonials} />
-    </>
-  );
+  return <Hero branding={cmsData.branding} />;
 }
 
 export default function App() {
@@ -62,12 +58,15 @@ export default function App() {
           }>
             <Routes>
               <Route path="/" element={<HomePage cmsData={cmsData} />} />
-              <Route path="/about" element={<About about={cmsData.about} branding={cmsData.branding} />} />
+              <Route path="/about" element={<About />} />
               <Route path="/courses" element={<Courses courses={cmsData.courses} />} />
               <Route path="/courses/:slug" element={<CourseDetails courses={cmsData.courses} branding={cmsData.branding} admissions={cmsData.admissions} />} />
+              <Route path="/competitive-exams" element={<CompetitiveExams />} />
               <Route path="/departments" element={<Departments departments={cmsData.departments} />} />
               <Route path="/why-us" element={<WhyChoose whyChoose={cmsData.whyChoose} />} />
-              <Route path="/news-events" element={<NewsEvents newsAndAnnouncements={cmsData.newsAndAnnouncements} />} />
+              <Route path="/recent-news" element={<RecentNews newsAndAnnouncements={cmsData.newsAndAnnouncements} />} />
+              <Route path="/job-updates" element={<JobUpdates newsAndAnnouncements={cmsData.newsAndAnnouncements} />} />
+              <Route path="/downloads" element={<Downloads />} />
               <Route path="/gallery" element={<Gallery gallery={cmsData.gallery} />} />
               <Route path="/admissions" element={<Admissions admissions={cmsData.admissions} branding={cmsData.branding} courses={cmsData.courses} />} />
               <Route path="/contact" element={<Contact branding={cmsData.branding} />} />
@@ -89,4 +88,3 @@ export default function App() {
     </BrowserRouter>
   );
 }
-

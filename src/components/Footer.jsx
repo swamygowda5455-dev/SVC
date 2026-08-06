@@ -1,80 +1,106 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Award, ArrowUp } from "lucide-react";
 import logo from "@/assets/Sri Vidhya Education logo final (quillbot.com).jpg";
 
-export default function Footer({ branding, courses, departments }) {
+export default function Footer({ branding, courses }) {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <footer className="bg-slate-50 text-slate-500 text-xs border-t border-slate-200 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[#0B192C] text-slate-300 text-xs border-t border-amber-400/20 pt-16 pb-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
-        {/* Main Footer Sitemap Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-slate-200">
+        {/* Main Footer Sitemap Grid (Oxford 4-Column Layout) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-white/10">
 
-          {/* Column 1 (4/12): Brand, Tagline, Socials */}
-          <div className="sm:col-span-6 lg:col-span-4 space-y-6">
-            <div className="flex items-center gap-3">
+          {/* Column 1 (4/12): Brand & Institutional Intro */}
+          <div className="lg:col-span-4 space-y-5">
+            <div className="flex items-center gap-3.5">
               <img
                 src={logo}
                 alt="Sri Vidya Chetana Logo"
-                className="w-20 h-20 object-contain rounded-2xl bg-white p-1 border border-slate-200 shadow-md shrink-0 transition-transform hover:scale-105 duration-300"
+                className="w-14 h-14 object-contain rounded-2xl bg-white p-1 border border-amber-400/40 shadow-md shrink-0 transition-transform hover:scale-105 duration-300"
               />
-              <h4 className="text-slate-800 text-base font-extrabold tracking-tight">
-                {branding.collegeName.toUpperCase()}
-              </h4>
+              <div>
+                <h4 className="text-white text-base sm:text-lg font-extrabold tracking-tight font-display uppercase">
+                  {branding.collegeName}
+                </h4>
+                <p className="text-[9px] uppercase tracking-[0.2em] text-amber-400 font-extrabold">
+                  {branding.tagline}
+                </p>
+              </div>
             </div>
 
-            <p className="text-slate-500 text-xs leading-relaxed max-w-sm">
+            <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
               {branding.shortIntro}
             </p>
 
-            {/* Social media icons */}
-            <div className="flex items-center gap-3">
-              <a href={branding.socials.facebook} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-lg bg-white hover:bg-blue-50 text-slate-500 hover:text-blue-600 border border-slate-200 flex items-center justify-center transition-colors shadow-sm">
+            {/* Accreditation Pill Tag */}
+            <div className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 px-3.5 py-1.5 rounded-full text-amber-300 text-[10px] font-extrabold tracking-wider uppercase shadow-xs">
+              <Award size={14} className="text-amber-400 shrink-0" />
+              <span>Affiliated to Bengaluru North University</span>
+            </div>
+
+            {/* Social media links */}
+            <div className="flex items-center gap-3 pt-1">
+              <a href={branding.socials.facebook} target="_blank" rel="noreferrer" className="w-9 h-9 rounded-xl bg-white/5 hover:bg-amber-400 text-slate-300 hover:text-slate-950 border border-white/10 flex items-center justify-center transition-all shadow-sm">
                 <Facebook size={16} />
               </a>
-              <a href={branding.socials.twitter} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-lg bg-white hover:bg-blue-50 text-slate-500 hover:text-blue-400 border border-slate-200 flex items-center justify-center transition-colors shadow-sm">
+              <a href={branding.socials.twitter} target="_blank" rel="noreferrer" className="w-9 h-9 rounded-xl bg-white/5 hover:bg-amber-400 text-slate-300 hover:text-slate-950 border border-white/10 flex items-center justify-center transition-all shadow-sm">
                 <Twitter size={16} />
               </a>
-              <a href={branding.socials.linkedin} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-lg bg-white hover:bg-blue-50 text-slate-500 hover:text-blue-700 border border-slate-200 flex items-center justify-center transition-colors shadow-sm">
+              <a href={branding.socials.linkedin} target="_blank" rel="noreferrer" className="w-9 h-9 rounded-xl bg-white/5 hover:bg-amber-400 text-slate-300 hover:text-slate-950 border border-white/10 flex items-center justify-center transition-all shadow-sm">
                 <Linkedin size={16} />
               </a>
-              <a href={branding.socials.instagram} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-lg bg-white hover:bg-pink-50 text-slate-500 hover:text-pink-600 border border-slate-200 flex items-center justify-center transition-colors shadow-sm">
+              <a href={branding.socials.instagram} target="_blank" rel="noreferrer" className="w-9 h-9 rounded-xl bg-white/5 hover:bg-amber-400 text-slate-300 hover:text-slate-950 border border-white/10 flex items-center justify-center transition-all shadow-sm">
                 <Instagram size={16} />
               </a>
             </div>
           </div>
 
-          {/* Column 2 (2/12): Quick Links */}
-          <div className="sm:col-span-2 lg:col-span-2 space-y-4">
-            <h5 className="text-slate-800 text-[10px] font-bold uppercase tracking-[0.15em]">Quick Links</h5>
-            <ul className="space-y-2.5 text-xs">
+          {/* Column 2 (2/12): Quick Navigation */}
+          <div className="lg:col-span-2 space-y-4">
+            <h5 className="text-amber-400 text-xs font-extrabold uppercase tracking-[0.2em] font-display">Quick Links</h5>
+            <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
               <li>
-                <Link to="/" className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">Home Portal</Link>
+                <Link to="/about" className="hover:text-amber-300 transition-colors">About Us</Link>
               </li>
               <li>
-                <Link to="/about" className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">About Legacy</Link>
+                <Link to="/courses" className="hover:text-amber-300 transition-colors">Degree Courses</Link>
               </li>
               <li>
-                <Link to="/why-us" className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">The SVC Edge</Link>
+                <Link to="/competitive-exams" className="hover:text-amber-300 transition-colors">Competitive Exams</Link>
               </li>
               <li>
-                <Link to="/gallery" className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">Campus Gallery</Link>
+                <Link to="/admissions" className="hover:text-amber-300 transition-colors">Admissions 2026-27</Link>
               </li>
               <li>
-                <Link to="/admissions" className="text-slate-500 hover:text-blue-600 cursor-pointer transition-colors">Enrollments</Link>
+                <Link to="/recent-news" className="hover:text-amber-300 transition-colors">Recent News</Link>
+              </li>
+              <li>
+                <Link to="/job-updates" className="hover:text-amber-300 transition-colors">Job Recruitment Alerts</Link>
+              </li>
+              <li>
+                <Link to="/downloads" className="hover:text-amber-300 transition-colors">Downloads</Link>
+              </li>
+              <li>
+                <Link to="/gallery" className="hover:text-amber-300 transition-colors">Campus Gallery</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-amber-300 transition-colors">Contact Us</Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3 (3/12): Top Programs */}
-          <div className="sm:col-span-2 lg:col-span-3 space-y-4">
-            <h5 className="text-slate-800 text-[10px] font-bold uppercase tracking-[0.15em]">Top Programs</h5>
-            <ul className="space-y-2.5 text-xs">
-              {courses.slice(0, 4).map((c) => (
+          {/* Column 3 (3/12): Academic Programs */}
+          <div className="lg:col-span-3 space-y-4">
+            <h5 className="text-amber-400 text-xs font-extrabold uppercase tracking-[0.2em] font-display">Academic Offerings</h5>
+            <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
+              {courses.slice(0, 5).map((c) => (
                 <li key={c.id}>
-                  <Link to="/courses" className="text-slate-500 hover:text-blue-600 cursor-pointer text-left transition-colors truncate max-w-[240px] block">
+                  <Link to={`/courses/${c.slug || c.id}`} className="hover:text-amber-300 transition-colors truncate max-w-[240px] block">
                     {c.name}
                   </Link>
                 </li>
@@ -82,34 +108,43 @@ export default function Footer({ branding, courses, departments }) {
             </ul>
           </div>
 
-          {/* Column 4 (3/12): Our Contact Details */}
-          <div className="sm:col-span-2 lg:col-span-3 space-y-4">
-            <h5 className="text-slate-800 text-[10px] font-bold uppercase tracking-[0.15em]">Our Contact Details</h5>
-            <ul className="space-y-3.5 text-xs text-slate-500">
+          {/* Column 4 (3/12): Contact Details */}
+          <div className="lg:col-span-3 space-y-4">
+            <h5 className="text-amber-400 text-xs font-extrabold uppercase tracking-[0.2em] font-display">Contact Us</h5>
+            <ul className="space-y-3 text-xs text-slate-300 font-medium">
               <li className="flex items-start gap-2.5">
-                <MapPin size={14} className="text-blue-600 mt-0.5 shrink-0" />
-                <span>{branding.address}</span>
+                <MapPin size={15} className="text-amber-400 mt-0.5 shrink-0" />
+                <span className="leading-relaxed">{branding.address}</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone size={14} className="text-blue-600 shrink-0" />
-                <span>{branding.phone}</span>
+                <Phone size={15} className="text-amber-400 shrink-0" />
+                <a href={`tel:${branding.phone}`} className="hover:text-amber-300 transition-colors">{branding.phone}</a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail size={14} className="text-blue-600 shrink-0" />
-                <a href={`mailto:${branding.email}`} className="hover:text-blue-600 transition-colors">{branding.email}</a>
+                <Mail size={15} className="text-amber-400 shrink-0" />
+                <a href={`mailto:${branding.email}`} className="hover:text-amber-300 transition-colors truncate">{branding.email}</a>
               </li>
             </ul>
           </div>
 
         </div>
 
-        {/* Footer Base Info (Copyright) */}
-        <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-medium tracking-wide">
+        {/* Footer Bottom Copyright & Links */}
+        <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-400 text-[11px] font-medium">
           <p>© {new Date().getFullYear()} {branding.collegeName}. All Rights Reserved.</p>
-          <div className="flex gap-4">
-            <Link to="/about" className="hover:underline">Affiliation & Rules</Link>
-            <Link to="/about" className="hover:underline">Privacy Policy</Link>
-            <Link to="/contact" className="hover:underline">Academic Help desk</Link>
+          
+          <div className="flex items-center gap-6">
+            <Link to="/about" className="hover:text-amber-300 transition-colors">Rules & Regulations</Link>
+            <Link to="/contact" className="hover:text-amber-300 transition-colors">Academic Help Desk</Link>
+            
+            <button
+              onClick={scrollToTop}
+              className="p-2 rounded-xl bg-white/5 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-white/10 transition-all cursor-pointer flex items-center gap-1 text-[10px] font-extrabold uppercase tracking-wider"
+              title="Back to Top"
+            >
+              <span>Top</span>
+              <ArrowUp size={12} />
+            </button>
           </div>
         </div>
 
@@ -117,4 +152,3 @@ export default function Footer({ branding, courses, departments }) {
     </footer>
   );
 }
-

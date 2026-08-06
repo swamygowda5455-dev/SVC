@@ -587,16 +587,16 @@ export const INITIAL_CMS_DATA = {
   ],
 
   // 6. Why Choose Our College
-  whyChoose: [
-    { icon: "Users", title: "Veteran Administrators & CAs", desc: "Our coaching features professional mentorship by active and former civil servants, practicing CAs, and banking subject-matter experts." },
-    { icon: "BookOpen", title: "Dedicated Competitive Library", desc: "A special quiet reading wing stocked with over 5,000 reference resources for UPSC, KPSC, banking, SSC, and CA." },
-    { icon: "Cpu", title: "CBT Mock Exam Lab", desc: "Equipped with dedicated test terminals simulating the real online examination patterns of Banking, SSC, and Railway boards." },
-    { icon: "TrendingUp", title: "Unrivaled Competitive Results", desc: "Leading selection rates in central banking cadres, Karnataka state administrative officers, and corporate placements." },
-    { icon: "Award", title: "Daily Aptitude & Current Affairs", desc: "Every academic morning kicks off with mandatory current affairs updates, quantitative shortcut drills, and daily reading reviews." },
-    { icon: "DollarSign", title: "Integrated Merit Scholarships", desc: "Up to 100% concession on standard integrated competitive coaching tuition for high-scoring and deserving applicants." },
-    { icon: "Briefcase", title: "Strong Corporate Connect", desc: "Regular campus recruitment drives and structured articleship assistance for CA scholars in top-tier accounting firms." },
-    { icon: "Tv", title: "Interactive Smart Classrooms", desc: "Equipped with live video feed capability, guest speaker screens, and digital boards for deep concept visualization." }
-  ],
+  // whyChoose: [
+  //   { icon: "Users", title: "Veteran Administrators & CAs", desc: "Our coaching features professional mentorship by active and former civil servants, practicing CAs, and banking subject-matter experts." },
+  //   { icon: "BookOpen", title: "Dedicated Competitive Library", desc: "A special quiet reading wing stocked with over 5,000 reference resources for UPSC, KPSC, banking, SSC, and CA." },
+  //   { icon: "Cpu", title: "CBT Mock Exam Lab", desc: "Equipped with dedicated test terminals simulating the real online examination patterns of Banking, SSC, and Railway boards." },
+  //   { icon: "TrendingUp", title: "Unrivaled Competitive Results", desc: "Leading selection rates in central banking cadres, Karnataka state administrative officers, and corporate placements." },
+  //   { icon: "Award", title: "Daily Aptitude & Current Affairs", desc: "Every academic morning kicks off with mandatory current affairs updates, quantitative shortcut drills, and daily reading reviews." },
+  //   { icon: "DollarSign", title: "Integrated Merit Scholarships", desc: "Up to 100% concession on standard integrated competitive coaching tuition for high-scoring and deserving applicants." },
+  //   { icon: "Briefcase", title: "Strong Corporate Connect", desc: "Regular campus recruitment drives and structured articleship assistance for CA scholars in top-tier accounting firms." },
+  //   { icon: "Tv", title: "Interactive Smart Classrooms", desc: "Equipped with live video feed capability, guest speaker screens, and digital boards for deep concept visualization." }
+  // ],
 
   // 7. Latest News & Announcements (Divided into Job Updates and College Announcements)
   newsAndAnnouncements: {

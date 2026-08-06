@@ -1,191 +1,281 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft, ChevronRight, GraduationCap, ArrowRight, Award, Users, MapPin, ShieldCheck } from "lucide-react";
+import { ArrowRight, Sparkles, GraduationCap, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-export default function Hero({ hero, branding }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
+export default function Hero({ branding }) {
   const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const collegeImages = [
+    {
+      id: "bg-1",
+      url: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1600&q=80",
+      title: "Sri Vidya Chetana Degree College Campus"
+    },
+    {
+      id: "bg-2",
+      url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80",
+      title: "Academic Excellence & Library Wing"
+    },
+    {
+      id: "bg-3",
+      url: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80",
+      title: "Modern University Architecture & Infrastructure"
+    }
+  ];
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % hero.banners.length);
-    }, 6000);
+      setCurrentSlide((prev) => (prev + 1) % collegeImages.length);
+    }, 5000);
     return () => clearInterval(timer);
-  }, [hero.banners.length]);
+  }, [collegeImages.length]);
 
   const handlePrev = () => {
-    setCurrentSlide((prev) => (prev - 1 + hero.banners.length) % hero.banners.length);
+    setCurrentSlide((prev) => (prev - 1 + collegeImages.length) % collegeImages.length);
   };
 
   const handleNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % hero.banners.length);
+    setCurrentSlide((prev) => (prev + 1) % collegeImages.length);
   };
 
   return (
-    <section id="home" className="relative w-full overflow-hidden bg-[#0a0f1d]">
-      {/* Auto-sliding Image Container */}
-      <div className="relative h-[550px] sm:h-[650px] lg:h-[700px] w-full flex items-center">
+    <div id="home" className="w-full bg-slate-50">
+      
+      {/* 1. HERO BANNER SECTION WITH BACKGROUND IMAGE SLIDER */}
+      <section className="relative overflow-hidden bg-[#1E3A8A] text-white py-16 sm:py-24 lg:py-28 min-h-[550px] flex items-center">
+        
+        {/* Background Image Carousel */}
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1 }}
             className="absolute inset-0 w-full h-full"
           >
-            {/* Background Image */}
             <img
-              src={hero.banners[currentSlide].image}
-              alt={hero.banners[currentSlide].title}
+              src={collegeImages[currentSlide].url}
+              alt={collegeImages[currentSlide].title}
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover object-center"
             />
-            {/* Academic Dark Overlay with Blue gradient Tint */}
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/80 to-blue-950/40" />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+            {/* Subtle Dark Overlay for Image Visibility & Text Contrast */}
+            <div className="absolute inset-0 bg-slate-950/45" />
           </motion.div>
         </AnimatePresence>
-
-        {/* Content Container (Constrained & Centered) */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 text-white select-none">
-          <div className="max-w-3xl">
-            {/* Dynamic Badge */}
+        
+        {/* Content Container */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center w-full">
+          <div className="max-w-4xl mx-auto space-y-6">
+            
+            {/* Top Tagline */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-amber-400/20 border border-amber-400/40 backdrop-blur-md px-4 py-1.5 rounded-full text-amber-300 text-xs font-extrabold w-fit mb-6 shadow-sm"
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 bg-amber-400/20 border border-amber-400/40 backdrop-blur-md px-4 py-1.5 rounded-full text-amber-300 text-xs sm:text-sm font-extrabold shadow-sm"
             >
-              <GraduationCap size={16} className="text-amber-400" />
-              <span className="tracking-widest uppercase text-[10px] sm:text-xs">{branding.tagline}</span>
+              <Sparkles size={16} className="text-amber-400 shrink-0" />
+              <span>Shape Your Future with Purpose. Lead with Excellence.</span>
             </motion.div>
 
-            {/* Slider Title (Dynamic) */}
-            <motion.h2
-              key={`title-${currentSlide}`}
+            {/* Main Title */}
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-2xl min-[380px]:text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight font-display"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl min-[380px]:text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white font-display leading-tight"
             >
-              <span className="block">{hero.banners[currentSlide].title}</span>
-            </motion.h2>
+              Welcome to Sri Vidya Chetana Degree College
+            </motion.h1>
 
-            {/* Slider Subtitle (Dynamic) */}
-            <motion.p
-              key={`subtitle-${currentSlide}`}
+            {/* Affiliation Subtitle */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-              className="text-base sm:text-lg text-slate-200 font-medium leading-relaxed mb-8 max-w-2xl"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex items-center justify-center gap-2 text-amber-300 font-extrabold text-sm sm:text-base tracking-wide uppercase"
             >
-              {hero.banners[currentSlide].subtitle}
+              <GraduationCap size={20} className="text-amber-400 shrink-0" />
+              <span>Affiliated to Bengaluru North University</span>
+            </motion.div>
+
+            {/* Body Text */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-slate-200 text-sm sm:text-base md:text-lg leading-relaxed font-normal max-w-3xl mx-auto pt-2"
+            >
+              At Sri Vidya Chetana Degree College, education goes beyond earning a degree. We empower students with academic excellence, competitive examination preparation, and career-oriented skill development through our unique Trishul Model, helping them excel in higher education, government services, and the corporate world.
             </motion.p>
 
-            {/* Action CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
+            {/* Admissions Open Announcement Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="pt-2"
+            >
+              <span className="inline-block bg-amber-400 text-slate-950 px-5 py-2 rounded-full font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-amber-400/20 border border-amber-300">
+                Admissions Open for Academic Year 2026–27
+              </span>
+            </motion.div>
+
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
+            >
               <button
-                id="hero-apply-btn"
-                onClick={() => navigate("/admissions")}
-                className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold text-sm px-7 py-3.5 min-h-[44px] rounded-xl shadow-xl shadow-amber-500/20 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer w-full sm:w-auto"
-              >
-                <span>Apply for Admissions</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform text-slate-950" />
-              </button>
-              
-              <button
-                id="hero-courses-btn"
+                id="hero-explore-courses-btn"
                 onClick={() => navigate("/courses")}
-                className="border border-white/30 hover:border-amber-400/60 backdrop-blur-sm text-white hover:text-amber-300 px-6 py-3.5 min-h-[44px] rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto"
+                className="bg-white hover:bg-slate-100 text-[#1E3A8A] font-extrabold text-sm px-8 py-3.5 min-h-[44px] rounded-full shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer w-full sm:w-auto flex items-center justify-center gap-2"
               >
-                Explore Programs
+                <span>Explore Courses</span>
+                <ArrowRight size={16} />
               </button>
-            </div>
+
+              <button
+                id="hero-apply-now-btn"
+                onClick={() => navigate("/admissions")}
+                className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold text-sm px-8 py-3.5 min-h-[44px] rounded-full shadow-xl shadow-amber-500/20 transition-all duration-300 hover:scale-105 cursor-pointer w-full sm:w-auto flex items-center justify-center gap-2 border border-amber-300"
+              >
+                <span>Apply Now</span>
+                <ArrowRight size={16} />
+              </button>
+            </motion.div>
+
           </div>
         </div>
 
-        {/* Carousel Arrow Navigation */}
+        {/* Carousel Arrow Controls */}
         <button
-          id="hero-prev-btn"
           onClick={handlePrev}
-          className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 p-3 min-w-[44px] min-h-[44px] rounded-full bg-slate-900/60 border border-amber-400/30 hover:bg-slate-950 text-amber-400 hover:border-amber-400 transition-all z-20 cursor-pointer hidden sm:flex items-center justify-center"
-          aria-label="Previous Slide"
+          className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-950/50 hover:bg-slate-950 text-amber-400 border border-amber-400/30 transition-all z-20 cursor-pointer hidden sm:flex items-center justify-center"
+          aria-label="Previous Background Image"
         >
           <ChevronLeft size={22} />
         </button>
         <button
-          id="hero-next-btn"
           onClick={handleNext}
-          className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 p-3 min-w-[44px] min-h-[44px] rounded-full bg-slate-900/60 border border-amber-400/30 hover:bg-slate-950 text-amber-400 hover:border-amber-400 transition-all z-20 cursor-pointer hidden sm:flex items-center justify-center"
-          aria-label="Next Slide"
+          className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-950/50 hover:bg-slate-950 text-amber-400 border border-amber-400/30 transition-all z-20 cursor-pointer hidden sm:flex items-center justify-center"
+          aria-label="Next Background Image"
         >
           <ChevronRight size={22} />
         </button>
 
-        {/* Dot Indicators */}
-        <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
-          {hero.banners.map((_, index) => (
+        {/* Carousel Dot Indicators */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
+          {collegeImages.map((_, index) => (
             <button
-              id={`hero-dot-${index}`}
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`min-w-[32px] min-h-[32px] p-2 flex items-center justify-center transition-all duration-300 cursor-pointer`}
-              aria-label={`Go to slide ${index + 1}`}
+              className="p-1 cursor-pointer"
+              aria-label={`Switch to slide ${index + 1}`}
             >
-              <span className={`h-3 rounded-full transition-all duration-300 ${
-                currentSlide === index ? "bg-amber-400 scale-110 w-7" : "bg-white/40 hover:bg-white/60 w-3"
+              <span className={`block h-2 rounded-full transition-all duration-300 ${
+                currentSlide === index ? "bg-amber-400 w-6" : "bg-white/40 hover:bg-white/70 w-2"
               }`} />
             </button>
           ))}
         </div>
-      </div>
 
-      {/* Trust & Accreditations Highlights Bar */}
-      <div className="bg-white border-y border-slate-200 py-6 px-4 sm:px-8 relative z-20 shadow-sm">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          <div className="flex items-center gap-3 sm:gap-4 border-b border-slate-100 pb-4 last:border-0 sm:border-b-0 sm:pb-0 sm:pr-4 lg:border-r lg:last:border-0 lg:pr-4">
-            <div className="p-3 bg-amber-50 rounded-xl text-amber-600 border border-amber-200/60 shrink-0">
-              <Award size={24} />
-            </div>
-            <div>
-              <h4 className="text-lg sm:text-xl font-bold tracking-tight text-[#1E3A8A]">NAAC A++</h4>
-              <p className="text-[11px] text-slate-500 font-medium">Highest Accredited Rank</p>
-            </div>
+      </section>
+
+      {/* 2. WELCOME & OVERVIEW SECTION */}
+      <section className="py-16 sm:py-24 bg-white relative">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-center">
+          
+          <div className="space-y-3">
+            <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
+              ABOUT OUR INSTITUTION
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] tracking-tight font-display">
+              Welcome to Sri Vidya Chetana Degree College
+            </h2>
+            <p className="text-amber-600 text-sm sm:text-base font-extrabold tracking-wide">
+              Empowering Students. Inspiring Excellence. Building Futures.
+            </p>
+            <div className="w-16 h-1 bg-gradient-to-r from-[#1E3A8A] via-amber-400 to-amber-500 mx-auto rounded-full mt-3" />
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-4 border-b border-slate-100 pb-4 last:border-0 sm:border-b-0 sm:pb-0 sm:pr-4 lg:border-r lg:last:border-0 lg:pr-4">
-            <div className="p-3 bg-blue-50 rounded-xl text-[#1E3A8A] border border-blue-100 shrink-0">
-              <Users size={24} />
-            </div>
-            <div>
-              <h4 className="text-lg sm:text-xl font-bold tracking-tight text-[#1E3A8A]">15,000+</h4>
-              <p className="text-[11px] text-slate-500 font-medium">Active Campus Scholars</p>
-            </div>
+          <div className="bg-slate-50 p-6 sm:p-10 rounded-3xl border border-slate-200/90 shadow-sm text-left space-y-6 text-slate-700 text-sm sm:text-base leading-relaxed">
+            <p>
+              Established in 2026, Sri Vidya Chetana Degree College is a premier institution committed to delivering quality higher education with a strong focus on academic excellence, career readiness, and holistic student development. Managed by the Sri Vidya Chetana Educational &amp; Charitable Trust (R.) and affiliated with Bengaluru North University, the college offers undergraduate programmes in B.A., B.Com., B.Sc., BBA, and BCA.
+            </p>
+            
+            <p>
+              At Sri Vidya Chetana Degree College, education goes beyond the classroom. Through our unique Trishul Model, we integrate Academic Excellence, Competitive Examination Preparation, and Industry Skill Development, enabling students to pursue their university degree while preparing for careers in government services, higher education, entrepreneurship, and the corporate sector.
+            </p>
+
+            <p>
+              With experienced faculty, personalized mentoring, modern teaching methodologies, and a student-centric learning environment, we nurture confident, competent, and socially responsible graduates who are prepared to lead and contribute meaningfully to society.
+            </p>
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-4 border-b border-slate-100 pb-4 last:border-0 sm:border-b-0 sm:pb-0 sm:pr-4 lg:border-r lg:last:border-0 lg:pr-4">
-            <div className="p-3 bg-amber-50 rounded-xl text-amber-600 border border-amber-200/60 shrink-0">
-              <MapPin size={24} />
-            </div>
-            <div>
-              <h4 className="text-lg sm:text-xl font-bold tracking-tight text-[#1E3A8A]">120 Acres</h4>
-              <p className="text-[11px] text-slate-500 font-medium">Eco-Friendly Mega Campus</p>
-            </div>
+          {/* Slogan Banner */}
+          <div className="bg-gradient-to-r from-[#1E3A8A] to-blue-900 text-amber-300 p-6 sm:p-8 rounded-2xl shadow-xl border border-amber-400/30">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight">
+              One Degree. Three Advantages. Unlimited Opportunities.
+            </h3>
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-4 last:border-0">
-            <div className="p-3 bg-blue-50 rounded-xl text-[#1E3A8A] border border-blue-100 shrink-0">
-              <ShieldCheck size={24} />
-            </div>
-            <div>
-              <h4 className="text-lg sm:text-xl font-bold tracking-tight text-[#1E3A8A]">96%</h4>
-              <p className="text-[11px] text-slate-500 font-medium">In-Campus Placements</p>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* 3. PRINCIPAL'S MESSAGE SECTION */}
+      <section className="py-16 sm:py-24 bg-slate-50 relative border-t border-slate-200">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          
+          <div className="text-center space-y-3">
+            <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
+              LEADERSHIP DESK
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] tracking-tight font-display flex items-center justify-center gap-2">
+              <Quote className="text-amber-500 hidden sm:inline-block" size={32} />
+              <span>Principal's Message</span>
+            </h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-[#1E3A8A] via-amber-400 to-amber-500 mx-auto rounded-full mt-3" />
+          </div>
+
+          <div className="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200/90 shadow-sm space-y-5 text-slate-700 text-sm sm:text-base leading-relaxed">
+            <p className="font-extrabold text-[#1E3A8A] text-base sm:text-lg">
+              Dear Students, Parents, and Well-Wishers,
+            </p>
+            <p className="font-bold text-slate-800">
+              Welcome to Sri Vidya Chetana Degree College.
+            </p>
+            <p>
+              Education is not merely about earning a degree; it is about developing knowledge, character, skills, and the confidence to face future challenges. At Sri Vidya Chetana Degree College, we are committed to providing a student-centric learning environment that promotes academic excellence, critical thinking, ethical values, and holistic development.
+            </p>
+            <p>
+              Our unique Integrated Degree Programme combines university education with structured coaching for UPSC Civil Services (IAS/IPS/IFS), KPSC (KAS), Banking, SSC, Railways, and Chartered Accountancy (CA). This approach enables students to build a strong academic foundation while preparing for competitive examinations and diverse career opportunities.
+            </p>
+            <p>
+              With the guidance of our dedicated faculty and mentors, students are encouraged to develop leadership, communication, digital, and employability skills that will help them succeed in higher education, professional careers, entrepreneurship, and public service.
+            </p>
+            <p>
+              I encourage every student to make the most of the opportunities available, pursue excellence with determination, uphold integrity in all actions, and strive to become responsible citizens who contribute positively to society and the nation.
+            </p>
+            <p>
+              I wish you a rewarding, successful, and inspiring academic journey at Sri Vidya Chetana Degree College.
+            </p>
+
+            <div className="pt-6 border-t border-slate-100 flex flex-col items-start gap-0.5 font-display">
+              <p className="font-extrabold text-base text-[#1E3A8A]">Principal</p>
+              <p className="text-amber-600 font-extrabold text-xs tracking-wider uppercase">Sri Vidya Chetana Degree College</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
   );
 }

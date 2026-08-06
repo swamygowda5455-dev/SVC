@@ -1,326 +1,168 @@
-import React, { useState } from "react";
-import { 
-  Eye, 
-  Target, 
-  Award, 
-  BookOpen, 
-  GraduationCap, 
-  ChevronDown, 
-  ChevronUp, 
-  Shield, 
-  Users, 
-  Lightbulb, 
-  Compass, 
-  Sparkles, 
-  Heart, 
-  Globe, 
-  Flag, 
-  CheckCircle2 
-} from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import React from "react";
+import { Eye, Target, CheckCircle2, Award, Shield, Users, Compass, Lightbulb, Sparkles, Globe, Heart, Flag } from "lucide-react";
+import { motion } from "motion/react";
 
-export default function About({ about, branding }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+export default function About() {
+  const introParagraphs = [
+    "Sri Vidya Chetana Degree College, established in 2026, is a career-oriented institution committed to providing quality higher education that empowers students with knowledge, skills, values, and confidence. Managed by the Sri Vidya Chetana Educational & Charitable Trust (R.) and affiliated with Bengaluru North University, the college offers undergraduate programmes in B.A., B.Com., B.Sc., BBA, and BCA.",
+    "The college's unique Integrated Degree Programme combines university education with structured coaching for UPSC Civil Services (IAS/IPS/IFS), KPSC (KAS), Banking, SSC, Railways, and Chartered Accountancy (CA). This enables students to earn a university degree while preparing for competitive examinations and rewarding careers.",
+    "At Sri Vidya Chetana Degree College, we believe education goes beyond academics. We focus on developing leadership, communication, critical thinking, digital literacy, personality, and employability skills, while nurturing ethical values and social responsibility.",
+    "Our mission is to empower students from both rural and urban communities through accessible, affordable, and career-focused education. With experienced faculty, continuous mentoring, and a student-centric learning environment, we prepare graduates to excel in higher education, public service, industry, entrepreneurship, and lifelong learning.",
+    "At Sri Vidya Chetana Degree College, we don't just educate students—we prepare future leaders to serve society and contribute to the nation's progress."
+  ];
 
-  // Helper function to map core values to icons
-  const getValueIcon = (title) => {
-    switch (title) {
-      case "Academic Excellence":
-        return <GraduationCap className="text-blue-600 w-6 h-6" />;
-      case "Integrity & Ethics":
-        return <Shield className="text-emerald-600 w-6 h-6" />;
-      case "Student-Centric Learning":
-        return <Users className="text-indigo-600 w-6 h-6" />;
-      case "Leadership":
-        return <Compass className="text-amber-600 w-6 h-6" />;
-      case "Innovation":
-        return <Lightbulb className="text-purple-600 w-6 h-6" />;
-      case "Skill Development":
-        return <Sparkles className="text-pink-600 w-6 h-6" />;
-      case "Inclusivity & Equal Opportunity":
-        return <Globe className="text-teal-600 w-6 h-6" />;
-      case "Women's Empowerment":
-        return <Heart className="text-rose-600 w-6 h-6" />;
-      case "Respect & Discipline":
-        return <CheckCircle2 className="text-violet-600 w-6 h-6" />;
-      case "Social Responsibility":
-        return <Users className="text-sky-600 w-6 h-6" />;
-      case "Nation Building":
-        return <Flag className="text-red-600 w-6 h-6" />;
-      default:
-        return <Award className="text-blue-600 w-6 h-6" />;
-    }
-  };
+  const missionList = [
+    "To provide quality, affordable, and student-centric higher education that fosters academic excellence and holistic development.",
+    "To integrate university education with structured coaching for UPSC Civil Services, KPSC (KAS), Banking, SSC, Railways, and Chartered Accountancy (CA).",
+    "To develop leadership, communication, analytical, digital, and employability skills that prepare students for higher education, careers, and entrepreneurship.",
+    "To empower students from rural and urban communities through inclusive, accessible, and career-oriented education.",
+    "To promote women's education, leadership, and equal opportunities for personal and professional growth.",
+    "To nurture ethical values, discipline, innovation, lifelong learning, and social responsibility.",
+    "To prepare competent graduates who contribute meaningfully to society, the nation, and the global community."
+  ];
 
-  // Helper to color borders or backgrounds of value cards based on their icon theme
-  const getValueColorClass = (title) => {
-    switch (title) {
-      case "Academic Excellence": return "hover:border-blue-300 hover:bg-blue-50/30";
-      case "Integrity & Ethics": return "hover:border-emerald-300 hover:bg-emerald-50/30";
-      case "Student-Centric Learning": return "hover:border-indigo-300 hover:bg-indigo-50/30";
-      case "Leadership": return "hover:border-amber-300 hover:bg-amber-50/30";
-      case "Innovation": return "hover:border-purple-300 hover:bg-purple-50/30";
-      case "Skill Development": return "hover:border-pink-300 hover:bg-pink-50/30";
-      case "Inclusivity & Equal Opportunity": return "hover:border-teal-300 hover:bg-teal-50/30";
-      case "Women's Empowerment": return "hover:border-rose-300 hover:bg-rose-50/30";
-      case "Respect & Discipline": return "hover:border-violet-300 hover:bg-violet-50/30";
-      case "Social Responsibility": return "hover:border-sky-300 hover:bg-sky-50/30";
-      case "Nation Building": return "hover:border-red-300 hover:bg-red-50/30";
-      default: return "hover:border-blue-300 hover:bg-blue-50/30";
-    }
-  };
-
-  // Safe splits for formatted paragraphs
-  const historyParagraphs = about.history ? about.history.split("\n\n") : [];
-  const principalParagraphs = about.principal?.message ? about.principal.message.split("\n\n") : [];
+  const coreValues = [
+    { title: "Academic Excellence", desc: "Striving for the highest standards in teaching, learning, and student achievement.", icon: Award },
+    { title: "Integrity & Ethics", desc: "Upholding honesty, transparency, accountability, and ethical conduct in all our actions.", icon: Shield },
+    { title: "Student-Centric Learning", desc: "Creating an inclusive learning environment that supports the growth and success of every student.", icon: Users },
+    { title: "Leadership", desc: "Inspiring students to lead with vision, confidence, responsibility, and service.", icon: Compass },
+    { title: "Innovation", desc: "Encouraging creativity, critical thinking, and continuous improvement in learning and problem-solving.", icon: Lightbulb },
+    { title: "Skill Development", desc: "Equipping students with communication, digital, analytical, and employability skills for future success.", icon: Sparkles },
+    { title: "Inclusivity & Equal Opportunity", desc: "Respecting diversity and ensuring equal opportunities for students from all backgrounds.", icon: Globe },
+    { title: "Women's Empowerment", desc: "Promoting education, leadership, confidence, and equal participation for women.", icon: Heart },
+    { title: "Respect & Discipline", desc: "Fostering mutual respect, self-discipline, and professionalism within the campus community.", icon: CheckCircle2 },
+    { title: "Social Responsibility", desc: "Encouraging compassion, environmental awareness, community engagement, and responsible citizenship.", icon: Users },
+    { title: "Nation Building", desc: "Preparing responsible graduates who contribute to the progress and development of India.", icon: Flag }
+  ];
 
   return (
-    <section id="about" className="py-16 sm:py-24 bg-slate-50 relative scroll-mt-10 overflow-hidden">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-100/40 rounded-full blur-3xl -z-10" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div id="about" className="py-16 sm:py-24 bg-slate-50 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
-        {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
-            Discover Our Legacy
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4.5 py-1.5 rounded-full shadow-xs">
+            ABOUT US
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E3A8A] mt-5 tracking-tight font-display">
-            About Sri Vidya Chetana
-          </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-[#1E3A8A] via-amber-400 to-amber-500 mx-auto mt-5 rounded-full" />
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E3A8A] tracking-tight font-display">
+            About Sri Vidya Chetana Degree College
+          </h1>
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Empowering students with academic excellence, competitive coaching, and values for lifelong success.
+          </p>
+          <div className="w-16 h-1 bg-gradient-to-r from-[#1E3A8A] via-amber-400 to-amber-500 mx-auto rounded-full mt-3" />
         </div>
 
-        {/* 1. Profile & Principal's Message */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-20 sm:mb-28">
-          
-          {/* Left Column: History / About details */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-100/80 relative">
-              <div className="absolute top-0 left-0 w-2 h-full bg-[#1E3A8A] rounded-l-3xl" />
-              <h3 className="text-xl sm:text-2xl font-bold text-[#1E3A8A] mb-6 flex items-center gap-3">
-                <GraduationCap className="text-amber-500 w-7 h-7" />
-                <span>Nurturing Leaders of Tomorrow</span>
-              </h3>
-              
-              <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
-                {/* Always render first paragraph */}
-                {historyParagraphs.slice(0, 1).map((p, idx) => (
-                  <p key={idx} className="font-medium text-slate-700">{p}</p>
-                ))}
+        {/* 1. Main Institution Profile Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="academic-card p-8 sm:p-12 space-y-5 text-slate-700 text-sm sm:text-base leading-relaxed"
+        >
+          {introParagraphs.map((para, idx) => (
+            <p key={idx} className={idx === introParagraphs.length - 1 ? "font-bold text-[#1E3A8A] text-base sm:text-lg pt-2 border-t border-slate-100" : ""}>
+              {para}
+            </p>
+          ))}
+        </motion.div>
 
-                {/* Show second paragraph */}
-                {historyParagraphs.slice(1, 2).map((p, idx) => (
-                  <p key={idx}>{p}</p>
-                ))}
-
-                {/* Expandable paragraphs */}
-                <AnimatePresence>
-                  {isExpanded && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden space-y-4 pt-4 border-t border-slate-100"
-                    >
-                      {historyParagraphs.slice(2).map((p, idx) => (
-                        <p key={idx} className="text-slate-600 text-sm sm:text-base leading-relaxed">{p}</p>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <button
-                id="about-read-more-btn"
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="mt-8 flex items-center gap-2 text-sm font-extrabold text-[#1E3A8A] hover:text-amber-600 transition-colors duration-200 cursor-pointer focus:outline-none uppercase tracking-wider"
-              >
-                <span>{isExpanded ? "Show Less" : "Read Full Profile"}</span>
-                {isExpanded ? <ChevronUp size={16} className="text-amber-500" /> : <ChevronDown size={16} className="text-amber-500" />}
-              </button>
-            </div>
-            
-            {/* Integrated Coaching Quick Fact Banner */}
-            <div className="bg-gradient-to-r from-[#1E3A8A] to-slate-900 text-white p-6 sm:p-8 rounded-3xl shadow-md border border-amber-400/30 relative overflow-hidden">
-              <div className="absolute right-0 bottom-0 opacity-10 transform translate-x-8 translate-y-8">
-                <BookOpen size={200} />
-              </div>
-              <h4 className="text-lg font-bold mb-2 flex items-center gap-2 text-amber-300">
-                <Sparkles size={18} className="text-amber-400" />
-                <span>Integrated Coaching Advantage</span>
-              </h4>
-              <p className="text-slate-200 text-xs sm:text-sm leading-relaxed max-w-xl">
-                Our curriculum aligns regular university degree programs (B.A., B.Com., B.Sc., BBA, BCA) with professional training for UPSC, KPSC, Banking, SSC, Railways, and CA. Earn your degree while securing your future.
-              </p>
-            </div>
-          </div>
-
-          {/* Right Column: Principal's Message */}
-          <div className="lg:col-span-5">
-            <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-100/80 relative">
-              <div className="absolute top-0 right-10 w-16 h-1 bg-gradient-to-r from-amber-400 to-[#1E3A8A] rounded-b-full" />
-              
-              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-8">
-                {/* Principal Photo */}
-                <div className="relative shrink-0">
-                  <img
-                    src={about.principal.photo}
-                    alt={about.principal.name}
-                    referrerPolicy="no-referrer"
-                    className="relative w-24 h-24 sm:w-28 sm:h-28 object-cover rounded-2xl border-2 border-amber-400/40 shadow-sm"
-                  />
-                  <span className="absolute -bottom-2 -right-2 bg-[#1E3A8A] text-amber-400 p-2 rounded-xl shadow-md border border-amber-400/30">
-                    <Award size={16} />
-                  </span>
-                </div>
-
-                {/* Name & Title */}
-                <div className="text-center sm:text-left">
-                  <h4 className="text-lg sm:text-xl font-bold text-slate-800 font-display">
-                    {about.principal.name}
-                  </h4>
-                  <p className="text-xs font-extrabold text-[#1E3A8A] uppercase tracking-widest mt-1">
-                    {about.principal.designation}
-                  </p>
-                  <p className="text-xs text-slate-400 mt-1 font-medium">
-                    Sri Vidya Chetana Degree College
-                  </p>
-                </div>
-              </div>
-
-              {/* Message Quote */}
-              <div className="relative">
-                <span className="absolute -top-8 -left-2 text-7xl text-amber-100 font-serif select-none pointer-events-none">
-                  “
-                </span>
-                <div className="relative space-y-3 z-10">
-                  {principalParagraphs.map((paragraph, index) => (
-                    <p key={index} className="text-slate-600 text-xs sm:text-sm leading-relaxed italic">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </div>
-
-              {/* Signature Accent */}
-              <div className="mt-8 pt-5 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400 font-semibold">
-                <span>OFFICE OF THE PRINCIPAL</span>
-                <span className="font-serif italic font-bold text-[#1E3A8A]">S. M. Chandrashekar</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        {/* 2. Vision & Mission Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-20 sm:mb-28">
-          {/* Vision Card */}
+        {/* 2. Vision & Mission Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+          {/* Vision */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-gradient-to-br from-white to-amber-50/20 p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-100/80 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="academic-card p-8 sm:p-10 space-y-6 flex flex-col justify-between"
           >
-            <div>
-              <div className="w-14 h-14 bg-amber-50 border border-amber-200 rounded-2xl flex items-center justify-center text-amber-600 mb-6 shadow-xs">
-                <Eye size={26} />
+            <div className="space-y-4">
+              <div className="flex items-center gap-3.5">
+                <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center shrink-0 shadow-xs">
+                  <Eye size={24} />
+                </div>
+                <h2 className="text-2xl font-extrabold text-[#1E3A8A] font-display">
+                  Our Vision
+                </h2>
               </div>
-              <h3 className="text-2xl font-bold font-display text-[#1E3A8A] mb-4">Our Vision</h3>
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
-                "{about.vision}"
+              <p className="text-slate-700 text-base leading-relaxed font-medium pt-2">
+                To be a centre of excellence in higher education, empowering students with knowledge, skills, values, and leadership to become competent professionals, responsible citizens, and future leaders who contribute to nation-building.
               </p>
             </div>
-            <div className="w-full h-1 bg-gradient-to-r from-[#1E3A8A] to-amber-400 rounded-full mt-8" />
+            <div className="pt-4 border-t border-slate-100 text-xs text-amber-600 font-extrabold tracking-wider uppercase">
+              Academic Excellence • Leadership • Nation Building
+            </div>
           </motion.div>
 
-          {/* Mission Card */}
+          {/* Mission */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-100/80 hover:shadow-md transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="academic-card p-8 sm:p-10 space-y-6"
           >
-            <div className="w-14 h-14 bg-blue-50 border border-blue-100 rounded-2xl flex items-center justify-center text-[#1E3A8A] mb-6 shadow-xs">
-              <Target size={26} />
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#1E3A8A] border border-blue-200 flex items-center justify-center shrink-0 shadow-xs">
+                <Target size={24} />
+              </div>
+              <h2 className="text-2xl font-extrabold text-[#1E3A8A] font-display">
+                Our Mission
+              </h2>
             </div>
-            <h3 className="text-2xl font-bold font-display text-[#1E3A8A] mb-6">Our Mission</h3>
-            <ul className="space-y-4">
-              {Array.isArray(about.mission) ? (
-                about.mission.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 group">
-                    <span className="mt-1 shrink-0 text-amber-500 group-hover:scale-110 transition-transform duration-200">
-                      <CheckCircle2 size={16} />
-                    </span>
-                    <span className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                      {item}
-                    </span>
-                  </li>
-                ))
-              ) : (
-                <li className="text-slate-600 text-sm sm:text-base leading-relaxed">{about.mission}</li>
-              )}
+
+            <ul className="space-y-3.5 pt-1">
+              {missionList.map((item, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-slate-700 text-xs sm:text-sm font-medium">
+                  <CheckCircle2 size={18} className="text-amber-500 shrink-0 mt-0.5" />
+                  <span className="leading-relaxed">{item}</span>
+                </li>
+              ))}
             </ul>
           </motion.div>
         </div>
 
         {/* 3. Core Values Grid */}
-        {about.coreValues && about.coreValues.length > 0 && (
-          <div className="space-y-10 sm:space-y-12">
-            <div className="text-center max-w-2xl mx-auto">
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1E3A8A] font-display">
-                Our Core Values
-              </h3>
-              <p className="text-slate-500 text-xs sm:text-sm mt-3">
-                The guiding principles that steer our commitment to academic excellence, integrity, and student development.
-              </p>
-            </div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.08
-                  }
-                }
-              }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-            >
-              {about.coreValues.map((value, idx) => (
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0, y: 30 },
-                    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
-                  }}
-                  whileHover={{ y: -6, scale: 1.03 }}
-                  key={idx}
-                  className={`bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 group cursor-default ${getValueColorClass(value.title)}`}
-                >
-                  <div className="mb-4 p-2 bg-slate-50 rounded-xl w-fit group-hover:bg-white transition-colors duration-200">
-                    {getValueIcon(value.title)}
-                  </div>
-                  <h4 className="text-base sm:text-lg font-bold text-slate-800 mb-2 font-display">
-                    {value.title}
-                  </h4>
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                    {value.desc}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="space-y-8"
+        >
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E3A8A] font-display">
+              Core Values
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-500 font-medium">
+              The foundational principles guiding our educational excellence and student development.
+            </p>
           </div>
-        )}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {coreValues.map((val, idx) => {
+              const IconComp = val.icon;
+              return (
+                <div
+                  key={idx}
+                  className="academic-card p-6 space-y-3 flex flex-col justify-between"
+                >
+                  <div className="space-y-3">
+                    <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center shadow-xs">
+                      <IconComp size={20} />
+                    </div>
+                    <h3 className="text-base font-bold text-[#1E3A8A] font-display">
+                      {val.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      {val.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
 
       </div>
-    </section>
+    </div>
   );
 }
