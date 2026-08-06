@@ -136,84 +136,73 @@ export default function Header({ branding }) {
   return (
     <header className="sticky top-0 z-50 w-full transition-all duration-300">
       {/* ========================================================================= */}
-      {/* 1. TOP UTILITY BAR (Contact & Announcements)                              */}
+      {/* 1. MAIN BRAND HEADER BAR                                                  */}
       {/* ========================================================================= */}
-      <div className="bg-[#070F1B] text-slate-300 border-b border-amber-500/20 text-xs py-2 px-4 sm:px-6 lg:px-8 hidden md:block">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          {/* Left Side: Contact Details */}
-          <div className="flex items-center gap-6 font-medium">
-            <a 
-              href={`tel:${branding?.phone || "+919448123456"}`}
-              className="flex items-center gap-2 hover:text-amber-400 transition-colors"
-            >
-              <Phone size={13} className="text-amber-400" />
-              <span>{branding?.phone || "+91 94481 23456"}</span>
-            </a>
-            <a 
-              href={`mailto:${branding?.email || "admissions@srividyachetana.edu.in"}`}
-              className="flex items-center gap-2 hover:text-amber-400 transition-colors"
-            >
-              <Mail size={13} className="text-amber-400" />
-              <span className="truncate max-w-[240px]">{branding?.email || "admissions@srividyachetana.edu.in"}</span>
-            </a>
-            <div className="flex items-center gap-1.5 text-slate-400 hidden lg:flex">
-              <MapPin size={13} className="text-amber-400" />
-              <span>{branding?.address || "Chintamani, Chikkaballapura, KA"}</span>
-            </div>
-          </div>
-
-          {/* Right Side: Badges */}
-          <div className="flex items-center gap-4">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/30 text-[11px] font-bold">
-              <Sparkles size={12} className="animate-pulse text-amber-400" />
-              Admissions Open 2026-27
-            </span>
-            <span className="text-[11px] text-slate-400 hidden sm:inline-block">
-              Affiliated to <strong className="text-slate-200">Bengaluru North University</strong>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 2. MAIN BRAND HEADER BAR (Sticky on Mobile)                               */}
-      {/* ========================================================================= */}
-      <div className="bg-[#1E3A8A] text-white border-b border-amber-400/20 py-2.5 sm:py-3.5 px-3 sm:px-6 lg:px-8 shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
+      <div className="bg-[#1E3A8A] text-white border-b border-amber-400/20 py-3 sm:py-3.5 px-3 sm:px-6 lg:px-8 shadow-md">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
           
-          {/* Logo & College Title */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3.5 group shrink-0 max-w-[70%] sm:max-w-none">
+          {/* Logo & College Title + Affiliation Info */}
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3.5 group shrink-0">
             <img
               src={logo}
               alt={branding?.collegeName || "Sri Vidya Chetana Degree College"}
               className="w-10 h-10 sm:w-14 sm:h-14 object-contain rounded-xl bg-white p-0.5 sm:p-1 border-2 border-amber-400/40 shadow-lg transition-transform duration-300 group-hover:scale-105 shrink-0"
             />
-            <div className="overflow-hidden">
-              <h1 className="text-xs sm:text-lg md:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-tight font-display uppercase group-hover:text-amber-300 transition-colors truncate">
+            <div>
+              <h1 className="text-xs sm:text-base md:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-tight font-display uppercase group-hover:text-amber-300 transition-colors">
                 {branding?.collegeName || "Sri Vidya Chetana"}
               </h1>
-              <div className="flex flex-wrap items-center gap-1 sm:gap-2 mt-0.5">
-                <span className="text-[9px] sm:text-xs uppercase tracking-widest text-amber-300 font-extrabold truncate">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-0.5">
+                <span className="text-[9px] sm:text-xs uppercase tracking-widest text-amber-300 font-extrabold">
                   Degree College
                 </span>
-                <span className="hidden md:inline-block text-xs text-slate-300 font-medium border-l border-white/20 pl-2">
-                  Integrated IAS / KAS / Banking / CA Academy
+                <span className="text-[10px] sm:text-xs text-amber-200/90 font-semibold border-l border-white/20 pl-2">
+                  Affiliated to Bengaluru North University
+                </span>
+                <span className="hidden xl:inline-block text-xs text-slate-300 font-medium border-l border-white/20 pl-2">
+                  Chintamani, Chikkaballapura
                 </span>
               </div>
             </div>
           </Link>
 
-          {/* Right Header Controls: Apply Button & Prominent Mobile Menu Button */}
-          <div className="flex items-center gap-2 shrink-0">
+          {/* Right Header Controls: Direct Contact Pills, Apply Button & Mobile Toggle */}
+          <div className="flex items-center gap-3 shrink-0">
+            
+            {/* Desktop Quick Contact Links */}
+            <div className="hidden lg:flex items-center gap-4 text-xs font-semibold pr-2 border-r border-white/20">
+              <a 
+                href={`tel:${branding?.phone || "+919448123456"}`}
+                className="flex items-center gap-1.5 hover:text-amber-300 transition-colors"
+              >
+                <Phone size={13} className="text-amber-400" />
+                <span>{branding?.phone || "+91 94481 23456"}</span>
+              </a>
+              <a 
+                href={`mailto:${branding?.email || "admissions@srividyachetana.edu.in"}`}
+                className="flex items-center gap-1.5 hover:text-amber-300 transition-colors"
+              >
+                <Mail size={13} className="text-amber-400" />
+                <span className="max-w-[190px] truncate">{branding?.email || "admissions@srividyachetana.edu.in"}</span>
+              </a>
+            </div>
+
+            {/* Admissions Badge */}
+            <span className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40 text-xs font-extrabold">
+              <Sparkles size={13} className="animate-pulse text-amber-400" />
+              Admissions Open 2026-27
+            </span>
+
+            {/* Apply Button */}
             <Link
               to="/admissions"
               className="hidden sm:flex bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold px-4 sm:px-5 py-2.5 rounded-xl shadow-lg hover:shadow-amber-400/30 transition-all transform hover:-translate-y-0.5 items-center gap-2 text-xs sm:text-sm uppercase tracking-wider shrink-0"
             >
               <GraduationCap size={18} />
-              <span>Apply</span>
+              <span>Apply Now</span>
             </Link>
 
-            {/* High-Visibility Mobile / Tablet Menu Toggle */}
+            {/* Mobile / Tablet Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden px-3 py-2 text-slate-950 font-extrabold rounded-xl bg-amber-400 hover:bg-amber-300 border border-amber-300 transition-all cursor-pointer flex items-center gap-1.5 shadow-md active:scale-95"
