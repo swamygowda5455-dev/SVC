@@ -1,6 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { ArrowRight, Sparkles, GraduationCap, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { 
+  ArrowRight, 
+  Sparkles, 
+  GraduationCap, 
+  Quote, 
+  ChevronLeft, 
+  ChevronRight,
+  Eye,
+  Target,
+  BookOpen,
+  Award,
+  Users,
+  CheckCircle2,
+  Phone,
+  Mail,
+  MapPin,
+  Share2,
+  Laptop,
+  Zap,
+  TrendingUp,
+  Briefcase,
+  Building2,
+  HeartHandshake
+} from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 export default function Hero({ branding }) {
@@ -43,8 +66,10 @@ export default function Hero({ branding }) {
   return (
     <div id="home" className="w-full bg-slate-50">
       
-      {/* 1. HERO BANNER SECTION WITH BACKGROUND IMAGE SLIDER */}
-      <section className="relative overflow-hidden bg-[#1E3A8A] text-white py-16 sm:py-24 lg:py-28 min-h-[550px] flex items-center">
+      {/* ========================================================================= */}
+      {/* 1. HERO BANNER                                                           */}
+      {/* ========================================================================= */}
+      <section className="relative overflow-hidden bg-[#1E3A8A] text-white py-16 sm:py-24 lg:py-28 min-h-[560px] flex items-center">
         
         {/* Background Image Carousel */}
         <AnimatePresence mode="wait">
@@ -62,8 +87,8 @@ export default function Hero({ branding }) {
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover object-center"
             />
-            {/* Subtle Dark Overlay for Image Visibility & Text Contrast */}
-            <div className="absolute inset-0 bg-slate-950/45" />
+            {/* Dark Overlay for Visibility */}
+            <div className="absolute inset-0 bg-slate-950/50" />
           </motion.div>
         </AnimatePresence>
         
@@ -103,12 +128,12 @@ export default function Hero({ branding }) {
               <span>Affiliated to Bengaluru North University</span>
             </motion.div>
 
-            {/* Body Text */}
+            {/* Description */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-slate-200 text-sm sm:text-base md:text-lg leading-relaxed font-normal max-w-3xl mx-auto pt-2"
+              className="text-slate-100 text-sm sm:text-base md:text-lg leading-relaxed font-normal max-w-3xl mx-auto pt-2"
             >
               At Sri Vidya Chetana Degree College, education goes beyond earning a degree. We empower students with academic excellence, competitive examination preparation, and career-oriented skill development through our unique Trishul Model, helping them excel in higher education, government services, and the corporate world.
             </motion.p>
@@ -188,14 +213,13 @@ export default function Hero({ branding }) {
 
       </section>
 
-      {/* 2. WELCOME & OVERVIEW SECTION */}
+      {/* ========================================================================= */}
+      {/* 2. WELCOME TO SRI VIDYA CHETANA DEGREE COLLEGE                            */}
+      {/* ========================================================================= */}
       <section className="py-16 sm:py-24 bg-white relative">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-center">
           
           <div className="space-y-3">
-            <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
-              ABOUT OUR INSTITUTION
-            </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] tracking-tight font-display">
               Welcome to Sri Vidya Chetana Degree College
             </h2>
@@ -226,51 +250,572 @@ export default function Hero({ branding }) {
             </h3>
           </div>
 
+          {/* Read More Link */}
+          <div className="pt-2">
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 bg-[#1E3A8A] hover:bg-[#152a65] text-white font-extrabold text-sm px-6 py-3 rounded-full shadow-md transition-all hover:scale-105 cursor-pointer"
+            >
+              <span>👉 Read More About Us</span>
+            </Link>
+          </div>
+
         </div>
       </section>
 
-      {/* 3. PRINCIPAL'S MESSAGE SECTION */}
-      <section className="py-16 sm:py-24 bg-slate-50 relative border-t border-slate-200">
+      {/* ========================================================================= */}
+      {/* 3. OUR VISION                                                             */}
+      {/* ========================================================================= */}
+      <section className="py-16 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider">
+            <Eye size={16} className="text-amber-600" />
+            <span>Institutional Roadmap</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E3A8A] font-display">
+            Our Vision
+          </h2>
+          <div className="bg-white p-8 sm:p-10 rounded-3xl border border-amber-400/30 shadow-lg relative">
+            <p className="text-slate-800 text-base sm:text-lg md:text-xl font-bold leading-relaxed italic text-center">
+              "To be a centre of excellence in higher education by empowering students with knowledge, skills, values, and leadership to become competent professionals, responsible citizens, and future leaders who contribute to nation-building."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 4. OUR MISSION                                                            */}
+      {/* ========================================================================= */}
+      <section className="py-16 sm:py-20 bg-white border-t border-slate-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          
           <div className="text-center space-y-3">
-            <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
-              LEADERSHIP DESK
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] tracking-tight font-display flex items-center justify-center gap-2">
-              <Quote className="text-amber-500 hidden sm:inline-block" size={32} />
-              <span>Principal's Message</span>
+            <div className="inline-flex items-center gap-2 bg-blue-100 text-[#1E3A8A] px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider">
+              <Target size={16} className="text-[#1E3A8A]" />
+              <span>Core Commitments</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E3A8A] font-display">
+              Our Mission
             </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-[#1E3A8A] via-amber-400 to-amber-500 mx-auto rounded-full mt-3" />
+            <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full" />
           </div>
 
-          <div className="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200/90 shadow-sm space-y-5 text-slate-700 text-sm sm:text-base leading-relaxed">
-            <p className="font-extrabold text-[#1E3A8A] text-base sm:text-lg">
-              Dear Students, Parents, and Well-Wishers,
-            </p>
-            <p className="font-bold text-slate-800">
-              Welcome to Sri Vidya Chetana Degree College.
-            </p>
-            <p>
-              Education is not merely about earning a degree; it is about developing knowledge, character, skills, and the confidence to face future challenges. At Sri Vidya Chetana Degree College, we are committed to providing a student-centric learning environment that promotes academic excellence, critical thinking, ethical values, and holistic development.
-            </p>
-            <p>
-              Our unique Integrated Degree Programme combines university education with structured coaching for UPSC Civil Services (IAS/IPS/IFS), KPSC (KAS), Banking, SSC, Railways, and Chartered Accountancy (CA). This approach enables students to build a strong academic foundation while preparing for competitive examinations and diverse career opportunities.
-            </p>
-            <p>
-              With the guidance of our dedicated faculty and mentors, students are encouraged to develop leadership, communication, digital, and employability skills that will help them succeed in higher education, professional careers, entrepreneurship, and public service.
-            </p>
-            <p>
-              I encourage every student to make the most of the opportunities available, pursue excellence with determination, uphold integrity in all actions, and strive to become responsible citizens who contribute positively to society and the nation.
-            </p>
-            <p>
-              I wish you a rewarding, successful, and inspiring academic journey at Sri Vidya Chetana Degree College.
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            {[
+              "Deliver quality, affordable, and student-centric higher education.",
+              "Integrate university education with competitive examination preparation.",
+              "Develop leadership, communication, digital, and employability skills.",
+              "Promote innovation, critical thinking, research, and lifelong learning.",
+              "Nurture ethical values, discipline, and social responsibility.",
+              "Empower students to excel in higher education, careers, entrepreneurship, and public service."
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-200/80 shadow-xs hover:border-amber-400/50 transition-colors"
+              >
+                <CheckCircle2 size={22} className="text-amber-500 shrink-0 mt-0.5" />
+                <p className="text-slate-800 text-sm sm:text-base font-semibold leading-snug">
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="pt-6 border-t border-slate-100 flex flex-col items-start gap-0.5 font-display">
-              <p className="font-extrabold text-base text-[#1E3A8A]">Principal</p>
-              <p className="text-amber-600 font-extrabold text-xs tracking-wider uppercase">Sri Vidya Chetana Degree College</p>
+      {/* ========================================================================= */}
+      {/* 5. RECENT INITIATIVES                                                     */}
+      {/* ========================================================================= */}
+      <section className="py-16 sm:py-20 bg-slate-900 text-white relative">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <div className="inline-flex items-center gap-2 bg-amber-400/20 text-amber-300 border border-amber-400/30 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase">
+            <Zap size={14} className="text-amber-400" />
+            <span>Future-Ready Education</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-display">
+            Recent Initiatives
+          </h2>
+          <p className="text-slate-300 text-base max-w-2xl mx-auto leading-relaxed">
+            Our latest initiatives are designed to provide students with an educational experience that extends far beyond the classroom.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 text-left">
+            <div className="bg-slate-800/80 p-6 rounded-2xl border border-amber-400/20 space-y-3">
+              <Building2 size={28} className="text-amber-400" />
+              <h3 className="text-base font-bold text-white">IAS &amp; KAS Coaching Wing</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Daily syllabus guidance, NCERT foundational modules, and mock exams for UPSC &amp; KPSC civil service aspirants.
+              </p>
             </div>
+            <div className="bg-slate-800/80 p-6 rounded-2xl border border-amber-400/20 space-y-3">
+              <Laptop size={28} className="text-amber-400" />
+              <h3 className="text-base font-bold text-white">Digital Skill Development</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Hands-on training in computer applications, communication proficiency, and modern workplace technology tools.
+              </p>
+            </div>
+            <div className="bg-slate-800/80 p-6 rounded-2xl border border-amber-400/20 space-y-3">
+              <Users size={28} className="text-amber-400" />
+              <h3 className="text-base font-bold text-white">Personal Mentorship Cell</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                One-on-one academic counseling, career path mapping, and competitive test guidance for every enrolled student.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 6. INTEGRATED DEGREE PROGRAMME                                            */}
+      {/* ========================================================================= */}
+      <section className="py-16 sm:py-24 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          
+          <div className="text-center space-y-4 max-w-3xl mx-auto">
+            <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
+              INTEGRATED DEGREE PROGRAMME
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] tracking-tight font-display">
+              Integrated Degree Programme
+            </h2>
+            <p className="text-slate-700 font-bold text-base sm:text-lg">
+              Study Your Degree. Build Your Career. Achieve Your Dream.
+            </p>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              Our Integrated Degree Programme enables students to pursue their university degree while simultaneously preparing for competitive examinations and developing industry-relevant skills.
+            </p>
+          </div>
+
+          {/* Trishul Model Highlight Card */}
+          <div className="bg-[#1E3A8A] text-white p-6 sm:p-8 rounded-3xl text-center space-y-3 shadow-xl border-2 border-amber-400/40">
+            <h3 className="text-amber-300 text-lg sm:text-2xl font-extrabold tracking-wide uppercase">
+              The Trishul Model
+            </h3>
+            <p className="text-white text-base sm:text-xl font-extrabold">
+              One Degree. Three Advantages. Unlimited Opportunities.
+            </p>
+          </div>
+
+          {/* Trishul Model 3 Columns */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            {/* Column 1 */}
+            <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-4 hover:border-amber-400 transition-colors">
+              <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
+                <BookOpen size={28} className="text-[#1E3A8A]" />
+                <h4 className="text-lg font-extrabold text-[#1E3A8A]">Academic Excellence</h4>
+              </div>
+              <ul className="space-y-3 text-slate-700 text-sm font-medium">
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>University Curriculum</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>Experienced Faculty</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>Practical Learning</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>Continuous Assessment</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 2 */}
+            <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-4 hover:border-amber-400 transition-colors">
+              <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
+                <Target size={28} className="text-[#1E3A8A]" />
+                <h4 className="text-lg font-extrabold text-[#1E3A8A]">Competitive Exam Preparation</h4>
+              </div>
+              <ul className="space-y-3 text-slate-700 text-sm font-medium">
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>UPSC (IAS)</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>KAS</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>Banking</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>SSC</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>CA, CS &amp; CMA</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>Railways</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 3 */}
+            <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-4 hover:border-amber-400 transition-colors">
+              <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
+                <Briefcase size={28} className="text-[#1E3A8A]" />
+                <h4 className="text-lg font-extrabold text-[#1E3A8A]">Career &amp; Skill Development</h4>
+              </div>
+              <ul className="space-y-3 text-slate-700 text-sm font-medium">
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>Communication Skills</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>English Proficiency</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>Computer Applications</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>Leadership Development</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>Aptitude Training</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>Interview Preparation</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <span>Entrepreneurship</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 7. OUR COURSES                                                            */}
+      {/* ========================================================================= */}
+      <section className="py-16 sm:py-24 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          
+          <div className="text-center space-y-3 max-w-3xl mx-auto">
+            <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full">
+              ACADEMIC OFFERINGS
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] font-display">
+              Our Courses
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base">
+              We offer undergraduate programmes designed to prepare students for academic excellence and successful careers.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            {/* Course 1 */}
+            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl transition-all">
+              <span className="inline-block bg-blue-100 text-[#1E3A8A] text-xs font-extrabold px-3 py-1 rounded-full">
+                Undergraduate Degree
+              </span>
+              <h3 className="text-lg font-extrabold text-[#1E3A8A]">Bachelor of Arts (B.A.)</h3>
+              <div className="pt-2 border-t border-slate-100 text-slate-700 text-sm font-semibold space-y-1">
+                <p className="text-slate-500 text-xs font-bold uppercase">Specializations</p>
+                <p>Economics • Political Science • Journalism &amp; Mass Communication</p>
+              </div>
+            </div>
+
+            {/* Course 2 */}
+            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl transition-all">
+              <span className="inline-block bg-amber-100 text-amber-900 text-xs font-extrabold px-3 py-1 rounded-full">
+                Commerce &amp; Finance
+              </span>
+              <h3 className="text-lg font-extrabold text-[#1E3A8A]">Bachelor of Commerce (B.Com.)</h3>
+              <div className="pt-2 border-t border-slate-100 text-slate-700 text-sm font-semibold space-y-1">
+                <p className="text-slate-500 text-xs font-bold uppercase">Specializations</p>
+                <p>Accounting • Finance • Taxation • Business Studies</p>
+              </div>
+            </div>
+
+            {/* Course 3 */}
+            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl transition-all">
+              <span className="inline-block bg-emerald-100 text-emerald-900 text-xs font-extrabold px-3 py-1 rounded-full">
+                Science Stream
+              </span>
+              <h3 className="text-lg font-extrabold text-[#1E3A8A]">Bachelor of Science (B.Sc.)</h3>
+              <div className="pt-2 border-t border-slate-100 text-slate-700 text-sm font-semibold space-y-1">
+                <p className="text-slate-500 text-xs font-bold uppercase">Specializations</p>
+                <p>Physics • Mathematics • Computer Science</p>
+              </div>
+            </div>
+
+            {/* Course 4 */}
+            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl transition-all">
+              <span className="inline-block bg-purple-100 text-purple-900 text-xs font-extrabold px-3 py-1 rounded-full">
+                Business &amp; Leadership
+              </span>
+              <h3 className="text-lg font-extrabold text-[#1E3A8A]">Bachelor of Business Administration (BBA)</h3>
+              <div className="pt-2 border-t border-slate-100 text-slate-700 text-sm font-semibold space-y-1">
+                <p className="text-slate-500 text-xs font-bold uppercase">Specializations</p>
+                <p>Business Management • Marketing • Entrepreneurship</p>
+              </div>
+            </div>
+
+            {/* Course 5 */}
+            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl transition-all md:col-span-2 lg:col-span-1">
+              <span className="inline-block bg-indigo-100 text-indigo-900 text-xs font-extrabold px-3 py-1 rounded-full">
+                Computer Technology
+              </span>
+              <h3 className="text-lg font-extrabold text-[#1E3A8A]">Bachelor of Computer Applications (BCA)</h3>
+              <div className="pt-2 border-t border-slate-100 text-slate-700 text-sm font-semibold space-y-1">
+                <p className="text-slate-500 text-xs font-bold uppercase">Specializations</p>
+                <p>Programming • Artificial Intelligence • Data Science</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="text-center">
+            <button
+              onClick={() => navigate("/courses")}
+              className="bg-[#1E3A8A] hover:bg-[#152a65] text-white font-extrabold text-xs uppercase tracking-wider px-8 py-3 rounded-full shadow-lg transition-all cursor-pointer"
+            >
+              View All Course Details
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 8. WHY CHOOSE SRI VIDYA CHETANA DEGREE COLLEGE?                           */}
+      {/* ========================================================================= */}
+      <section className="py-16 sm:py-24 bg-white relative border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          
+          <div className="text-center space-y-3 max-w-3xl mx-auto">
+            <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full">
+              WHY US
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] font-display">
+              Why Choose Sri Vidya Chetana Degree College?
+            </h2>
+            <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full" />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            {[
+              {
+                title: "Academic Excellence",
+                desc: "Quality education with experienced faculty and student-focused learning.",
+                icon: BookOpen
+              },
+              {
+                title: "Integrated Competitive Exam Preparation",
+                desc: "Prepare for IAS, KAS, Banking, SSC, CA and other Government examinations while completing your degree.",
+                icon: Target
+              },
+              {
+                title: "Industry Skill Development",
+                desc: "Enhance employability through effective communication, English language proficiency, leadership development, digital literacy, aptitude training, and essential workplace skills.",
+                icon: Zap
+              },
+              {
+                title: "Personal Mentorship",
+                desc: "Individual guidance for academics, career planning, and competitive examinations.",
+                icon: Users
+              },
+              {
+                title: "Modern Learning Environment",
+                desc: "Smart classrooms, digital resources, and technology-enabled learning.",
+                icon: Laptop
+              },
+              {
+                title: "Career Guidance & Placement Support",
+                desc: "Internships, placement assistance, higher education guidance, and entrepreneurship support.",
+                icon: TrendingUp
+              },
+              {
+                title: "Scholarships & Financial Assistance",
+                desc: "Merit-based scholarships and flexible fee payment options.",
+                icon: Award
+              },
+              {
+                title: "Holistic Student Development",
+                desc: "Sports, cultural activities, leadership programmes, NSS, NCC, and community engagement.",
+                icon: HeartHandshake
+              }
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <div 
+                  key={index}
+                  className="p-6 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-sm space-y-3 hover:border-amber-400 hover:shadow-md transition-all flex flex-col justify-between"
+                >
+                  <div className="space-y-3">
+                    <div className="w-12 h-12 rounded-2xl bg-amber-400/20 text-[#1E3A8A] flex items-center justify-center font-bold">
+                      <IconComponent size={24} className="text-[#1E3A8A]" />
+                    </div>
+                    <h3 className="text-base font-extrabold text-[#1E3A8A] leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 9. TESTIMONIALS                                                           */}
+      {/* ========================================================================= */}
+      <section className="py-16 sm:py-24 bg-slate-900 text-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 text-center">
+          
+          <div className="space-y-3 max-w-3xl mx-auto">
+            <span className="text-amber-400 text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-400/10 border border-amber-400/30 px-4 py-1.5 rounded-full">
+              TESTIMONIALS
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-display">
+              What Our Students Say
+            </h2>
+            <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            
+            <div className="bg-slate-800/90 p-8 rounded-3xl border border-amber-400/20 space-y-4 shadow-lg flex flex-col justify-between hover:border-amber-400/50 transition-colors">
+              <div className="space-y-3">
+                <Quote size={32} className="text-amber-400 opacity-60" />
+                <p className="text-slate-200 text-sm leading-relaxed italic">
+                  "The integrated learning approach helped me balance my degree studies while preparing for competitive examinations. The mentorship and guidance have been invaluable."
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-700">
+                <h4 className="text-amber-300 font-extrabold text-sm">— Rajesh Gowda</h4>
+                <p className="text-xs text-slate-400 font-medium">B.Com. (Civil Services KAS Aspirant)</p>
+              </div>
+            </div>
+
+            <div className="bg-slate-800/90 p-8 rounded-3xl border border-amber-400/20 space-y-4 shadow-lg flex flex-col justify-between hover:border-amber-400/50 transition-colors">
+              <div className="space-y-3">
+                <Quote size={32} className="text-amber-400 opacity-60" />
+                <p className="text-slate-200 text-sm leading-relaxed italic">
+                  "The Trishul Model has given me confidence in academics, competitive preparation, and career development. I feel prepared for multiple career opportunities."
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-700">
+                <h4 className="text-amber-300 font-extrabold text-sm">— Ananya Sharma</h4>
+                <p className="text-xs text-slate-400 font-medium">B.Sc. (Banking &amp; SSC Batch)</p>
+              </div>
+            </div>
+
+            <div className="bg-slate-800/90 p-8 rounded-3xl border border-amber-400/20 space-y-4 shadow-lg flex flex-col justify-between hover:border-amber-400/50 transition-colors">
+              <div className="space-y-3">
+                <Quote size={32} className="text-amber-400 opacity-60" />
+                <p className="text-slate-200 text-sm leading-relaxed italic">
+                  "The faculty members are supportive, the learning environment is inspiring, and the college truly focuses on every student's growth."
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-700">
+                <h4 className="text-amber-300 font-extrabold text-sm">— Vijay Kumar</h4>
+                <p className="text-xs text-slate-400 font-medium">BBA (CA Foundation Scholar)</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 10. CONNECT WITH US                                                       */}
+      {/* ========================================================================= */}
+      <section className="py-16 sm:py-24 bg-white relative">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 text-center">
+          
+          <div className="space-y-3">
+            <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full">
+              CONTACT &amp; ADMISSIONS
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] font-display">
+              Connect With Us
+            </h2>
+            <p className="text-amber-600 font-extrabold text-lg sm:text-xl">
+              Start Your Journey Today
+            </p>
+            <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full" />
+          </div>
+
+          <p className="text-slate-700 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto font-medium">
+            Whether you aspire to become a Civil Servant, Business Leader, Scientist, Entrepreneur, or Corporate Professional, Sri Vidya Chetana Degree College is committed to helping you achieve your dreams.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+            
+            <button
+              onClick={() => navigate("/contact")}
+              className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 shadow-sm flex flex-col items-center justify-center gap-3 transition-all hover:scale-105 cursor-pointer"
+            >
+              <MapPin size={28} className="text-[#1E3A8A]" />
+              <span className="text-sm font-extrabold text-[#1E3A8A]">📍 Visit Our Campus</span>
+            </button>
+
+            <a
+              href={`tel:${branding?.phone || "+919448123456"}`}
+              className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 shadow-sm flex flex-col items-center justify-center gap-3 transition-all hover:scale-105"
+            >
+              <Phone size={28} className="text-[#1E3A8A]" />
+              <span className="text-sm font-extrabold text-[#1E3A8A]">📞 Call Us</span>
+            </a>
+
+            <a
+              href={`mailto:${branding?.email || "admissions@srividyachetana.edu.in"}`}
+              className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 shadow-sm flex flex-col items-center justify-center gap-3 transition-all hover:scale-105"
+            >
+              <Mail size={28} className="text-[#1E3A8A]" />
+              <span className="text-sm font-extrabold text-[#1E3A8A]">📧 Email Us</span>
+            </a>
+
+            <button
+              onClick={() => navigate("/contact")}
+              className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 shadow-sm flex flex-col items-center justify-center gap-3 transition-all hover:scale-105 cursor-pointer"
+            >
+              <Share2 size={28} className="text-[#1E3A8A]" />
+              <span className="text-sm font-extrabold text-[#1E3A8A]">🌐 Follow Us on Social Media</span>
+            </button>
+
+          </div>
+
+          {/* Admissions Open Banner */}
+          <div className="bg-gradient-to-r from-[#1E3A8A] to-blue-950 text-white p-8 sm:p-10 rounded-3xl shadow-2xl border-2 border-amber-400/40 space-y-6">
+            <div className="space-y-2">
+              <span className="bg-amber-400 text-slate-950 text-xs font-extrabold uppercase px-4 py-1.5 rounded-full inline-block">
+                Admissions Open for 2026–27
+              </span>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white font-display">
+                Apply Today and Build a Future Filled with Opportunities.
+              </h3>
+            </div>
+            <button
+              onClick={() => navigate("/admissions")}
+              className="bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold text-sm uppercase tracking-wider px-8 py-3.5 rounded-full shadow-lg transition-all hover:scale-105 cursor-pointer border border-amber-300"
+            >
+              Apply Now
+            </button>
           </div>
 
         </div>
@@ -279,3 +824,4 @@ export default function Hero({ branding }) {
     </div>
   );
 }
+

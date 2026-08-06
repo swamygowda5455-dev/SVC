@@ -134,13 +134,13 @@ export default function Header({ branding }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full transition-all duration-300">
+    <header className="w-full z-50 transition-all duration-300">
       {/* ========================================================================= */}
-      {/* 1. TOP UTILITY BAR (Contact & Announcements - Desktop/Tablet)             */}
+      {/* 1. TOP UTILITY BAR (Contact & Announcements)                              */}
       {/* ========================================================================= */}
-      <div className="bg-[#0B192C] text-slate-300 border-b border-amber-500/20 text-xs py-2 px-4 sm:px-6 lg:px-8 hidden md:block">
+      <div className="bg-[#070F1B] text-slate-300 border-b border-amber-500/20 text-xs py-2 px-4 sm:px-6 lg:px-8 hidden md:block">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          {/* Left Side: Direct Contact Details */}
+          {/* Left Side: Contact Details */}
           <div className="flex items-center gap-6 font-medium">
             <a 
               href={`tel:${branding?.phone || "+919448123456"}`}
@@ -154,7 +154,7 @@ export default function Header({ branding }) {
               className="flex items-center gap-2 hover:text-amber-400 transition-colors"
             >
               <Mail size={13} className="text-amber-400" />
-              <span className="truncate max-w-[220px]">{branding?.email || "admissions@srividyachetana.edu.in"}</span>
+              <span className="truncate max-w-[240px]">{branding?.email || "admissions@srividyachetana.edu.in"}</span>
             </a>
             <div className="flex items-center gap-1.5 text-slate-400 hidden lg:flex">
               <MapPin size={13} className="text-amber-400" />
@@ -162,7 +162,7 @@ export default function Header({ branding }) {
             </div>
           </div>
 
-          {/* Right Side: University Badge & Admissions Highlight */}
+          {/* Right Side: Badges */}
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/30 text-[11px] font-bold">
               <Sparkles size={12} className="animate-pulse text-amber-400" />
@@ -176,39 +176,68 @@ export default function Header({ branding }) {
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. MAIN TOP NAVIGATION NAVBAR                                              */}
+      {/* 2. MAIN BRAND HEADER BAR                                                  */}
       {/* ========================================================================= */}
-      <nav 
-        className={`w-full bg-[#1E3A8A] text-white border-b border-amber-400/20 transition-all duration-300 ${
-          isScrolled ? "shadow-2xl bg-[#1E3A8A]/95 backdrop-blur-md py-2.5" : "shadow-lg py-3"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="bg-[#1E3A8A] text-white border-b border-amber-400/20 py-3.5 px-4 sm:px-6 lg:px-8 shadow-md">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           
-          {/* Brand Logo & College Title */}
-          <Link to="/" className="flex items-center gap-3 shrink-0 group">
+          {/* Logo & College Title */}
+          <Link to="/" className="flex items-center gap-3.5 group shrink-0">
             <img
               src={logo}
               alt={branding?.collegeName || "Sri Vidya Chetana Degree College"}
-              className="w-11 h-11 sm:w-12 sm:h-12 object-contain rounded-xl bg-white p-1 border-2 border-amber-400/40 shadow-md transition-transform duration-300 group-hover:scale-105"
+              className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-xl bg-white p-1 border-2 border-amber-400/40 shadow-lg transition-transform duration-300 group-hover:scale-105"
             />
             <div>
-              <h1 className="text-sm sm:text-base lg:text-lg font-extrabold text-white tracking-tight leading-tight font-display uppercase group-hover:text-amber-300 transition-colors">
+              <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-tight font-display uppercase group-hover:text-amber-300 transition-colors">
                 {branding?.collegeName || "Sri Vidya Chetana"}
               </h1>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] sm:text-xs uppercase tracking-widest text-amber-300 font-extrabold">
+              <div className="flex flex-wrap items-center gap-2 mt-0.5">
+                <span className="text-xs uppercase tracking-widest text-amber-300 font-extrabold">
                   Degree College
                 </span>
-                <span className="hidden sm:inline-block text-[10px] text-slate-300 font-medium border-l border-white/20 pl-2">
-                  Integrated Competitive IAS / KAS / CA
+                <span className="hidden md:inline-block text-xs text-slate-300 font-medium border-l border-white/20 pl-2">
+                  Integrated IAS / KAS / Banking / CA Academy
                 </span>
               </div>
             </div>
           </Link>
 
-          {/* Desktop Top Menu Items */}
-          <div className="hidden xl:flex items-center space-x-1 lg:space-x-1.5">
+          {/* Right Header Controls: Apply Button & Mobile Toggle */}
+          <div className="flex items-center gap-3">
+            <Link
+              to="/admissions"
+              className="hidden sm:flex bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold px-5 py-2.5 rounded-xl shadow-lg hover:shadow-amber-400/30 transition-all transform hover:-translate-y-0.5 items-center gap-2 text-xs sm:text-sm uppercase tracking-wider shrink-0"
+            >
+              <GraduationCap size={18} />
+              <span>Apply for Admissions</span>
+            </Link>
+
+            {/* Mobile / Tablet Menu Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2.5 text-slate-200 hover:text-amber-300 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 transition-colors cursor-pointer"
+              aria-label="Toggle Navigation Menu"
+            >
+              {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 3. STICKY DESKTOP NAVIGATION MENU BAR                                     */}
+      {/* ========================================================================= */}
+      <nav 
+        className={`hidden lg:block w-full bg-[#0B192C] text-white border-b border-amber-400/20 sticky top-0 z-40 transition-all duration-300 ${
+          isScrolled ? "shadow-2xl bg-[#0B192C]/95 backdrop-blur-md py-1.5" : "shadow-lg py-2"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          
+          {/* Main Horizontal Navigation Links */}
+          <div className="flex items-center justify-between w-full space-x-1 xl:space-x-2">
             {navItems.map((item) => {
               const active = isNavActive(item);
               const hasDropdown = Boolean(item.dropdown);
@@ -223,13 +252,13 @@ export default function Header({ branding }) {
                 >
                   <Link
                     to={item.path}
-                    className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs xl:text-sm font-bold transition-all duration-200 cursor-pointer ${
+                    className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs xl:text-sm font-bold transition-all duration-200 cursor-pointer whitespace-nowrap ${
                       active
                         ? "bg-amber-400 text-slate-950 shadow-md shadow-amber-400/20 font-extrabold"
                         : "text-slate-100 hover:bg-white/10 hover:text-amber-300"
                     }`}
                   >
-                    <span>{item.shortLabel || item.label}</span>
+                    <span>{item.label}</span>
                     {hasDropdown && (
                       <ChevronDown
                         size={14}
@@ -247,7 +276,7 @@ export default function Header({ branding }) {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 8, scale: 0.96 }}
                           transition={{ duration: 0.18, ease: "easeOut" }}
-                          className="absolute top-full left-0 mt-1 w-64 bg-[#0B192C] border border-amber-400/30 rounded-2xl shadow-2xl py-2.5 z-50 backdrop-blur-xl"
+                          className="absolute top-full left-0 mt-1 w-64 bg-[#070F1B] border border-amber-400/30 rounded-2xl shadow-2xl py-2.5 z-50 backdrop-blur-xl"
                         >
                           <div className="px-3 py-1.5 border-b border-white/10 mb-1">
                             <p className="text-[10px] uppercase font-extrabold tracking-wider text-amber-400">
@@ -274,31 +303,11 @@ export default function Header({ branding }) {
             })}
           </div>
 
-          {/* Desktop CTA Apply Button & Mobile Drawer Toggle */}
-          <div className="flex items-center gap-3">
-            <Link
-              to="/admissions"
-              className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl shadow-lg hover:shadow-amber-400/30 transition-all transform hover:-translate-y-0.5 flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider shrink-0"
-            >
-              <GraduationCap size={18} className="shrink-0" />
-              <span>Apply Now</span>
-            </Link>
-
-            {/* Mobile / Tablet Menu Toggle */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2.5 text-slate-200 hover:text-amber-300 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors cursor-pointer"
-              aria-label="Toggle Navigation Menu"
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-
         </div>
       </nav>
 
       {/* ========================================================================= */}
-      {/* 3. RESPONSIVE MOBILE / TABLET MENU DRAWER (< xl)                           */}
+      {/* 4. RESPONSIVE MOBILE / TABLET MENU DRAWER (< lg)                           */}
       {/* ========================================================================= */}
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -309,16 +318,16 @@ export default function Header({ branding }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs xl:hidden z-40"
+              className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs lg:hidden z-40"
             />
 
-            {/* Top Slide-Down Navigation Panel */}
+            {/* Slide-Down Navigation Panel */}
             <motion.div
               initial={{ opacity: 0, y: "-100%" }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: "-100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 left-0 right-0 max-h-[90vh] bg-[#0B192C] text-white shadow-2xl border-b border-amber-400/30 z-50 overflow-y-auto xl:hidden flex flex-col"
+              className="fixed top-0 left-0 right-0 max-h-[90vh] bg-[#0B192C] text-white shadow-2xl border-b border-amber-400/30 z-50 overflow-y-auto lg:hidden flex flex-col"
             >
               {/* Drawer Top Bar */}
               <div className="p-4 border-b border-amber-400/20 flex items-center justify-between sticky top-0 bg-[#0B192C] z-10">

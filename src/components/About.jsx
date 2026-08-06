@@ -1,5 +1,5 @@
 import React from "react";
-import { Eye, Target, CheckCircle2, Award, Shield, Users, Compass, Lightbulb, Sparkles, Globe, Heart, Flag } from "lucide-react";
+import { Eye, Target, CheckCircle2, Award, Shield, Users, Compass, Lightbulb, Sparkles, Globe, Heart, Flag, Quote } from "lucide-react";
 import { motion } from "motion/react";
 
 export default function About() {
@@ -53,13 +53,16 @@ export default function About() {
           <div className="w-16 h-1 bg-gradient-to-r from-[#1E3A8A] via-amber-400 to-amber-500 mx-auto rounded-full mt-3" />
         </div>
 
-        {/* 1. Main Institution Profile Card */}
+        {/* 1. About the College Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="academic-card p-8 sm:p-12 space-y-5 text-slate-700 text-sm sm:text-base leading-relaxed"
         >
+          <h2 className="text-2xl font-extrabold text-[#1E3A8A] font-display mb-2">
+            About the College
+          </h2>
           {introParagraphs.map((para, idx) => (
             <p key={idx} className={idx === introParagraphs.length - 1 ? "font-bold text-[#1E3A8A] text-base sm:text-lg pt-2 border-t border-slate-100" : ""}>
               {para}
@@ -82,7 +85,7 @@ export default function About() {
                   <Eye size={24} />
                 </div>
                 <h2 className="text-2xl font-extrabold text-[#1E3A8A] font-display">
-                  Our Vision
+                  Vision
                 </h2>
               </div>
               <p className="text-slate-700 text-base leading-relaxed font-medium pt-2">
@@ -106,7 +109,7 @@ export default function About() {
                 <Target size={24} />
               </div>
               <h2 className="text-2xl font-extrabold text-[#1E3A8A] font-display">
-                Our Mission
+                Mission
               </h2>
             </div>
 
@@ -162,7 +165,59 @@ export default function About() {
           </div>
         </motion.div>
 
+        {/* 4. Principal's Message Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="academic-card p-8 sm:p-12 space-y-6"
+        >
+          <div className="flex items-center gap-3.5 border-b border-slate-100 pb-4">
+            <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center shrink-0 shadow-xs">
+              <Quote size={24} />
+            </div>
+            <div>
+              <h2 className="text-2xl font-extrabold text-[#1E3A8A] font-display">
+                Principal's Message
+              </h2>
+              <p className="text-xs text-amber-600 font-extrabold uppercase tracking-wider">
+                Leadership Desk
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
+            <p className="font-extrabold text-[#1E3A8A] text-base sm:text-lg">
+              Dear Students, Parents, and Well-Wishers,
+            </p>
+            <p className="font-bold text-slate-800">
+              Welcome to Sri Vidya Chetana Degree College.
+            </p>
+            <p>
+              Education is not merely about earning a degree; it is about developing knowledge, character, skills, and the confidence to face future challenges. At Sri Vidya Chetana Degree College, we are committed to providing a student-centric learning environment that promotes academic excellence, critical thinking, ethical values, and holistic development.
+            </p>
+            <p>
+              Our unique Integrated Degree Programme combines university education with structured coaching for UPSC Civil Services (IAS/IPS/IFS), KPSC (KAS), Banking, SSC, Railways, and Chartered Accountancy (CA). This approach enables students to build a strong academic foundation while preparing for competitive examinations and diverse career opportunities.
+            </p>
+            <p>
+              With the guidance of our dedicated faculty and mentors, students are encouraged to develop leadership, communication, digital, and employability skills that will help them succeed in higher education, professional careers, entrepreneurship, and public service.
+            </p>
+            <p>
+              I encourage every student to make the most of the opportunities available, pursue excellence with determination, uphold integrity in all actions, and strive to become responsible citizens who contribute positively to society and the nation.
+            </p>
+            <p>
+              I wish you a rewarding, successful, and inspiring academic journey at Sri Vidya Chetana Degree College.
+            </p>
+
+            <div className="pt-6 border-t border-slate-100 flex flex-col items-start gap-0.5 font-display">
+              <p className="font-extrabold text-base text-[#1E3A8A]">Principal</p>
+              <p className="text-amber-600 font-extrabold text-xs tracking-wider uppercase">Sri Vidya Chetana Degree College</p>
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </div>
   );
 }
+
