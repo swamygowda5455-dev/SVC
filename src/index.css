@@ -47,6 +47,11 @@ body.overflow-hidden {
   overflow: hidden;
 }
 
+/* Global Content Justification for all paragraphs and content text */
+p, article p, section p, .academic-card p, blockquote p {
+  text-align: justify;
+}
+
 /* Fluid Typography scaling for H1, H2, H3 */
 .fluid-h1 {
   font-size: clamp(1.75rem, 4vw + 1rem, 3.75rem);
