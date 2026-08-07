@@ -122,10 +122,10 @@ export default function Hero({ branding }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex items-center justify-center gap-2 text-amber-300 font-extrabold text-sm sm:text-base tracking-wide uppercase"
+              className="flex items-center justify-center gap-2 text-amber-300 font-extrabold text-xs sm:text-sm md:text-base tracking-wide uppercase text-center max-w-3xl mx-auto"
             >
-              <GraduationCap size={20} className="text-amber-400 shrink-0" />
-              <span>Affiliated to Bengaluru North University</span>
+              <GraduationCap size={20} className="text-amber-400 shrink-0 hidden sm:inline-block" />
+              <span>Affiliated to Bengaluru North University | Degree Integrated with Civil Service Exam Preparation &amp; Skill Development</span>
             </motion.div>
 
             {/* Description */}

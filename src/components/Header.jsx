@@ -66,7 +66,7 @@ export default function Header({ branding }) {
         { label: "Gurukul Sankalpa 3-Yr Batch", path: "/courses/gurukul-sankalpa" }
       ]
     },
-    { label: "Admissions", shortLabel: "Admissions", icon: GraduationCap, path: "/admissions" },
+    { label: "Admission Open – Apply Now", shortLabel: "Apply", icon: GraduationCap, path: "/admissions", isCTA: true },
     { 
       label: "Recent News", 
       shortLabel: "News",
@@ -150,57 +150,47 @@ export default function Header({ branding }) {
             />
             <div>
               <h1 className="text-xs sm:text-base md:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-tight font-display uppercase group-hover:text-amber-300 transition-colors">
-                {branding?.collegeName || "Sri Vidya Chetana"}
+                {branding?.collegeName || "Sri Vidya Chetana Degree College"}
               </h1>
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-0.5">
-                <span className="text-[9px] sm:text-xs uppercase tracking-widest text-amber-300 font-extrabold">
-                  Degree College
-                </span>
-                <span className="text-[10px] sm:text-xs text-amber-200/90 font-semibold border-l border-white/20 pl-2">
-                  Affiliated to Bengaluru North University
-                </span>
-                <span className="hidden xl:inline-block text-xs text-slate-300 font-medium border-l border-white/20 pl-2">
-                  Chintamani, Chikkaballapura
-                </span>
-              </div>
             </div>
           </Link>
 
-          {/* Right Header Controls: Direct Contact Pills, Apply Button & Mobile Toggle */}
+          {/* Right Header Controls: Vertical Contact Info, Register/Login Buttons & Mobile Toggle */}
           <div className="flex items-center gap-3 shrink-0">
             
-            {/* Desktop Quick Contact Links */}
-            <div className="hidden lg:flex items-center gap-4 text-xs font-semibold pr-2 border-r border-white/20">
-              <a 
-                href={`tel:${branding?.phone || "+919448123456"}`}
-                className="flex items-center gap-1.5 hover:text-amber-300 transition-colors"
-              >
-                <Phone size={13} className="text-amber-400" />
-                <span>{branding?.phone || "+91 94481 23456"}</span>
-              </a>
+            {/* Desktop Quick Contact Links (Stacked Vertically) */}
+            <div className="hidden lg:flex flex-col justify-center gap-0.5 text-[11px] font-semibold pr-3 border-r border-white/20">
               <a 
                 href={`mailto:${branding?.email || "admissions@srividyachetana.edu.in"}`}
                 className="flex items-center gap-1.5 hover:text-amber-300 transition-colors"
               >
-                <Mail size={13} className="text-amber-400" />
-                <span className="max-w-[190px] truncate">{branding?.email || "admissions@srividyachetana.edu.in"}</span>
+                <Mail size={12} className="text-amber-400 shrink-0" />
+                <span className="max-w-[210px] truncate">{branding?.email || "admissions@srividyachetana.edu.in"}</span>
+              </a>
+              <a 
+                href={`tel:${branding?.phone || "+919448123456"}`}
+                className="flex items-center gap-1.5 hover:text-amber-300 transition-colors"
+              >
+                <Phone size={12} className="text-amber-400 shrink-0" />
+                <span>{branding?.phone || "+91 94481 23456"}</span>
               </a>
             </div>
 
-            {/* Admissions Badge */}
-            <span className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40 text-xs font-extrabold">
-              <Sparkles size={13} className="animate-pulse text-amber-400" />
-              Admissions Open 2026-27
-            </span>
-
-            {/* Apply Button */}
-            <Link
-              to="/admissions"
-              className="hidden sm:flex bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold px-4 sm:px-5 py-2.5 rounded-xl shadow-lg hover:shadow-amber-400/30 transition-all transform hover:-translate-y-0.5 items-center gap-2 text-xs sm:text-sm uppercase tracking-wider shrink-0"
-            >
-              <GraduationCap size={18} />
-              <span>Apply Now</span>
-            </Link>
+            {/* Register & Login Buttons */}
+            <div className="hidden sm:flex items-center gap-2">
+              <Link
+                to="/admissions"
+                className="bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold px-3.5 py-1.5 rounded-lg shadow-sm transition-all text-xs uppercase tracking-wider cursor-pointer"
+              >
+                Register
+              </Link>
+              <Link
+                to="/admissions"
+                className="bg-white/10 hover:bg-white/20 text-white font-extrabold px-3.5 py-1.5 rounded-lg border border-white/30 transition-all text-xs uppercase tracking-wider cursor-pointer"
+              >
+                Login
+              </Link>
+            </div>
 
             {/* Mobile / Tablet Menu Toggle */}
             <button
@@ -234,6 +224,19 @@ export default function Header({ branding }) {
               const active = isNavActive(item);
               const hasDropdown = Boolean(item.dropdown);
               const isOpen = activeDropdown === item.label;
+
+              if (item.isCTA) {
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.path}
+                    className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs xl:text-sm font-extrabold bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 shadow-md shadow-amber-400/20 transition-all transform hover:-translate-y-0.5 whitespace-nowrap shrink-0 border border-amber-300"
+                  >
+                    <GraduationCap size={16} />
+                    <span>{item.label}</span>
+                  </Link>
+                );
+              }
 
               return (
                 <div
@@ -350,6 +353,20 @@ export default function Header({ branding }) {
                   const active = isNavActive(item);
                   const hasDropdown = Boolean(item.dropdown);
                   const isSubOpen = expandedSubmenu === item.label;
+
+                  if (item.isCTA) {
+                    return (
+                      <div key={item.label} className="rounded-xl overflow-hidden bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 shadow-md">
+                        <Link
+                          to={item.path}
+                          className="flex items-center gap-2.5 p-3 text-xs font-extrabold text-slate-950 uppercase tracking-wide"
+                        >
+                          <IconComp size={18} className="text-slate-950" />
+                          <span>{item.label}</span>
+                        </Link>
+                      </div>
+                    );
+                  }
 
                   return (
                     <div key={item.label} className="rounded-xl overflow-hidden bg-white/5 border border-white/5">
