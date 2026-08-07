@@ -264,61 +264,79 @@ export default function Hero({ branding }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* 3. OUR VISION                                                             */}
+      {/* 3. OUR VISION & MISSION (SIDE-BY-SIDE)                                   */}
       {/* ========================================================================= */}
-      <section className="py-16 bg-slate-50 border-t border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider">
-            <Eye size={16} className="text-amber-600" />
-            <span>Institutional Roadmap</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E3A8A] font-display">
-            Our Vision
-          </h2>
-          <div className="bg-white p-8 sm:p-10 rounded-3xl border border-amber-400/30 shadow-lg relative">
-            <p className="text-slate-800 text-base sm:text-lg md:text-xl font-bold leading-relaxed italic text-center">
-              "To be a centre of excellence in higher education by empowering students with knowledge, skills, values, and leadership to become competent professionals, responsible citizens, and future leaders who contribute to nation-building."
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 4. OUR MISSION                                                            */}
-      {/* ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-white border-t border-slate-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="text-center space-y-3">
-            <div className="inline-flex items-center gap-2 bg-blue-100 text-[#1E3A8A] px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider">
-              <Target size={16} className="text-[#1E3A8A]" />
-              <span>Core Commitments</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E3A8A] font-display">
-              Our Mission
+      <section className="py-16 sm:py-24 bg-white border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          
+          <div className="text-center space-y-3 max-w-3xl mx-auto">
+            <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
+              FOUNDATIONAL PRINCIPLES
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] font-display">
+              Our Vision &amp; Mission
             </h2>
-            <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full" />
+            <div className="w-16 h-1 bg-gradient-to-r from-[#1E3A8A] via-amber-400 to-amber-500 mx-auto rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            {[
-              "Deliver quality, affordable, and student-centric higher education.",
-              "Integrate university education with competitive examination preparation.",
-              "Develop leadership, communication, digital, and employability skills.",
-              "Promote innovation, critical thinking, research, and lifelong learning.",
-              "Nurture ethical values, discipline, and social responsibility.",
-              "Empower students to excel in higher education, careers, entrepreneurship, and public service."
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="flex items-start gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-200/80 shadow-xs hover:border-amber-400/50 transition-colors"
-              >
-                <CheckCircle2 size={22} className="text-amber-500 shrink-0 mt-0.5" />
-                <p className="text-slate-800 text-sm sm:text-base font-semibold leading-snug">
-                  {item}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            
+            {/* Vision Card */}
+            <div className="bg-slate-50 p-8 sm:p-10 rounded-3xl border border-amber-400/30 shadow-md flex flex-col justify-between space-y-6 hover:border-amber-400 transition-colors">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-400/20 text-amber-600 flex items-center justify-center font-bold">
+                    <Eye size={24} className="text-amber-600" />
+                  </div>
+                  <div>
+                    <span className="text-xs uppercase font-extrabold text-amber-600 tracking-wider">Institutional Roadmap</span>
+                    <h3 className="text-2xl font-extrabold text-[#1E3A8A]">Our Vision</h3>
+                  </div>
+                </div>
+                <p className="text-slate-800 text-base sm:text-lg font-semibold leading-relaxed italic border-l-4 border-amber-400 pl-4 py-2 bg-amber-50/50 rounded-r-xl">
+                  "To be a centre of excellence in higher education by empowering students with knowledge, skills, values, and leadership to become competent professionals, responsible citizens, and future leaders who contribute to nation-building."
                 </p>
               </div>
-            ))}
+              <div className="pt-4 border-t border-slate-200/80 text-xs font-extrabold text-amber-700 tracking-wide uppercase">
+                Academic Excellence • Leadership • Nation Building
+              </div>
+            </div>
+
+            {/* Mission Card */}
+            <div className="bg-slate-50 p-8 sm:p-10 rounded-3xl border border-slate-200/90 shadow-md flex flex-col justify-between space-y-6 hover:border-amber-400 transition-colors">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-100 text-[#1E3A8A] flex items-center justify-center font-bold">
+                    <Target size={24} className="text-[#1E3A8A]" />
+                  </div>
+                  <div>
+                    <span className="text-xs uppercase font-extrabold text-[#1E3A8A] tracking-wider">Core Commitments</span>
+                    <h3 className="text-2xl font-extrabold text-[#1E3A8A]">Our Mission</h3>
+                  </div>
+                </div>
+
+                <div className="space-y-3 pt-1">
+                  {[
+                    "Deliver quality, affordable, and student-centric higher education.",
+                    "Integrate university education with competitive examination preparation.",
+                    "Develop leadership, communication, digital, and employability skills.",
+                    "Promote innovation, critical thinking, research, and lifelong learning.",
+                    "Nurture ethical values, discipline, and social responsibility.",
+                    "Empower students to excel in higher education, careers, entrepreneurship, and public service."
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <CheckCircle2 size={18} className="text-amber-500 shrink-0 mt-0.5" />
+                      <p className="text-slate-800 text-xs sm:text-sm font-semibold leading-snug">
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
           </div>
+
         </div>
       </section>
 
