@@ -94,55 +94,62 @@ export default function Admissions({ admissions, branding, courses = [], default
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {courses.map((course) => (
-              <div
-                key={course.id}
-                className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-              >
-                <div className="relative h-44 w-full overflow-hidden">
-                  <img src={course.image} alt={course.name} className="w-full h-full object-cover" />
-                  <span className="absolute top-3 left-3 bg-[#1E3A8A] text-amber-300 text-[9px] font-extrabold px-2.5 py-1 rounded-lg border border-amber-400/30">
-                    {course.category}
-                  </span>
-                </div>
-                <div className="p-5 space-y-3 flex-grow flex flex-col justify-between">
-                  <div>
-                    <h4 className="text-base font-bold text-slate-800 font-display line-clamp-1">{course.name}</h4>
-                    <p className="text-slate-500 text-xs mt-1 line-clamp-2 leading-relaxed">{course.description}</p>
+            {courses.map((course) => {
+              const targetSlug = course.slug || course.id;
+              return (
+                <div
+                  key={course.id}
+                  onClick={() => navigate(`/courses/${targetSlug}`)}
+                  className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer group"
+                >
+                  <div className="relative h-44 w-full overflow-hidden">
+                    <img src={course.image} alt={course.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <span className="absolute top-3 left-3 bg-[#1E3A8A] text-amber-300 text-[9px] font-extrabold px-2.5 py-1 rounded-lg border border-amber-400/30">
+                      {course.category}
+                    </span>
                   </div>
+                  <div className="p-5 space-y-3 flex-grow flex flex-col justify-between">
+                    <div>
+                      <h4 className="text-base font-bold text-slate-800 group-hover:text-[#1E3A8A] transition-colors font-display line-clamp-1">{course.name}</h4>
+                      <p className="text-slate-500 text-xs mt-1 line-clamp-2 leading-relaxed">{course.description}</p>
+                    </div>
 
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
-                    <span className="text-slate-500">{course.duration}</span>
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={(e) => handleShareCourse(e, course.slug || course.id)}
-                        className="text-slate-500 hover:text-[#1E3A8A] bg-slate-100 hover:bg-amber-50 border border-slate-200 hover:border-amber-300 p-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-[11px]"
-                        title="Share course link"
-                      >
-                        {copiedSlug === (course.slug || course.id) ? (
-                          <>
-                            <Check size={13} className="text-emerald-600" />
-                            <span className="text-emerald-600 font-bold">Copied!</span>
-                          </>
-                        ) : (
-                          <>
-                            <Share2 size={13} className="text-amber-500" />
-                            <span>Share</span>
-                          </>
-                        )}
-                      </button>
-                      <button
-                        onClick={() => navigate(`/courses/${course.slug || course.id}`)}
-                        className="text-[#1E3A8A] hover:text-amber-600 font-extrabold flex items-center gap-1 cursor-pointer"
-                      >
-                        <span>Explore</span>
-                        <ArrowRight size={14} className="text-amber-500" />
-                      </button>
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
+                      <span className="text-slate-500">{course.duration}</span>
+                      <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                        <button
+                          onClick={(e) => handleShareCourse(e, targetSlug)}
+                          className="text-slate-500 hover:text-[#1E3A8A] bg-slate-100 hover:bg-amber-50 border border-slate-200 hover:border-amber-300 p-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-[11px]"
+                          title="Share course link"
+                        >
+                          {copiedSlug === targetSlug ? (
+                            <>
+                              <Check size={13} className="text-emerald-600" />
+                              <span className="text-emerald-600 font-bold">Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Share2 size={13} className="text-amber-500" />
+                              <span>Share</span>
+                            </>
+                          )}
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/courses/${targetSlug}`);
+                          }}
+                          className="text-[#1E3A8A] hover:text-amber-600 font-extrabold flex items-center gap-1 cursor-pointer"
+                        >
+                          <span>Explore</span>
+                          <ArrowRight size={14} className="text-amber-500" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 

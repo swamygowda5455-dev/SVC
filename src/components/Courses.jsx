@@ -93,7 +93,8 @@ export default function Courses({ courses }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative"
+                onClick={() => navigate(`/courses/${course.slug || course.id}`)}
+                className="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative cursor-pointer"
               >
                 {/* Course Thumbnail Image */}
                 <div className="relative h-52 w-full overflow-hidden shrink-0">
@@ -132,17 +133,23 @@ export default function Courses({ courses }) {
                   </div>
 
                   {/* Action Buttons inside Card */}
-                  <div className="mt-8 pt-4 border-t border-slate-50 flex gap-2">
+                  <div className="mt-8 pt-4 border-t border-slate-50 flex gap-2" onClick={(e) => e.stopPropagation()}>
                     <button
                       id={`learn-more-${course.id}`}
-                      onClick={() => navigate(`/courses/${course.slug || course.id}`)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/courses/${course.slug || course.id}`);
+                      }}
                       className="flex-1 bg-slate-50 hover:bg-amber-50/50 text-slate-700 hover:text-[#1E3A8A] font-extrabold text-xs py-3 px-4 rounded-xl border border-slate-200/60 hover:border-amber-300 transition-all cursor-pointer font-display text-center"
                     >
                       View Details
                     </button>
                     <button
                       id={`apply-course-${course.id}`}
-                      onClick={() => navigate(`/courses/${course.slug || course.id}#apply-form-section`)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/courses/${course.slug || course.id}#apply-form-section`);
+                      }}
                       className="flex-1 bg-[#1E3A8A] hover:bg-blue-900 text-amber-300 font-extrabold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-md shadow-blue-900/10 cursor-pointer font-display border border-amber-400/20"
                     >
                       <span>Apply</span>

@@ -35,19 +35,26 @@ export default function About() {
     { title: "Nation Building", desc: "Preparing responsible graduates who contribute to the progress and development of India.", icon: Flag }
   ];
 
+  const visionPillars = [
+    { title: "Academic Excellence", desc: "Setting benchmarks in higher education through quality curriculum, innovative teaching, and continuous assessment." },
+    { title: "Holistic Development", desc: "Integrating degree education with competitive examination prep and industry skill development." },
+    { title: "Ethical & Values-Driven Leadership", desc: "Instilling discipline, moral integrity, empathy, and responsible leadership in every graduate." },
+    { title: "Nation Building & Social Empowerment", desc: "Nurturing socially conscious citizens equipped to serve the nation in public, corporate, and social sectors." }
+  ];
+
   return (
     <div id="about" className="py-16 sm:py-24 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
+        <div className="text-center max-w-3xl mx-auto space-y-4 flex flex-col items-center justify-center">
           <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4.5 py-1.5 rounded-full shadow-xs">
             ABOUT US
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E3A8A] tracking-tight font-display">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E3A8A] tracking-tight font-display text-center w-full">
             About Sri Vidya Chetana Degree College
           </h1>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed text-center w-full mx-auto">
             Empowering students with academic excellence, competitive coaching, and values for lifelong success.
           </p>
           <div className="w-16 h-1 bg-gradient-to-r from-[#1E3A8A] via-amber-400 to-amber-500 mx-auto rounded-full mt-3" />
@@ -72,56 +79,95 @@ export default function About() {
 
         {/* 2. Vision & Mission Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-          {/* Vision */}
+          
+          {/* Vision Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="academic-card p-8 sm:p-10 space-y-6 flex flex-col justify-between"
+            className="academic-card p-8 sm:p-10 flex flex-col justify-between space-y-6 hover:border-amber-400 transition-colors h-full"
           >
-            <div className="space-y-4">
-              <div className="flex items-center gap-3.5">
+            <div className="space-y-5">
+              <div className="flex items-center gap-3.5 border-b border-slate-100 pb-4">
                 <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center shrink-0 shadow-xs">
                   <Eye size={24} />
                 </div>
-                <h2 className="text-2xl font-extrabold text-[#1E3A8A] font-display">
-                  Vision
-                </h2>
+                <div>
+                  <span className="text-xs uppercase font-extrabold text-amber-600 tracking-wider">Institutional Roadmap</span>
+                  <h2 className="text-2xl font-extrabold text-[#1E3A8A] font-display">
+                    Vision
+                  </h2>
+                </div>
               </div>
-              <p className="text-slate-700 text-base leading-relaxed font-medium pt-2">
-                To be a centre of excellence in higher education, empowering students with knowledge, skills, values, and leadership to become competent professionals, responsible citizens, and future leaders who contribute to nation-building.
-              </p>
+
+              {/* Main Vision Statement Highlight Box */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/70 border border-amber-300/60 text-slate-800 font-semibold text-sm sm:text-base leading-relaxed italic border-l-4 border-l-amber-500">
+                "To be a centre of excellence in higher education by empowering students with knowledge, skills, values, and leadership to become competent professionals, responsible citizens, and future leaders who contribute to nation-building."
+              </div>
+
+              {/* Vision Pillars */}
+              <div className="space-y-3 pt-2">
+                <h3 className="text-xs font-extrabold text-[#1E3A8A] uppercase tracking-wider">Strategic Pillars</h3>
+                <div className="space-y-3">
+                  {visionPillars.map((pillar, idx) => (
+                    <div key={idx} className="flex items-start gap-3 text-slate-700 text-xs sm:text-sm">
+                      <CheckCircle2 size={18} className="text-amber-500 shrink-0 mt-0.5" />
+                      <div>
+                        <strong className="font-extrabold text-slate-900">{pillar.title}: </strong>
+                        <span className="text-slate-600 leading-relaxed">{pillar.desc}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
+
             <div className="pt-4 border-t border-slate-100 text-xs text-amber-600 font-extrabold tracking-wider uppercase">
               Academic Excellence • Leadership • Nation Building
             </div>
           </motion.div>
 
-          {/* Mission */}
+          {/* Mission Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="academic-card p-8 sm:p-10 space-y-6"
+            className="academic-card p-8 sm:p-10 flex flex-col justify-between space-y-6 hover:border-amber-400 transition-colors h-full"
           >
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#1E3A8A] border border-blue-200 flex items-center justify-center shrink-0 shadow-xs">
-                <Target size={24} />
+            <div className="space-y-5">
+              <div className="flex items-center gap-3.5 border-b border-slate-100 pb-4">
+                <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#1E3A8A] border border-blue-200 flex items-center justify-center shrink-0 shadow-xs">
+                  <Target size={24} />
+                </div>
+                <div>
+                  <span className="text-xs uppercase font-extrabold text-[#1E3A8A] tracking-wider">Core Commitments</span>
+                  <h2 className="text-2xl font-extrabold text-[#1E3A8A] font-display">
+                    Mission
+                  </h2>
+                </div>
               </div>
-              <h2 className="text-2xl font-extrabold text-[#1E3A8A] font-display">
-                Mission
-              </h2>
+
+              {/* Mission Intro Highlight Box */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-blue-50/70 border border-blue-200/80 text-slate-800 font-semibold text-sm sm:text-base leading-relaxed border-l-4 border-l-[#1E3A8A]">
+                Our core commitments to nurture student success, empower diverse communities, and deliver career-focused educational excellence.
+              </div>
+
+              {/* Mission Items */}
+              <ul className="space-y-3 pt-1">
+                {missionList.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-slate-700 text-xs sm:text-sm font-medium">
+                    <CheckCircle2 size={18} className="text-amber-500 shrink-0 mt-0.5" />
+                    <span className="leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <ul className="space-y-3.5 pt-1">
-              {missionList.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-slate-700 text-xs sm:text-sm font-medium">
-                  <CheckCircle2 size={18} className="text-amber-500 shrink-0 mt-0.5" />
-                  <span className="leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="pt-4 border-t border-slate-100 text-xs text-[#1E3A8A] font-extrabold tracking-wider uppercase">
+              Affordability • Integrated Learning • Inclusivity
+            </div>
           </motion.div>
+
         </div>
 
         {/* 3. Core Values Grid */}

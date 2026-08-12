@@ -219,11 +219,11 @@ export default function Hero({ branding }) {
       <section className="py-16 sm:py-24 bg-white relative">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-center">
           
-          <div className="space-y-3">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] tracking-tight font-display">
+          <div className="space-y-3 flex flex-col items-center justify-center text-center w-full">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] tracking-tight font-display text-center w-full">
               Welcome to Sri Vidya Chetana Degree College
             </h2>
-            <p className="text-amber-600 text-sm sm:text-base font-extrabold tracking-wide">
+            <p className="!text-center text-amber-600 text-sm sm:text-base font-extrabold tracking-wide w-full mx-auto" style={{ textAlign: "center" }}>
               Empowering Students. Inspiring Excellence. Building Futures.
             </p>
             <div className="w-16 h-1 bg-gradient-to-r from-[#1E3A8A] via-amber-400 to-amber-500 mx-auto rounded-full mt-3" />
@@ -282,10 +282,10 @@ export default function Hero({ branding }) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
             
             {/* Vision Card */}
-            <div className="bg-slate-50 p-8 sm:p-10 rounded-3xl border border-amber-400/30 shadow-md flex flex-col justify-between space-y-6 hover:border-amber-400 transition-colors">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-400/20 text-amber-600 flex items-center justify-center font-bold">
+            <div className="bg-slate-50 p-8 sm:p-10 rounded-3xl border border-amber-400/30 shadow-md flex flex-col justify-between space-y-6 hover:border-amber-400 transition-colors h-full">
+              <div className="space-y-5">
+                <div className="flex items-center gap-3 border-b border-slate-200/80 pb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-400/20 text-amber-600 flex items-center justify-center font-bold shrink-0">
                     <Eye size={24} className="text-amber-600" />
                   </div>
                   <div>
@@ -293,9 +293,30 @@ export default function Hero({ branding }) {
                     <h3 className="text-2xl font-extrabold text-[#1E3A8A]">Our Vision</h3>
                   </div>
                 </div>
-                <p className="text-slate-800 text-base sm:text-lg font-semibold leading-relaxed italic border-l-4 border-amber-400 pl-4 py-2 bg-amber-50/50 rounded-r-xl">
+
+                <div className="p-4 sm:p-5 rounded-2xl bg-amber-100/50 border border-amber-300/80 text-slate-800 font-semibold text-sm sm:text-base leading-relaxed italic border-l-4 border-l-amber-500">
                   "To be a centre of excellence in higher education by empowering students with knowledge, skills, values, and leadership to become competent professionals, responsible citizens, and future leaders who contribute to nation-building."
-                </p>
+                </div>
+
+                <div className="space-y-3 pt-1">
+                  <h4 className="text-xs font-extrabold text-[#1E3A8A] uppercase tracking-wider">Strategic Pillars</h4>
+                  <div className="space-y-3">
+                    {[
+                      { title: "Academic Excellence", desc: "Highest benchmarks in teaching, learning, and research." },
+                      { title: "Holistic Development", desc: "Degree education integrated with competitive exam prep." },
+                      { title: "Ethical Leadership", desc: "Nurturing values, discipline, integrity, and social duty." },
+                      { title: "Nation Building", desc: "Graduates equipped to contribute positively to society." }
+                    ].map((pillar, idx) => (
+                      <div key={idx} className="flex items-start gap-3 text-slate-800 text-xs sm:text-sm font-semibold">
+                        <CheckCircle2 size={18} className="text-amber-500 shrink-0 mt-0.5" />
+                        <div>
+                          <span className="font-extrabold text-slate-900">{pillar.title}: </span>
+                          <span className="text-slate-600 font-normal">{pillar.desc}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
               <div className="pt-4 border-t border-slate-200/80 text-xs font-extrabold text-amber-700 tracking-wide uppercase">
                 Academic Excellence • Leadership • Nation Building
@@ -303,16 +324,20 @@ export default function Hero({ branding }) {
             </div>
 
             {/* Mission Card */}
-            <div className="bg-slate-50 p-8 sm:p-10 rounded-3xl border border-slate-200/90 shadow-md flex flex-col justify-between space-y-6 hover:border-amber-400 transition-colors">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-blue-100 text-[#1E3A8A] flex items-center justify-center font-bold">
+            <div className="bg-slate-50 p-8 sm:p-10 rounded-3xl border border-slate-200/90 shadow-md flex flex-col justify-between space-y-6 hover:border-amber-400 transition-colors h-full">
+              <div className="space-y-5">
+                <div className="flex items-center gap-3 border-b border-slate-200/80 pb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-100 text-[#1E3A8A] flex items-center justify-center font-bold shrink-0">
                     <Target size={24} className="text-[#1E3A8A]" />
                   </div>
                   <div>
                     <span className="text-xs uppercase font-extrabold text-[#1E3A8A] tracking-wider">Core Commitments</span>
                     <h3 className="text-2xl font-extrabold text-[#1E3A8A]">Our Mission</h3>
                   </div>
+                </div>
+
+                <div className="p-4 sm:p-5 rounded-2xl bg-blue-100/50 border border-blue-200/80 text-slate-800 font-semibold text-sm sm:text-base leading-relaxed border-l-4 border-l-[#1E3A8A]">
+                  Delivering affordable, student-centric higher education paired with competitive examination readiness and leadership skills.
                 </div>
 
                 <div className="space-y-3 pt-1">
@@ -322,7 +347,7 @@ export default function Hero({ branding }) {
                     "Develop leadership, communication, digital, and employability skills.",
                     "Promote innovation, critical thinking, research, and lifelong learning.",
                     "Nurture ethical values, discipline, and social responsibility.",
-                    "Empower students to excel in higher education, careers, entrepreneurship, and public service."
+                    "Empower students to excel in higher education, careers, and public service."
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-start gap-3">
                       <CheckCircle2 size={18} className="text-amber-500 shrink-0 mt-0.5" />
@@ -332,6 +357,9 @@ export default function Hero({ branding }) {
                     </div>
                   ))}
                 </div>
+              </div>
+              <div className="pt-4 border-t border-slate-200/80 text-xs font-extrabold text-[#1E3A8A] tracking-wide uppercase">
+                Affordability • Integrated Learning • Inclusivity
               </div>
             </div>
 
@@ -539,11 +567,14 @@ export default function Hero({ branding }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             {/* Course 1 */}
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl transition-all">
+            <div 
+              onClick={() => navigate("/courses/ba")}
+              className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group"
+            >
               <span className="inline-block bg-blue-100 text-[#1E3A8A] text-xs font-extrabold px-3 py-1 rounded-full">
                 Undergraduate Degree
               </span>
-              <h3 className="text-lg font-extrabold text-[#1E3A8A]">Bachelor of Arts (B.A.)</h3>
+              <h3 className="text-lg font-extrabold text-[#1E3A8A] group-hover:text-amber-600 transition-colors">Bachelor of Arts (B.A.)</h3>
               <div className="pt-2 border-t border-slate-100 text-slate-700 text-sm font-semibold space-y-1">
                 <p className="text-slate-500 text-xs font-bold uppercase">Specializations</p>
                 <p>Economics • Political Science • Journalism &amp; Mass Communication</p>
@@ -551,11 +582,14 @@ export default function Hero({ branding }) {
             </div>
 
             {/* Course 2 */}
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl transition-all">
+            <div 
+              onClick={() => navigate("/courses/bcom")}
+              className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group"
+            >
               <span className="inline-block bg-amber-100 text-amber-900 text-xs font-extrabold px-3 py-1 rounded-full">
                 Commerce &amp; Finance
               </span>
-              <h3 className="text-lg font-extrabold text-[#1E3A8A]">Bachelor of Commerce (B.Com.)</h3>
+              <h3 className="text-lg font-extrabold text-[#1E3A8A] group-hover:text-amber-600 transition-colors">Bachelor of Commerce (B.Com.)</h3>
               <div className="pt-2 border-t border-slate-100 text-slate-700 text-sm font-semibold space-y-1">
                 <p className="text-slate-500 text-xs font-bold uppercase">Specializations</p>
                 <p>Accounting • Finance • Taxation • Business Studies</p>
@@ -563,11 +597,14 @@ export default function Hero({ branding }) {
             </div>
 
             {/* Course 3 */}
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl transition-all">
+            <div 
+              onClick={() => navigate("/courses/bsc")}
+              className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group"
+            >
               <span className="inline-block bg-emerald-100 text-emerald-900 text-xs font-extrabold px-3 py-1 rounded-full">
                 Science Stream
               </span>
-              <h3 className="text-lg font-extrabold text-[#1E3A8A]">Bachelor of Science (B.Sc.)</h3>
+              <h3 className="text-lg font-extrabold text-[#1E3A8A] group-hover:text-amber-600 transition-colors">Bachelor of Science (B.Sc.)</h3>
               <div className="pt-2 border-t border-slate-100 text-slate-700 text-sm font-semibold space-y-1">
                 <p className="text-slate-500 text-xs font-bold uppercase">Specializations</p>
                 <p>Physics • Mathematics • Computer Science</p>
@@ -575,11 +612,14 @@ export default function Hero({ branding }) {
             </div>
 
             {/* Course 4 */}
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl transition-all">
+            <div 
+              onClick={() => navigate("/courses/bba")}
+              className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group"
+            >
               <span className="inline-block bg-purple-100 text-purple-900 text-xs font-extrabold px-3 py-1 rounded-full">
                 Business &amp; Leadership
               </span>
-              <h3 className="text-lg font-extrabold text-[#1E3A8A]">Bachelor of Business Administration (BBA)</h3>
+              <h3 className="text-lg font-extrabold text-[#1E3A8A] group-hover:text-amber-600 transition-colors">Bachelor of Business Administration (BBA)</h3>
               <div className="pt-2 border-t border-slate-100 text-slate-700 text-sm font-semibold space-y-1">
                 <p className="text-slate-500 text-xs font-bold uppercase">Specializations</p>
                 <p>Business Management • Marketing • Entrepreneurship</p>
@@ -587,11 +627,14 @@ export default function Hero({ branding }) {
             </div>
 
             {/* Course 5 */}
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl transition-all md:col-span-2 lg:col-span-1">
+            <div 
+              onClick={() => navigate("/courses/bca")}
+              className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 hover:shadow-xl hover:-translate-y-1 transition-all md:col-span-2 lg:col-span-1 cursor-pointer group"
+            >
               <span className="inline-block bg-indigo-100 text-indigo-900 text-xs font-extrabold px-3 py-1 rounded-full">
                 Computer Technology
               </span>
-              <h3 className="text-lg font-extrabold text-[#1E3A8A]">Bachelor of Computer Applications (BCA)</h3>
+              <h3 className="text-lg font-extrabold text-[#1E3A8A] group-hover:text-amber-600 transition-colors">Bachelor of Computer Applications (BCA)</h3>
               <div className="pt-2 border-t border-slate-100 text-slate-700 text-sm font-semibold space-y-1">
                 <p className="text-slate-500 text-xs font-bold uppercase">Specializations</p>
                 <p>Programming • Artificial Intelligence • Data Science</p>

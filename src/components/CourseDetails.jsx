@@ -352,8 +352,8 @@ export default function CourseDetails({ courses, branding, admissions }) {
 
           </div>
 
-          {/* Right Sidebar (4/12) */}
-          <div className="lg:col-span-4 space-y-6">
+          {/* Right Sidebar (4/12) - Fixed/Sticky on Scroll throughout the page */}
+          <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-28 lg:self-start z-30">
 
             {/* At a Glance Widget */}
             <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
