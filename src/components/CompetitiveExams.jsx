@@ -134,8 +134,8 @@ export default function CompetitiveExams() {
         </div>
 
         {/* Category Filters */}
-        <div className="flex justify-center overflow-x-auto py-2 scrollbar-none">
-          <div className="bg-white p-1.5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-1.5 max-w-full">
+        <div className="flex justify-start md:justify-center overflow-x-auto py-2 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="bg-white p-1.5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-1.5 max-w-full shrink-0">
             {categories.map((cat) => (
               <button
                 key={cat.id}

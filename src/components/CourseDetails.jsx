@@ -157,53 +157,6 @@ export default function CourseDetails({ courses, branding, admissions }) {
           {/* Main Body (8/12) */}
           <div className="lg:col-span-8 space-y-10">
 
-            {/* 1. COURSE AT A GLANCE */}
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
-              <h3 className="text-xl font-bold font-display text-[#1E3A8A] flex items-center gap-2 border-b border-slate-100 pb-3">
-                <GraduationCap className="text-amber-500" size={22} />
-                <span>Course at a Glance</span>
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-700 font-medium">
-                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Programme</span>
-                  <span className="font-bold text-[#1E3A8A]">{course.atAGlance?.programme || course.name}</span>
-                </div>
-                {course.atAGlance?.subjectCombination && (
-                  <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                    <span className="text-slate-400 block text-[10px] font-bold uppercase">Subject Combination</span>
-                    <span className="font-bold text-slate-800">{course.atAGlance.subjectCombination}</span>
-                  </div>
-                )}
-                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Intake</span>
-                  <span className="font-bold text-slate-800">{course.atAGlance?.intake || "100"}</span>
-                </div>
-                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Duration</span>
-                  <span className="font-bold text-slate-800">{course.duration}</span>
-                </div>
-                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Affiliated To</span>
-                  <span className="font-bold text-[#1E3A8A]">Bengaluru North University</span>
-                </div>
-                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                  <span className="text-slate-400 block text-[10px] font-bold uppercase">College Code</span>
-                  <span className="font-bold text-slate-800">P19GHR0326</span>
-                </div>
-                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                  <span className="text-slate-400 block text-[10px] font-bold uppercase">AISHE Code</span>
-                  <span className="font-bold text-slate-800">{course.atAGlance?.aisheCode || "(To be updated once allotted)"}</span>
-                </div>
-                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Mode of Study</span>
-                  <span className="font-bold text-slate-800">Full-Time</span>
-                </div>
-                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200 sm:col-span-2">
-                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Medium of Instruction</span>
-                  <span className="font-bold text-slate-800">{course.atAGlance?.mediumOfInstruction || "English / Kannada (as per University norms)"}</span>
-                </div>
-              </div>
-            </div>
 
             {/* 2. ABOUT THE COURSE */}
             <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
@@ -234,23 +187,7 @@ export default function CourseDetails({ courses, branding, admissions }) {
               </div>
             )}
 
-            {/* 4. KEY BENEFITS */}
-            {course.keyBenefits && (
-              <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
-                <h3 className="text-xl font-bold font-display text-[#1E3A8A] flex items-center gap-2 border-b border-slate-100 pb-3">
-                  <Sparkles className="text-amber-500" size={22} />
-                  <span>Key Benefits of the Programme</span>
-                </h3>
-                <ul className="space-y-3">
-                  {course.keyBenefits.map((benefit, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-700 font-medium">
-                      <Check size={18} className="text-amber-500 shrink-0 mt-0.5" />
-                      <span>{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+
 
             {/* 5. CAREER OPPORTUNITIES */}
             {course.careerOpportunities && (

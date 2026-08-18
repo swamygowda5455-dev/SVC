@@ -254,22 +254,6 @@ export default function Courses({ courses }) {
                   {/* TAB 1: OVERVIEW & BENEFITS */}
                   {modalTab === "overview" && (
                     <div className="space-y-8 animate-fadeIn">
-                      {/* At a glance block */}
-                      {selectedCourse.atAGlance && (
-                        <div>
-                          <h4 className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-3">Course at a Glance</h4>
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            {Object.entries(selectedCourse.atAGlance).map(([key, val]) => (
-                              <div key={key} className="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs">
-                                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
-                                  {key.replace(/([A-Z])/g, " $1").trim()}
-                                </p>
-                                <p className="text-xs sm:text-sm font-bold text-slate-800 mt-1">{val}</p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
 
                       {/* About section */}
                       <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-xs">
@@ -298,20 +282,7 @@ export default function Courses({ courses }) {
                         </div>
                       )}
 
-                      {/* Key benefits */}
-                      {selectedCourse.keyBenefits && (
-                        <div>
-                          <h4 className="text-base font-bold text-slate-800 font-display mb-4">Key Benefits of the Program</h4>
-                          <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-xs space-y-3">
-                            {selectedCourse.keyBenefits.map((benefit, idx) => (
-                              <div key={idx} className="flex items-start gap-3">
-                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
-                                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{benefit}</p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
+
                     </div>
                   )}
 

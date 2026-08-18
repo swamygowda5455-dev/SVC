@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { 
-  Home, 
-  Info, 
-  BookOpen, 
-  Target, 
-  GraduationCap, 
-  Megaphone, 
-  Briefcase, 
-  Download, 
-  Image, 
-  PhoneCall, 
-  Menu, 
-  X, 
-  ChevronDown, 
-  Sparkles, 
-  Phone, 
-  Mail, 
+import {
+  Home,
+  Info,
+  BookOpen,
+  Target,
+  GraduationCap,
+  Megaphone,
+  Briefcase,
+  Download,
+  Image,
+  PhoneCall,
+  Menu,
+  X,
+  ChevronDown,
+  Sparkles,
+  Phone,
+  Mail,
   MapPin,
   ArrowRight,
   ExternalLink
@@ -35,10 +35,10 @@ export default function Header({ branding }) {
   const navItems = [
     { label: "Home", shortLabel: "Home", icon: Home, path: "/" },
     { label: "About Us", shortLabel: "About", icon: Info, path: "/about" },
-    { 
-      label: "Courses", 
+    {
+      label: "Courses",
       shortLabel: "Courses",
-      icon: BookOpen, 
+      icon: BookOpen,
       path: "/courses",
       dropdown: [
         { label: "All Programs Overview", path: "/courses" },
@@ -51,10 +51,10 @@ export default function Header({ branding }) {
         { label: "Gurukul Sankalpa (3-Year)", path: "/courses/gurukul-sankalpa" }
       ]
     },
-    { 
-      label: "Competitive Exams", 
+    {
+      label: "Competitive Exams",
       shortLabel: "Exams",
-      icon: Target, 
+      icon: Target,
       path: "/competitive-exams",
       dropdown: [
         { label: "All Coaching Streams", path: "/competitive-exams" },
@@ -67,17 +67,17 @@ export default function Header({ branding }) {
       ]
     },
     { label: "Admission Open – Apply Now", shortLabel: "Apply", icon: GraduationCap, path: "/admissions", isCTA: true },
-    { 
-      label: "Recent News", 
+    {
+      label: "Recent News",
       shortLabel: "News",
-      icon: Megaphone, 
-      path: "/recent-news" 
+      icon: Megaphone,
+      path: "/recent-news"
     },
-    { 
-      label: "Job Updates", 
+    {
+      label: "Job Updates",
       shortLabel: "Jobs",
-      icon: Briefcase, 
-      path: "/job-updates" 
+      icon: Briefcase,
+      path: "/job-updates"
     },
     { label: "Downloads", shortLabel: "Downloads", icon: Download, path: "/downloads" },
     { label: "Gallery", shortLabel: "Gallery", icon: Image, path: "/gallery" },
@@ -140,7 +140,7 @@ export default function Header({ branding }) {
       {/* ========================================================================= */}
       <div className="bg-[#1E3A8A] text-white border-b border-amber-400/20 py-3 sm:py-3.5 px-3 sm:px-6 lg:px-8 shadow-md">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
-          
+
           {/* Logo & College Title + Affiliation Info */}
           <Link to="/" className="flex items-center gap-2.5 sm:gap-3.5 group shrink-0">
             <img
@@ -152,22 +152,25 @@ export default function Header({ branding }) {
               <h1 className="text-xs sm:text-base md:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-tight font-display uppercase group-hover:text-amber-300 transition-colors">
                 {branding?.collegeName || "Sri Vidya Chetana Degree College"}
               </h1>
+              <p className="text-[9px] sm:text-[10px] md:text-xs text-amber-300 font-semibold tracking-wide mt-0.5 max-w-[280px] sm:max-w-none break-words">
+                Affiliated to Bengaluru North University | Degree Integrated with Civil Service Exam Preparation &amp; Skill Development
+              </p>
             </div>
           </Link>
 
           {/* Right Header Controls: Vertical Contact Info, Register/Login Buttons & Mobile Toggle */}
           <div className="flex items-center gap-3 shrink-0">
-            
+
             {/* Desktop Quick Contact Links (Stacked Vertically) */}
             <div className="hidden lg:flex flex-col justify-center gap-0.5 text-[11px] font-semibold pr-3 border-r border-white/20">
-              <a 
+              <a
                 href={`mailto:${branding?.email || "admissions@srividyachetana.edu.in"}`}
                 className="flex items-center gap-1.5 hover:text-amber-300 transition-colors"
               >
                 <Mail size={12} className="text-amber-400 shrink-0" />
                 <span className="max-w-[210px] truncate">{branding?.email || "admissions@srividyachetana.edu.in"}</span>
               </a>
-              <a 
+              <a
                 href={`tel:${branding?.phone || "+919448123456"}`}
                 className="flex items-center gap-1.5 hover:text-amber-300 transition-colors"
               >
@@ -211,91 +214,93 @@ export default function Header({ branding }) {
       {/* ========================================================================= */}
       {/* 3. STICKY DESKTOP NAVIGATION MENU BAR                                     */}
       {/* ========================================================================= */}
-      <nav 
-        className={`hidden lg:block w-full bg-[#0B192C] text-white border-b border-amber-400/20 sticky top-0 z-40 transition-all duration-300 ${
-          isScrolled ? "shadow-2xl bg-[#0B192C]/95 backdrop-blur-md py-1.5" : "shadow-lg py-2"
-        }`}
+      <nav
+        className={`hidden lg:block w-full bg-[#0B192C] text-white border-b border-amber-400/20 sticky top-0 z-40 transition-all duration-300 ${isScrolled ? "shadow-2xl bg-[#0B192C]/95 backdrop-blur-md py-1.5" : "shadow-lg py-2"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          
+
           {/* Main Horizontal Navigation Links */}
           <div className="flex items-center justify-between w-full space-x-1 xl:space-x-2">
-            {navItems.map((item) => {
-              const active = isNavActive(item);
-              const hasDropdown = Boolean(item.dropdown);
-              const isOpen = activeDropdown === item.label;
+            
+            {/* Standard Nav Items (Left Aligned) */}
+            <div className="flex items-center space-x-1 xl:space-x-2">
+              {navItems.filter(item => !item.isCTA).map((item) => {
+                const active = isNavActive(item);
+                const hasDropdown = Boolean(item.dropdown);
+                const isOpen = activeDropdown === item.label;
 
-              if (item.isCTA) {
                 return (
-                  <Link
+                  <div
                     key={item.label}
-                    to={item.path}
-                    className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs xl:text-sm font-extrabold bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 shadow-md shadow-amber-400/20 transition-all transform hover:-translate-y-0.5 whitespace-nowrap shrink-0 border border-amber-300"
+                    className="relative"
+                    onMouseEnter={() => hasDropdown && handleMouseEnter(item.label)}
+                    onMouseLeave={() => hasDropdown && handleMouseLeave()}
                   >
-                    <GraduationCap size={16} />
-                    <span>{item.label}</span>
-                  </Link>
-                );
-              }
-
-              return (
-                <div
-                  key={item.label}
-                  className="relative"
-                  onMouseEnter={() => hasDropdown && handleMouseEnter(item.label)}
-                  onMouseLeave={() => hasDropdown && handleMouseLeave()}
-                >
-                  <Link
-                    to={item.path}
-                    className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs xl:text-sm font-bold transition-all duration-200 cursor-pointer whitespace-nowrap ${
-                      active
-                        ? "bg-amber-400 text-slate-950 shadow-md shadow-amber-400/20 font-extrabold"
-                        : "text-slate-100 hover:bg-white/10 hover:text-amber-300"
-                    }`}
-                  >
-                    <span>{item.label}</span>
-                    {hasDropdown && (
-                      <ChevronDown
-                        size={14}
-                        className={`transition-transform duration-200 ${isOpen ? "rotate-180 text-amber-400" : "opacity-70"}`}
-                      />
-                    )}
-                  </Link>
-
-                  {/* Floating Desktop Submenu Dropdown */}
-                  {hasDropdown && (
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.96 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                          transition={{ duration: 0.18, ease: "easeOut" }}
-                          className="absolute top-full left-0 mt-1 w-64 bg-[#070F1B] border border-amber-400/30 rounded-2xl shadow-2xl py-2.5 z-50 backdrop-blur-xl"
-                        >
-                          <div className="px-3 py-1.5 border-b border-white/10 mb-1">
-                            <p className="text-[10px] uppercase font-extrabold tracking-wider text-amber-400">
-                              {item.label} Options
-                            </p>
-                          </div>
-                          {item.dropdown.map((sub) => (
-                            <Link
-                              key={sub.label}
-                              to={sub.path}
-                              onClick={() => setActiveDropdown(null)}
-                              className="flex items-center justify-between px-3.5 py-2 text-xs font-semibold text-slate-200 hover:text-amber-300 hover:bg-white/10 rounded-xl mx-1 transition-colors"
-                            >
-                              <span>{sub.label}</span>
-                              <ArrowRight size={12} className="opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-amber-400" />
-                            </Link>
-                          ))}
-                        </motion.div>
+                    <Link
+                      to={item.path}
+                      className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs xl:text-sm font-bold transition-all duration-200 cursor-pointer whitespace-nowrap ${active
+                          ? "bg-amber-400 text-slate-950 shadow-md shadow-amber-400/20 font-extrabold"
+                          : "text-slate-100 hover:bg-white/10 hover:text-amber-300"
+                        }`}
+                    >
+                      <span>{item.label}</span>
+                      {hasDropdown && (
+                        <ChevronDown
+                          size={14}
+                          className={`transition-transform duration-200 ${isOpen ? "rotate-180 text-amber-400" : "opacity-70"}`}
+                        />
                       )}
-                    </AnimatePresence>
-                  )}
-                </div>
-              );
-            })}
+                    </Link>
+
+                    {/* Floating Desktop Submenu Dropdown */}
+                    {hasDropdown && (
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                            transition={{ duration: 0.18, ease: "easeOut" }}
+                            className="absolute top-full left-0 mt-1 w-64 bg-[#070F1B] border border-amber-400/30 rounded-2xl shadow-2xl py-2.5 z-50 backdrop-blur-xl"
+                          >
+                            <div className="px-3 py-1.5 border-b border-white/10 mb-1">
+                              <p className="text-[10px] uppercase font-extrabold tracking-wider text-amber-400">
+                                {item.label} Options
+                              </p>
+                            </div>
+                            {item.dropdown.map((sub) => (
+                              <Link
+                                key={sub.label}
+                                to={sub.path}
+                                onClick={() => setActiveDropdown(null)}
+                                className="flex items-center justify-between px-3.5 py-2 text-xs font-semibold text-slate-200 hover:text-amber-300 hover:bg-white/10 rounded-xl mx-1 transition-colors"
+                              >
+                                <span>{sub.label}</span>
+                                <ArrowRight size={12} className="opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-amber-400" />
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Right Corner CTA Button */}
+            {navItems.filter(item => item.isCTA).map((item) => (
+              <Link
+                key={item.label}
+                to={item.path}
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs xl:text-sm font-extrabold bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 shadow-md shadow-amber-400/20 transition-all transform hover:-translate-y-0.5 whitespace-nowrap shrink-0 border border-amber-300 ml-auto"
+              >
+                <GraduationCap size={16} />
+                <span>{item.label}</span>
+              </Link>
+            ))}
+
           </div>
 
         </div>
@@ -373,11 +378,10 @@ export default function Header({ branding }) {
                       <div className="flex items-center justify-between">
                         <Link
                           to={item.path}
-                          className={`flex items-center gap-3 flex-1 p-3 text-xs font-bold transition-all ${
-                            active
+                          className={`flex items-center gap-3 flex-1 p-3 text-xs font-bold transition-all ${active
                               ? "bg-amber-400 text-slate-950 font-extrabold"
                               : "text-slate-200 hover:bg-white/10"
-                          }`}
+                            }`}
                         >
                           <IconComp size={18} className={active ? "text-slate-950" : "text-amber-400"} />
                           <span>{item.label}</span>

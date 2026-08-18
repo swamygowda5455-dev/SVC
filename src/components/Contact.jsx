@@ -1,37 +1,9 @@
-import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle, HelpCircle } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import React from "react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import Admissions from "./Admissions.jsx";
 
-export default function Contact({ branding }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "General Admissions Inquiry",
-    message: ""
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      alert("Please fill in all required fields.");
-      return;
-    }
-
-    setIsSubmitting(true);
-    // Simulate sending network request
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setFormData({ name: "", email: "", subject: "General Admissions Inquiry", message: "" });
-    }, 1500);
-  };
+export default function Contact({ branding, admissions, courses }) {
+  // Admissions PDF form integrated below
 
   return (
     <section id="contact" className="py-12 sm:py-20 bg-slate-50 scroll-mt-10">
@@ -113,136 +85,14 @@ export default function Contact({ branding }) {
             </div>
           </div>
 
-          {/* Column Right (7/12): Interactive Contact Form */}
-          <div className="lg:col-span-7 bg-white p-5 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
-            <AnimatePresence mode="wait">
-              {!isSuccess ? (
-                <motion.form
-                  key="contact-form"
-                  onSubmit={handleFormSubmit}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="space-y-6"
-                >
-                  <h3 className="text-lg font-bold font-display text-[#1E3A8A] pb-3 border-b border-slate-200 flex items-center gap-2">
-                    <Send size={18} className="text-amber-500" />
-                    <span>Quick Admissions & Help Request</span>
-                  </h3>
-
-                  {/* Name and Email input */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">
-                        Your Full Name *
-                      </label>
-                      <input
-                        id="contact-name"
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="e.g. Liam Sterling"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-[#1E3A8A] placeholder-slate-400"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">
-                        Your Email *
-                      </label>
-                      <input
-                        id="contact-email"
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="e.g. liam@gmail.com"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-[#1E3A8A] placeholder-slate-400"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  {/* Subject selector */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">
-                      Subject Matter
-                    </label>
-                    <select
-                      id="contact-subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-[#1E3A8A]"
-                    >
-                      <option value="General Admissions Inquiry">General Admissions Inquiry</option>
-                      <option value="Hostel Allotment & Boarding">Hostel Allotment & Boarding</option>
-                      <option value="Fee Structures & Scholarships">Fee Structures & Scholarships</option>
-                      <option value="Academic Curriculum & Credits">Academic Curriculum & Credits</option>
-                    </select>
-                  </div>
-
-                  {/* Message box */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">
-                      Message details *
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      placeholder="Write your academic query details here..."
-                      rows={5}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-[#1E3A8A] placeholder-slate-400 resize-none"
-                      required
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <div className="flex justify-end pt-2">
-                    <button
-                      id="contact-submit"
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="bg-[#1E3A8A] hover:bg-blue-900 text-amber-300 font-extrabold text-xs px-7 py-3 rounded-xl transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-md shadow-blue-900/10 border border-amber-400/30"
-                    >
-                      <span>{isSubmitting ? "Sending Query..." : "Dispatch Message"}</span>
-                      <Send size={16} className="text-amber-400" />
-                    </button>
-                  </div>
-
-                </motion.form>
-              ) : (
-                <motion.div
-                  key="contact-success"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="text-center py-12 space-y-6 flex flex-col justify-center items-center h-full"
-                >
-                  <div className="w-16 h-16 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-full flex items-center justify-center shadow-inner">
-                    <CheckCircle size={32} />
-                  </div>
-
-                  <div className="max-w-md mx-auto">
-                    <h3 className="text-xl font-bold font-display text-emerald-600">Message Dispatched!</h3>
-                    <p className="text-slate-500 text-xs sm:text-sm mt-2 leading-relaxed">
-                      Thank you for contacting the admissions and help desk of Sri Vidya Chetana Degree College. Our counselors will reach back to your email within 24 business hours.
-                    </p>
-                  </div>
-
-                  <button
-                    id="contact-reset-success"
-                    onClick={() => setIsSuccess(false)}
-                    className="bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold px-6 py-2.5 rounded-lg transition-colors cursor-pointer"
-                  >
-                    Submit Another Query
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          {/* Column Right (7/12): Admissions PDF Generator Form */}
+          <div className="lg:col-span-7">
+            <Admissions 
+              onlyForm={true} 
+              branding={branding} 
+              admissions={admissions} 
+              courses={courses} 
+            />
           </div>
 
         </div>

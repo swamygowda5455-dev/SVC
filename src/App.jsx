@@ -34,7 +34,7 @@ function ScrollToTop() {
 
 // HomePage Component
 function HomePage({ cmsData }) {
-  return <Hero branding={cmsData.branding} />;
+  return <Hero branding={cmsData.branding} whyChoose={cmsData.whyChoose} />;
 }
 
 export default function App() {
@@ -69,7 +69,7 @@ export default function App() {
               <Route path="/downloads" element={<Downloads />} />
               <Route path="/gallery" element={<Gallery gallery={cmsData.gallery} />} />
               <Route path="/admissions" element={<Admissions admissions={cmsData.admissions} branding={cmsData.branding} courses={cmsData.courses} />} />
-              <Route path="/contact" element={<Contact branding={cmsData.branding} />} />
+              <Route path="/contact" element={<Contact branding={cmsData.branding} admissions={cmsData.admissions} courses={cmsData.courses} />} />
             </Routes>
           </Suspense>
         </main>
