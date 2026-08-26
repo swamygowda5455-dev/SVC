@@ -1,9 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Award, ArrowUp } from "lucide-react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Award, ArrowUp, X } from "lucide-react";
 import logo from "@/assets/Sri Vidhya Education logo final (quillbot.com).jpg";
+import RefundPolicy from "./RefundPolicy.jsx";
+import PrivacyPolicy from "./PrivacyPolicy.jsx";
+import TermsConditions from "./TermsConditions.jsx";
 
 export default function Footer({ branding, courses }) {
+  const navigate = useNavigate();
+  const [showRefundModal, setShowRefundModal] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -91,6 +99,33 @@ export default function Footer({ branding, courses }) {
               <li>
                 <Link to="/contact" className="hover:text-amber-300 transition-colors">Contact Us</Link>
               </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setShowTermsModal(true)}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-left"
+                >
+                  Terms &amp; Conditions
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setShowPrivacyModal(true)}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-left"
+                >
+                  Privacy Policy
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setShowRefundModal(true)}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-left"
+                >
+                  Refund Policy
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -133,8 +168,29 @@ export default function Footer({ branding, courses }) {
         <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-400 text-[11px] font-medium">
           <p>© {new Date().getFullYear()} {branding.collegeName}. All Rights Reserved.</p>
           
-          <div className="flex items-center gap-6">
-            <Link to="/about" className="hover:text-amber-300 transition-colors">Rules & Regulations</Link>
+          <div className="flex flex-wrap items-center gap-6">
+            <button
+              type="button"
+              onClick={() => setShowTermsModal(true)}
+              className="hover:text-amber-300 transition-colors cursor-pointer"
+            >
+              Terms &amp; Conditions
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowPrivacyModal(true)}
+              className="hover:text-amber-300 transition-colors cursor-pointer"
+            >
+              Privacy Policy
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowRefundModal(true)}
+              className="hover:text-amber-300 transition-colors cursor-pointer"
+            >
+              Refund Policy
+            </button>
+            <Link to="/about" className="hover:text-amber-300 transition-colors">Rules &amp; Regulations</Link>
             <Link to="/contact" className="hover:text-amber-300 transition-colors">Academic Help Desk</Link>
             
             <button
@@ -149,6 +205,99 @@ export default function Footer({ branding, courses }) {
         </div>
 
       </div>
+
+      {/* Terms & Conditions Modal */}
+      {showTermsModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-sm overflow-y-auto"
+          onClick={() => setShowTermsModal(false)}
+        >
+          <div
+            className="bg-white text-slate-900 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-slate-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Sticky Header with Close Button */}
+            <div className="sticky top-0 bg-white/95 backdrop-blur-md px-6 py-4 border-b border-slate-200 flex items-center justify-between z-10">
+              <h3 className="text-sm sm:text-base font-extrabold text-[#1E3A8A]">
+                Terms &amp; Conditions
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowTermsModal(false)}
+                className="p-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-950 transition-colors cursor-pointer"
+                aria-label="Close modal"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Document Content */}
+            <TermsConditions isModal={true} onClose={() => setShowTermsModal(false)} />
+          </div>
+        </div>
+      )}
+
+      {/* Privacy Policy Modal */}
+      {showPrivacyModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-sm overflow-y-auto"
+          onClick={() => setShowPrivacyModal(false)}
+        >
+          <div
+            className="bg-white text-slate-900 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-slate-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Sticky Header with Close Button */}
+            <div className="sticky top-0 bg-white/95 backdrop-blur-md px-6 py-4 border-b border-slate-200 flex items-center justify-between z-10">
+              <h3 className="text-sm sm:text-base font-extrabold text-[#1E3A8A]">
+                Privacy Policy
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowPrivacyModal(false)}
+                className="p-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-950 transition-colors cursor-pointer"
+                aria-label="Close modal"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Document Content */}
+            <PrivacyPolicy isModal={true} onClose={() => setShowPrivacyModal(false)} />
+          </div>
+        </div>
+      )}
+
+      {/* Refund Policy Modal */}
+      {showRefundModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-sm overflow-y-auto"
+          onClick={() => setShowRefundModal(false)}
+        >
+          <div
+            className="bg-white text-slate-900 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-slate-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Sticky Header with Close Button */}
+            <div className="sticky top-0 bg-white/95 backdrop-blur-md px-6 py-4 border-b border-slate-200 flex items-center justify-between z-10">
+              <h3 className="text-sm sm:text-base font-extrabold text-[#1E3A8A]">
+                Refund &amp; Cancellation Policy
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowRefundModal(false)}
+                className="p-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-950 transition-colors cursor-pointer"
+                aria-label="Close modal"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Document Content */}
+            <RefundPolicy isModal={true} onClose={() => setShowRefundModal(false)} />
+          </div>
+        </div>
+      )}
     </footer>
   );
 }

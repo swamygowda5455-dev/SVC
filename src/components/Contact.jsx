@@ -85,13 +85,14 @@ export default function Contact({ branding, admissions, courses }) {
             </div>
           </div>
 
-          {/* Column Right (7/12): Admissions PDF Generator Form */}
+          {/* Column Right (7/12): Admissions Enquiry Form */}
           <div className="lg:col-span-7">
             <Admissions 
               onlyForm={true} 
               branding={branding} 
               admissions={admissions} 
               courses={courses} 
+              formId="Contact_Admissions_Form"
             />
           </div>
 

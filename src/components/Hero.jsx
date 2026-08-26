@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import trishulModelImg from "@/assets/trishul model.png";
+import Contact from "./Contact.jsx";
 import {
   ArrowRight,
   Sparkles,
@@ -14,10 +15,6 @@ import {
   Award,
   Users,
   CheckCircle2,
-  Phone,
-  Mail,
-  MapPin,
-  Share2,
   Laptop,
   Zap,
   TrendingUp,
@@ -27,7 +24,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-export default function Hero({ branding }) {
+export default function Hero({ branding, admissions, courses }) {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -605,84 +602,9 @@ export default function Hero({ branding }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* 10. CONNECT WITH US                                                       */}
+      {/* 10. CONTACT US & ADMISSIONS FORM                                          */}
       {/* ========================================================================= */}
-      <section className="py-16 sm:py-24 bg-white relative">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 text-center">
-
-          <div className="space-y-3">
-            <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full">
-              CONTACT &amp; ADMISSIONS
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] font-display">
-              Connect With Us
-            </h2>
-            <p className="text-amber-600 font-extrabold text-lg sm:text-xl">
-              Start Your Journey Today
-            </p>
-            <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full" />
-          </div>
-
-          <p className="text-slate-700 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto font-medium">
-            Whether you aspire to become a Civil Servant, Business Leader, Scientist, Entrepreneur, or Corporate Professional, Sri Vidya Chetana Degree College is committed to helping you achieve your dreams.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-
-            <button
-              onClick={() => navigate("/contact")}
-              className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 shadow-sm flex flex-col items-center justify-center gap-3 transition-all hover:scale-105 cursor-pointer"
-            >
-              <MapPin size={28} className="text-[#1E3A8A]" />
-              <span className="text-sm font-extrabold text-[#1E3A8A]">📍 Visit Our Campus</span>
-            </button>
-
-            <a
-              href={`tel:${branding?.phone || "+919448123456"}`}
-              className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 shadow-sm flex flex-col items-center justify-center gap-3 transition-all hover:scale-105"
-            >
-              <Phone size={28} className="text-[#1E3A8A]" />
-              <span className="text-sm font-extrabold text-[#1E3A8A]">📞 Call Us</span>
-            </a>
-
-            <a
-              href={`mailto:${branding?.email || "admissions@srividyachetana.edu.in"}`}
-              className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 shadow-sm flex flex-col items-center justify-center gap-3 transition-all hover:scale-105"
-            >
-              <Mail size={28} className="text-[#1E3A8A]" />
-              <span className="text-sm font-extrabold text-[#1E3A8A]">📧 Email Us</span>
-            </a>
-
-            <button
-              onClick={() => navigate("/contact")}
-              className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 shadow-sm flex flex-col items-center justify-center gap-3 transition-all hover:scale-105 cursor-pointer"
-            >
-              <Share2 size={28} className="text-[#1E3A8A]" />
-              <span className="text-sm font-extrabold text-[#1E3A8A]">🌐 Follow Us on Social Media</span>
-            </button>
-
-          </div>
-
-          {/* Admissions Open Banner */}
-          <div className="bg-gradient-to-r from-[#1E3A8A] to-blue-950 text-white p-8 sm:p-10 rounded-3xl shadow-2xl border-2 border-amber-400/40 space-y-6">
-            <div className="space-y-2">
-              <span className="bg-amber-400 text-slate-950 text-xs font-extrabold uppercase px-4 py-1.5 rounded-full inline-block">
-                Admissions Open for 2026–27
-              </span>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white font-display">
-                Apply Today and Build a Future Filled with Opportunities.
-              </h3>
-            </div>
-            <button
-              onClick={() => navigate("/admissions")}
-              className="bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold text-sm uppercase tracking-wider px-8 py-3.5 rounded-full shadow-lg transition-all hover:scale-105 cursor-pointer border border-amber-300"
-            >
-              Apply Now
-            </button>
-          </div>
-
-        </div>
-      </section>
+      <Contact branding={branding} admissions={admissions} courses={courses} />
 
     </div>
   );

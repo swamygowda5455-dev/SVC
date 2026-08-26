@@ -15,6 +15,9 @@ import Gallery from "./components/Gallery.jsx";
 import Admissions from "./components/Admissions.jsx";
 import Testimonials from "./components/Testimonials.jsx";
 import Contact from "./components/Contact.jsx";
+import RefundPolicy from "./components/RefundPolicy.jsx";
+import PrivacyPolicy from "./components/PrivacyPolicy.jsx";
+import TermsConditions from "./components/TermsConditions.jsx";
 import Footer from "./components/Footer.jsx";
 import Chatbot from "./components/Chatbot.jsx";
 
@@ -34,7 +37,14 @@ function ScrollToTop() {
 
 // HomePage Component
 function HomePage({ cmsData }) {
-  return <Hero branding={cmsData.branding} whyChoose={cmsData.whyChoose} />;
+  return (
+    <Hero
+      branding={cmsData.branding}
+      whyChoose={cmsData.whyChoose}
+      admissions={cmsData.admissions}
+      courses={cmsData.courses}
+    />
+  );
 }
 
 export default function App() {
@@ -68,8 +78,12 @@ export default function App() {
               <Route path="/job-updates" element={<JobUpdates newsAndAnnouncements={cmsData.newsAndAnnouncements} />} />
               <Route path="/downloads" element={<Downloads />} />
               <Route path="/gallery" element={<Gallery gallery={cmsData.gallery} />} />
-              <Route path="/admissions" element={<Admissions admissions={cmsData.admissions} branding={cmsData.branding} courses={cmsData.courses} />} />
+              <Route path="/admissions" element={<Admissions admissions={cmsData.admissions} branding={cmsData.branding} courses={cmsData.courses} formId="Admissions_Main_Portal" />} />
               <Route path="/contact" element={<Contact branding={cmsData.branding} admissions={cmsData.admissions} courses={cmsData.courses} />} />
+              <Route path="/refund-policy" element={<RefundPolicy />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-and-conditions" element={<TermsConditions />} />
+              <Route path="/terms-conditions" element={<TermsConditions />} />
             </Routes>
           </Suspense>
         </main>

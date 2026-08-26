@@ -284,7 +284,13 @@ export default function CourseDetails({ courses, branding, admissions }) {
 
             {/* Embedded Application Form Section */}
             <div id="apply-form-section" className="scroll-mt-10">
-              <Admissions admissions={admissions} branding={branding} courses={courses} defaultCourse={course.name} />
+              <Admissions 
+                admissions={admissions} 
+                branding={branding} 
+                courses={courses} 
+                defaultCourse={course.name}
+                formId={`Course_Details_${course.slug || course.id}`}
+              />
             </div>
 
           </div>
