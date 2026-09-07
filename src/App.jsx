@@ -1,71 +1,104 @@
-import React from "react";
-import { ServerCrash, Mail, ShieldAlert, RefreshCw } from "lucide-react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { INITIAL_CMS_DATA } from "./data.js";
+import Header from "./components/Header.jsx";
+import Hero from "./components/Hero.jsx";
+import About from "./components/About.jsx";
+import Courses from "./components/Courses.jsx";
+import CompetitiveExams from "./components/CompetitiveExams.jsx";
+import Departments from "./components/Departments.jsx";
+import WhyChoose from "./components/WhyChoose.jsx";
+import RecentNews from "./components/RecentNews.jsx";
+import JobUpdates from "./components/JobUpdates.jsx";
+import Downloads from "./components/Downloads.jsx";
+import Gallery from "./components/Gallery.jsx";
+import Admissions from "./components/Admissions.jsx";
+import Testimonials from "./components/Testimonials.jsx";
+import Contact from "./components/Contact.jsx";
+import RefundPolicy from "./components/RefundPolicy.jsx";
+import PrivacyPolicy from "./components/PrivacyPolicy.jsx";
+import TermsConditions from "./components/TermsConditions.jsx";
+import Footer from "./components/Footer.jsx";
+import Chatbot from "./components/Chatbot.jsx";
+
+// Lazy load CourseDetails for optimized routing performance
+const CourseDetails = lazy(() => import("./components/CourseDetails.jsx"));
+
+// ScrollToTop component to reset window scroll position on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+// HomePage Component
+function HomePage({ cmsData }) {
+  return (
+    <Hero
+      branding={cmsData.branding}
+      whyChoose={cmsData.whyChoose}
+      admissions={cmsData.admissions}
+      courses={cmsData.courses}
+    />
+  );
+}
 
 export default function App() {
-  const handleReload = () => {
-    window.location.reload();
-  };
+  // Main reactive CMS state of the app
+  const [cmsData] = useState(INITIAL_CMS_DATA);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4 relative overflow-hidden select-none">
-      {/* Background Decorative Gradients */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-red-600/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-amber-600/15 rounded-full blur-3xl pointer-events-none" />
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="min-h-screen flex flex-col bg-slate-50 relative selection:bg-blue-600 selection:text-white">
 
-      <div className="max-w-lg w-full bg-slate-900/90 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-8 shadow-2xl relative z-10 text-center">
-        {/* Status Icon */}
-        <div className="mx-auto mb-6 w-20 h-20 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center relative">
-          <ServerCrash className="w-10 h-10 text-red-500 animate-pulse" />
-          <span className="absolute top-2 right-2 flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-          </span>
-        </div>
+        {/* Website Header */}
+        <Header branding={cmsData.branding} />
 
-        {/* Badge */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-red-500/10 text-red-400 border border-red-500/20 mb-4">
-          <ShieldAlert className="w-3.5 h-3.5" />
-          <span>Error 503 • Service Unavailable</span>
-        </div>
+        {/* Main Website Sections via Router */}
+        <main className="flex-grow">
+          <Suspense fallback={
+            <div className="min-h-[50vh] flex items-center justify-center">
+              <div className="w-8 h-8 border-4 border-[#1E3A8A] border-t-amber-400 rounded-full animate-spin" />
+            </div>
+          }>
+            <Routes>
+              <Route path="/" element={<HomePage cmsData={cmsData} />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/courses" element={<Courses courses={cmsData.courses} />} />
+              <Route path="/courses/:slug" element={<CourseDetails courses={cmsData.courses} branding={cmsData.branding} admissions={cmsData.admissions} />} />
+              <Route path="/competitive-exams" element={<CompetitiveExams />} />
+              <Route path="/departments" element={<Departments departments={cmsData.departments} />} />
+              <Route path="/why-us" element={<WhyChoose whyChoose={cmsData.whyChoose} />} />
+              <Route path="/recent-news" element={<RecentNews newsAndAnnouncements={cmsData.newsAndAnnouncements} />} />
+              <Route path="/job-updates" element={<JobUpdates newsAndAnnouncements={cmsData.newsAndAnnouncements} />} />
+              <Route path="/downloads" element={<Downloads />} />
+              <Route path="/gallery" element={<Gallery gallery={cmsData.gallery} />} />
+              <Route path="/admissions" element={<Admissions admissions={cmsData.admissions} branding={cmsData.branding} courses={cmsData.courses} formId="Admissions_Main_Portal" />} />
+              <Route path="/contact" element={<Contact branding={cmsData.branding} admissions={cmsData.admissions} courses={cmsData.courses} />} />
+              <Route path="/refund-policy" element={<RefundPolicy />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-and-conditions" element={<TermsConditions />} />
+              <Route path="/terms-conditions" element={<TermsConditions />} />
+            </Routes>
+          </Suspense>
+        </main>
 
-        {/* Heading */}
-        <h1 className="text-3xl font-bold tracking-tight text-white mb-3">
-          Server Down
-        </h1>
+        {/* Footer Sitemap */}
+        <Footer
+          branding={cmsData.branding}
+          courses={cmsData.courses}
+          departments={cmsData.departments}
+        />
 
-        {/* Description */}
-        <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-6">
-          The server is currently unreachable or undergoing maintenance. Access to this application has been temporarily suspended.
-        </p>
+        {/* Floating AI Help Assistant */}
+        <Chatbot />
 
-        {/* Admin Contact Box */}
-        <div className="bg-slate-950/60 border border-slate-800/90 rounded-xl p-4 mb-6 text-left space-y-2.5">
-          <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-            Required Action
-          </div>
-          <p className="text-sm text-slate-200 font-medium">
-            Please contact the administrator to restore access.
-          </p>
-          <div className="pt-2 border-t border-slate-800/60 flex items-center gap-1.5 text-xs text-slate-400">
-            <Mail className="w-3.5 h-3.5 text-slate-500" />
-            <span>Contact Administrator</span>
-          </div>
-        </div>
-
-        {/* Action Button */}
-        <button
-          onClick={handleReload}
-          className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-medium text-sm transition-all duration-200 shadow-lg shadow-red-900/20 cursor-pointer active:scale-[0.98]"
-        >
-          <RefreshCw className="w-4 h-4" />
-          <span>Retry Connection</span>
-        </button>
-
-        {/* Footer info */}
-        <p className="mt-6 text-xs text-slate-500">
-          If you believe this is an error, please reach out to your system administrator.
-        </p>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
