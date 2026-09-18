@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Eye, ChevronLeft, ChevronRight, X, Image as ImageIcon } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import SEO from "./SEO.jsx";
 
 export default function Gallery({ gallery }) {
   const [selectedFilter, setSelectedFilter] = useState("All");
@@ -24,6 +25,15 @@ export default function Gallery({ gallery }) {
 
   return (
     <section id="gallery" className="py-12 sm:py-20 bg-white scroll-mt-10">
+      <SEO 
+        title="Campus Photo Gallery | Sri Vidya Chetana Degree College"
+        description="View photos of our campus, smart classrooms, CBT computer lab, science laboratories, library, cultural events, and sports meets at Sri Vidya Chetana Degree College."
+        canonical="https://srividyachetana.in/gallery"
+        breadcrumbs={[
+          { name: "Home", url: "https://srividyachetana.in/" },
+          { name: "Gallery", url: "https://srividyachetana.in/gallery" }
+        ]}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
@@ -32,9 +42,9 @@ export default function Gallery({ gallery }) {
             <span className="text-[#1E3A8A] text-[10px] font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
               EXPLORE OUR CAMPUS
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
               OUR CAMPUS GALLERY
-            </h2>
+            </h1>
             <div className="w-12 h-0.5 bg-[#1E3A8A] mt-4 rounded-full" />
           </div>
 

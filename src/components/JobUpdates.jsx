@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Briefcase, Search, Calendar, ExternalLink, ChevronLeft, ChevronRight, Building2, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import SEO from "./SEO.jsx";
 
 export default function JobUpdates({ newsAndAnnouncements }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,6 +27,15 @@ export default function JobUpdates({ newsAndAnnouncements }) {
 
   return (
     <div className="py-12 sm:py-20 bg-slate-50 min-h-screen">
+      <SEO 
+        title="Job Updates & Recruitment Notifications | Sri Vidya Chetana Degree College"
+        description="Latest government and corporate job vacancy alerts for KPSC, UPSC, Banking (SBI/IBPS), Railways (RRB), Karnataka State Police (KSP), and corporate campus recruitment drives."
+        canonical="https://srividyachetana.in/job-updates"
+        breadcrumbs={[
+          { name: "Home", url: "https://srividyachetana.in/" },
+          { name: "Job Updates", url: "https://srividyachetana.in/job-updates" }
+        ]}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Page Header */}

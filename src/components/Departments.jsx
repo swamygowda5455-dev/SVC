@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { User, BookOpen, GraduationCap, ChevronRight, Mail, PhoneCall } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import SEO from "./SEO.jsx";
 
 export default function Departments({ departments }) {
   const [selectedHod, setSelectedHod] = useState(null);
@@ -18,16 +19,25 @@ export default function Departments({ departments }) {
 
   return (
     <section id="departments" className="py-12 sm:py-20 bg-slate-50/50 scroll-mt-10">
+      <SEO 
+        title="Academic Departments & Faculty | Sri Vidya Chetana Degree College"
+        description="Explore our academic departments: Commerce & Management, Science & Computing, Humanities & Social Sciences, and the Integrated Coaching Academy at Sri Vidya Chetana Degree College."
+        canonical="https://srividyachetana.in/departments"
+        breadcrumbs={[
+          { name: "Home", url: "https://srividyachetana.in/" },
+          { name: "Departments", url: "https://srividyachetana.in/departments" }
+        ]}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="text-[#1E3A8A] text-[10px] font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
-            FACULTIES & DIVISIONS
+            FACULTIES &amp; DIVISIONS
           </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
             ACADEMIC DEPARTMENTS
-          </h2>
+          </h1>
           <div className="w-12 h-0.5 bg-[#1E3A8A] mx-auto mt-4 rounded-full" />
         </div>
 

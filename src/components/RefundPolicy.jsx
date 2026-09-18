@@ -1,12 +1,24 @@
 import React from "react";
 import { REFUND_POLICY_DATA } from "../refundpolicy.js";
 import { ShieldCheck } from "lucide-react";
+import SEO from "./SEO.jsx";
 
 export default function RefundPolicy({ isModal = false, onClose = null }) {
   const data = REFUND_POLICY_DATA;
 
   return (
     <div className={`${isModal ? "p-4 sm:p-6 text-slate-800" : "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 text-slate-800"}`}>
+      {!isModal && (
+        <SEO 
+          title="Fee Refund Policy | Sri Vidya Chetana Degree College"
+          description="Official Fee Refund Policy of Sri Vidya Chetana Degree College managed by Sri Vidya Chetana Educational & Charitable Trust (R.), Chintamani, Karnataka."
+          canonical="https://srividyachetana.in/refund-policy"
+          breadcrumbs={[
+            { name: "Home", url: "https://srividyachetana.in/" },
+            { name: "Refund Policy", url: "https://srividyachetana.in/refund-policy" }
+          ]}
+        />
+      )}
       
       {/* Header Banner */}
       <div className="border-b border-slate-200 pb-6 mb-8 text-center space-y-3">

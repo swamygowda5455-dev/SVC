@@ -1,6 +1,7 @@
 import React from "react";
 import { Eye, Target, CheckCircle2, Award, Shield, Users, Compass, Lightbulb, Sparkles, Globe, Heart, Flag, Quote } from "lucide-react";
 import { motion } from "motion/react";
+import SEO from "./SEO.jsx";
 
 export default function About() {
   const introParagraphs = [
@@ -44,6 +45,15 @@ export default function About() {
 
   return (
     <div id="about" className="py-16 sm:py-24 bg-slate-50 min-h-screen">
+      <SEO 
+        title="About Us | Sri Vidya Chetana Degree College - History, Vision & Mission"
+        description="Discover Sri Vidya Chetana Degree College, managed by Sri Vidya Chetana Educational & Charitable Trust (R.) and affiliated with Bengaluru North University. Learn about our vision, mission, and Trishul Learning Model."
+        canonical="https://srividyachetana.in/about"
+        breadcrumbs={[
+          { name: "Home", url: "https://srividyachetana.in/" },
+          { name: "About Us", url: "https://srividyachetana.in/about" }
+        ]}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Section Header */}

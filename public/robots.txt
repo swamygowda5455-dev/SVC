@@ -1,0 +1,23 @@
+# Robots.txt for Sri Vidya Chetana Degree College
+# Website: https://srividyachetana.in/
+
+User-agent: *
+Allow: /
+
+# Disallow sensitive or system directories if applicable
+Disallow: /api/
+Disallow: /config/
+Disallow: /scripts/
+
+# Ensure all assets are crawlable for rendering
+Allow: /assets/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
+Allow: /*.svg$
+
+# Sitemap Reference
+Sitemap: https://srividyachetana.in/sitemap.xml

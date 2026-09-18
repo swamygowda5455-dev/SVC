@@ -1,12 +1,24 @@
 import React from "react";
 import { TERMS_CONDITIONS_DATA } from "../termscondiiton.js";
 import { FileText } from "lucide-react";
+import SEO from "./SEO.jsx";
 
 export default function TermsConditions({ isModal = false, onClose = null }) {
   const data = TERMS_CONDITIONS_DATA;
 
   return (
     <div className={`${isModal ? "p-4 sm:p-6 text-slate-800" : "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 text-slate-800"}`}>
+      {!isModal && (
+        <SEO 
+          title="Terms & Conditions | Sri Vidya Chetana Degree College"
+          description="Official Terms and Conditions governing website usage, academic programs, and services at Sri Vidya Chetana Degree College, Chintamani."
+          canonical="https://srividyachetana.in/terms-and-conditions"
+          breadcrumbs={[
+            { name: "Home", url: "https://srividyachetana.in/" },
+            { name: "Terms & Conditions", url: "https://srividyachetana.in/terms-and-conditions" }
+          ]}
+        />
+      )}
       
       {/* Header Banner */}
       <div className="border-b border-slate-200 pb-6 mb-8 text-center space-y-3">

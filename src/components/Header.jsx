@@ -149,9 +149,9 @@ export default function Header({ branding }) {
               className="w-10 h-10 sm:w-14 sm:h-14 object-contain rounded-xl bg-white p-0.5 sm:p-1 border-2 border-amber-400/40 shadow-lg transition-transform duration-300 group-hover:scale-105 shrink-0"
             />
             <div>
-              <h1 className="text-xs sm:text-base md:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-tight font-display uppercase group-hover:text-amber-300 transition-colors">
+              <span className="block text-xs sm:text-base md:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-tight font-display uppercase group-hover:text-amber-300 transition-colors">
                 {branding?.collegeName || "Sri Vidya Chetana Degree College"}
-              </h1>
+              </span>
               <p className="text-[9px] sm:text-[10px] md:text-xs text-amber-300 font-semibold tracking-wide mt-0.5 max-w-[280px] sm:max-w-none break-words">
                 Affiliated to Bengaluru North University | Degree Integrated with Civil Service Exam Preparation &amp; Skill Development
               </p>

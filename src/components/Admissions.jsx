@@ -4,6 +4,7 @@ import {
   User, Mail, Phone, MapPin, Send, RefreshCw, BookOpen, ChevronRight
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import SEO from "./SEO.jsx";
 
 // Standard list of Karnataka's 31 districts for the dropdown selection
 const KARNATAKA_DISTRICTS = [
@@ -433,6 +434,15 @@ export default function Admissions({
 
   return (
     <section id="admissions" className="py-12 sm:py-20 bg-slate-50 text-slate-800 scroll-mt-10 relative overflow-hidden">
+      <SEO 
+        title="Admissions 2026-27 | Apply Online | Sri Vidya Chetana Degree College"
+        description="Admissions open for Academic Year 2026–27 at Sri Vidya Chetana Degree College for B.A., B.Com., B.Sc., BBA, and BCA with integrated competitive exam coaching."
+        canonical="https://srividyachetana.in/admissions"
+        breadcrumbs={[
+          { name: "Home", url: "https://srividyachetana.in/" },
+          { name: "Admissions", url: "https://srividyachetana.in/admissions" }
+        ]}
+      />
       {/* Decorative glass design bubbles */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-100/30 rounded-full blur-3xl pointer-events-none" />
@@ -444,9 +454,9 @@ export default function Admissions({
           <span className="text-[#1E3A8A] text-[10px] font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
             ENROLLMENT PORTAL
           </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
             PROVISIONAL ADMISSION REGISTRATION
-          </h2>
+          </h1>
           <p className="text-slate-500 text-xs sm:text-sm mt-4">
             {admissions?.tagline || "Affiliated to Bengaluru North University. Build your career with our Integrated Degree Programme."}
           </p>

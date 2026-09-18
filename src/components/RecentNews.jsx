@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Megaphone, Search, Calendar, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import SEO from "./SEO.jsx";
 
 export default function RecentNews({ newsAndAnnouncements }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,6 +26,15 @@ export default function RecentNews({ newsAndAnnouncements }) {
 
   return (
     <div className="py-12 sm:py-20 bg-slate-50 min-h-screen">
+      <SEO 
+        title="Recent News, Circulars & Announcements | Sri Vidya Chetana Degree College"
+        description="Official notice board of Sri Vidya Chetana Degree College. Bengaluru North University exam timetables, academic circulars, seminar notifications, and campus events."
+        canonical="https://srividyachetana.in/recent-news"
+        breadcrumbs={[
+          { name: "Home", url: "https://srividyachetana.in/" },
+          { name: "Recent News", url: "https://srividyachetana.in/recent-news" }
+        ]}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Page Header */}

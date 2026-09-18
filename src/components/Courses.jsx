@@ -15,6 +15,7 @@ import {
   GraduationCap 
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import SEO from "./SEO.jsx";
 
 export default function Courses({ courses }) {
   const [activeTab, setActiveTab] = useState("All");
@@ -41,6 +42,15 @@ export default function Courses({ courses }) {
 
   return (
     <section id="courses" className="py-16 sm:py-24 bg-white scroll-mt-10 relative overflow-hidden">
+      <SEO 
+        title="Undergraduate Degree Courses & Programs | Sri Vidya Chetana Degree College"
+        description="Explore undergraduate programs at Sri Vidya Chetana Degree College: B.A., B.Com., B.Sc. PMCs, BBA, BCA, Abyasa NCERT, and Gurukul Sankalpa integrated with competitive exam coaching."
+        canonical="https://srividyachetana.in/courses"
+        breadcrumbs={[
+          { name: "Home", url: "https://srividyachetana.in/" },
+          { name: "Courses", url: "https://srividyachetana.in/courses" }
+        ]}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
@@ -49,9 +59,9 @@ export default function Courses({ courses }) {
             <span className="text-[#1E3A8A] text-xs font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
               ACADEMIC OFFERINGS
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E3A8A] mt-5 tracking-tight font-display">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E3A8A] mt-5 tracking-tight font-display">
               Our Integrated Programs
-            </h2>
+            </h1>
             <div className="w-16 h-1 bg-gradient-to-r from-[#1E3A8A] via-amber-400 to-amber-500 mt-5 rounded-full" />
           </div>
 

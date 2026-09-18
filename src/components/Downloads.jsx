@@ -1,9 +1,19 @@
 import React from "react";
 import { Download } from "lucide-react";
+import SEO from "./SEO.jsx";
 
 export default function Downloads() {
   return (
     <div className="py-16 sm:py-24 bg-slate-50 min-h-[60vh] flex items-center justify-center">
+      <SEO 
+        title="Downloads & Student Resources | Sri Vidya Chetana Degree College"
+        description="Access official forms, brochures, syllabi, and student resources for Sri Vidya Chetana Degree College, Chintamani."
+        canonical="https://srividyachetana.in/downloads"
+        breadcrumbs={[
+          { name: "Home", url: "https://srividyachetana.in/" },
+          { name: "Downloads", url: "https://srividyachetana.in/downloads" }
+        ]}
+      />
       <div className="max-w-xl mx-auto px-4 text-center space-y-4">
         <div className="w-16 h-16 rounded-3xl bg-amber-50 text-[#1E3A8A] border border-amber-200 flex items-center justify-center mx-auto shadow-xs">
           <Download size={32} className="text-[#1E3A8A]" />

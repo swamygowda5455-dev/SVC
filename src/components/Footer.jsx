@@ -100,31 +100,19 @@ export default function Footer({ branding, courses }) {
                 <Link to="/contact" className="hover:text-amber-300 transition-colors">Contact Us</Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => setShowTermsModal(true)}
-                  className="hover:text-amber-300 transition-colors cursor-pointer text-left"
-                >
+                <Link to="/terms-and-conditions" className="hover:text-amber-300 transition-colors">
                   Terms &amp; Conditions
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => setShowPrivacyModal(true)}
-                  className="hover:text-amber-300 transition-colors cursor-pointer text-left"
-                >
+                <Link to="/privacy-policy" className="hover:text-amber-300 transition-colors">
                   Privacy Policy
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => setShowRefundModal(true)}
-                  className="hover:text-amber-300 transition-colors cursor-pointer text-left"
-                >
+                <Link to="/refund-policy" className="hover:text-amber-300 transition-colors">
                   Refund Policy
-                </button>
+                </Link>
               </li>
             </ul>
           </div>
@@ -169,27 +157,15 @@ export default function Footer({ branding, courses }) {
           <p>© {new Date().getFullYear()} {branding.collegeName}. All Rights Reserved.</p>
           
           <div className="flex flex-wrap items-center gap-6">
-            <button
-              type="button"
-              onClick={() => setShowTermsModal(true)}
-              className="hover:text-amber-300 transition-colors cursor-pointer"
-            >
+            <Link to="/terms-and-conditions" className="hover:text-amber-300 transition-colors">
               Terms &amp; Conditions
-            </button>
-            <button
-              type="button"
-              onClick={() => setShowPrivacyModal(true)}
-              className="hover:text-amber-300 transition-colors cursor-pointer"
-            >
+            </Link>
+            <Link to="/privacy-policy" className="hover:text-amber-300 transition-colors">
               Privacy Policy
-            </button>
-            <button
-              type="button"
-              onClick={() => setShowRefundModal(true)}
-              className="hover:text-amber-300 transition-colors cursor-pointer"
-            >
+            </Link>
+            <Link to="/refund-policy" className="hover:text-amber-300 transition-colors">
               Refund Policy
-            </button>
+            </Link>
             <Link to="/about" className="hover:text-amber-300 transition-colors">Rules &amp; Regulations</Link>
             <Link to="/contact" className="hover:text-amber-300 transition-colors">Academic Help Desk</Link>
             

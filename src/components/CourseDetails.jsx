@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { 
   GraduationCap, 
@@ -20,6 +20,8 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import Admissions from "./Admissions.jsx";
+import SEO from "./SEO.jsx";
+import { generateCourseSchema, generateFAQSchema, SITE_DOMAIN } from "../seo/seoConfig.js";
 
 export default function CourseDetails({ courses, branding, admissions }) {
   const { slug } = useParams();
@@ -27,25 +29,6 @@ export default function CourseDetails({ courses, branding, admissions }) {
   const [copiedLink, setCopiedLink] = useState(false);
 
   const course = courses.find(c => c.slug === slug || c.id === slug);
-
-  // Dynamic OpenGraph and HTML Meta Tag update for SEO & Social Sharing
-  useEffect(() => {
-    if (course) {
-      document.title = `${course.name} - Sri Vidya Chetana Degree College`;
-      
-      let metaDesc = document.querySelector('meta[name="description"]');
-      if (!metaDesc) {
-        metaDesc = document.createElement('meta');
-        metaDesc.name = 'description';
-        document.head.appendChild(metaDesc);
-      }
-      metaDesc.content = course.description;
-    }
-
-    return () => {
-      document.title = "Sri Vidya Chetana Degree College";
-    };
-  }, [course]);
 
   if (!course) {
     return (
@@ -68,8 +51,25 @@ export default function CourseDetails({ courses, branding, admissions }) {
     setTimeout(() => setCopiedLink(false), 2500);
   };
 
+  const courseSchema = course ? generateCourseSchema(course) : null;
+  const faqSchema = (course && course.faqs && course.faqs.length > 0) ? generateFAQSchema(course.faqs) : null;
+  const customSchemas = [courseSchema, faqSchema].filter(Boolean);
+
   return (
     <div className="bg-slate-50 min-h-screen py-8 sm:py-12">
+      <SEO
+        title={`${course.name} | Sri Vidya Chetana Degree College`}
+        description={course.description || course.aboutText}
+        canonical={`${SITE_DOMAIN}/courses/${course.slug || course.id}`}
+        ogImage={course.image}
+        ogType="article"
+        breadcrumbs={[
+          { name: "Home", url: `${SITE_DOMAIN}/` },
+          { name: "Courses", url: `${SITE_DOMAIN}/courses` },
+          { name: course.name, url: `${SITE_DOMAIN}/courses/${course.slug || course.id}` }
+        ]}
+        customSchemas={customSchemas}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
         {/* Top Breadcrumb */}

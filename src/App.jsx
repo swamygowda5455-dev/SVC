@@ -35,15 +35,25 @@ function ScrollToTop() {
   return null;
 }
 
+import SEO from "./components/SEO.jsx";
+
 // HomePage Component
 function HomePage({ cmsData }) {
   return (
-    <Hero
-      branding={cmsData.branding}
-      whyChoose={cmsData.whyChoose}
-      admissions={cmsData.admissions}
-      courses={cmsData.courses}
-    />
+    <>
+      <SEO
+        title="Sri Vidya Chetana Degree College | Integrated Degree & Competitive Exam Coaching"
+        description="Sri Vidya Chetana Degree College in Chintamani, Karnataka. Affiliated to Bengaluru North University. Offering B.A, B.Com, B.Sc, BBA, and BCA integrated with UPSC IAS, KPSC KAS, Banking, SSC, Railways & CA coaching."
+        canonical="https://srividyachetana.in/"
+        breadcrumbs={[{ name: "Home", url: "https://srividyachetana.in/" }]}
+      />
+      <Hero
+        branding={cmsData.branding}
+        whyChoose={cmsData.whyChoose}
+        admissions={cmsData.admissions}
+        courses={cmsData.courses}
+      />
+    </>
   );
 }
 

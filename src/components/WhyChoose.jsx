@@ -1,6 +1,7 @@
 import React from "react";
 import * as Icons from "lucide-react";
 import { motion } from "motion/react";
+import SEO from "./SEO.jsx";
 
 export default function WhyChoose({ whyChoose }) {
 
@@ -21,6 +22,15 @@ export default function WhyChoose({ whyChoose }) {
 
   return (
     <section id="why-choose" className="py-20 bg-white scroll-mt-10 overflow-hidden">
+      <SEO 
+        title="Why Choose Sri Vidya Chetana Degree College | Unique Features & Trishul Model"
+        description="Discover why Sri Vidya Chetana Degree College is Karnataka's premier institution: Veteran administrator mentors, CBT mock exam lab, competitive library, and Trishul Learning Model."
+        canonical="https://srividyachetana.in/why-us"
+        breadcrumbs={[
+          { name: "Home", url: "https://srividyachetana.in/" },
+          { name: "Why Choose Us", url: "https://srividyachetana.in/why-us" }
+        ]}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Heading */}
@@ -28,9 +38,9 @@ export default function WhyChoose({ whyChoose }) {
           <span className="text-[#1E3A8A] text-[10px] font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
             THE SVC EDGE
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
             WHY CHOOSE OUR COLLEGE?
-          </h2>
+          </h1>
           <p className="text-slate-500 text-xs sm:text-sm mt-4">
             We provide a world-class infrastructure combined with elite academic pedagogy designed to make you industry-ready.
           </p>

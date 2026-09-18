@@ -13,6 +13,7 @@ import {
   Sparkles 
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import SEO from "./SEO.jsx";
 
 export default function CompetitiveExams() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -117,6 +118,15 @@ export default function CompetitiveExams() {
 
   return (
     <div className="py-12 sm:py-20 bg-slate-50 min-h-screen">
+      <SEO 
+        title="Competitive Examination Coaching (UPSC, KPSC, Banking, SSC, Railways, CA) | Sri Vidya Chetana"
+        description="Integrated coaching academy at Sri Vidya Chetana Degree College for UPSC IAS/IPS, KPSC KAS, Banking PO/Clerk, SSC CGL/CHSL, RRB Railways, and CA Foundation alongside degree studies."
+        canonical="https://srividyachetana.in/competitive-exams"
+        breadcrumbs={[
+          { name: "Home", url: "https://srividyachetana.in/" },
+          { name: "Competitive Exams", url: "https://srividyachetana.in/competitive-exams" }
+        ]}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Header Title Section */}

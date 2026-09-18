@@ -1,12 +1,26 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import Admissions from "./Admissions.jsx";
+import SEO from "./SEO.jsx";
 
 export default function Contact({ branding, admissions, courses }) {
-  // Admissions PDF form integrated below
+  const location = useLocation();
+  const isStandalonePage = location.pathname === "/contact";
 
   return (
     <section id="contact" className="py-12 sm:py-20 bg-slate-50 scroll-mt-10">
+      {isStandalonePage && (
+        <SEO 
+          title="Contact Us & Campus Location | Sri Vidya Chetana Degree College"
+          description="Contact Sri Vidya Chetana Degree College in Chintamani, Chikkaballapura, Karnataka. Call +91 94481 23456 or email admissions@srividyachetana.edu.in for admission enquiries."
+          canonical="https://srividyachetana.in/contact"
+          breadcrumbs={[
+            { name: "Home", url: "https://srividyachetana.in/" },
+            { name: "Contact Us", url: "https://srividyachetana.in/contact" }
+          ]}
+        />
+      )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Heading */}
@@ -14,9 +28,15 @@ export default function Contact({ branding, admissions, courses }) {
           <span className="text-[#1E3A8A] text-[10px] font-extrabold tracking-[0.2em] uppercase bg-amber-50 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-xs">
             CONNECT WITH US
           </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
-            CONTACT ACADEMIC OFFICE
-          </h2>
+          {isStandalonePage ? (
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
+              CONTACT ACADEMIC OFFICE
+            </h1>
+          ) : (
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mt-4 tracking-tight">
+              CONTACT ACADEMIC OFFICE
+            </h2>
+          )}
           <p className="text-slate-500 text-xs sm:text-sm mt-4">
             Have questions about credits, campus tours, or enrollment procedures? Reach out directly.
           </p>
